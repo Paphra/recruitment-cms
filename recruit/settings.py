@@ -94,14 +94,6 @@ WSGI_APPLICATION = 'recruit.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'heroku_8ef72ff1f04f586',
-        'USER': 'b0b78d95754775',
-        'PASSWORD': 'a967e458',
-        'HOST': 'us-cdbr-east-02.cleardb.com',
-        'PORT': '3306'
-    },
-    'local': {
-        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'recruit',
         'USER': 'root',
         'PASSWORD': '',
@@ -159,7 +151,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 IMPORT_EXPORT_IMPORT_PERMISSION_CODE = ['add', 'change', 'delete']
 
-# CLEARDB_DATABSE_URL = "mysql://b0b78d95754775:a967e458@us-cdbr-east-02.cleardb.com/heroku_8ef72ff1f04f586?reconnect=true"
 import dj_database_url 
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
