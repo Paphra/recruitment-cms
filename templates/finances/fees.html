@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Fees | Finances{% endblock %}
+{% block content %}
+    
+    <section class="">
+        <div class="">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <div class="row">
+                                <h3 class="col-sm-9">Manage Fees</h3>
+                                <div class="col-sm-3 text-right">
+                                    <a href="/admin/finances/fee/add" 
+                                        class="btn btn-sm bg-cyan waves-effect">
+                                        Add Fee
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body table-responsive">
+                            <table class="table table-xs table-bordered table-striped table-hover dataTable js-exportable">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Job</th>
+                                        <th>Amount</th>
+                                        <th>Is Active</th>
+                                        <th>Created</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for fee in fees %}
+                                        <tr>
+                                            <td>{{ fee.title }}</td>
+                                            <td>{{ fee.description }}</td>
+                                            <td>{{ fee.job }}</td>
+                                            <td>{{ fee.amount }}</td>
+                                            <td>
+                                                {% if fee.is_active %}
+                                                    <span class="badge bg-green">Yes</span>
+                                                {% else %}
+                                                    <span class="badge bg-red">No</span>
+                                                {% endif %}
+                                            <td>
+                                            <td>{{ fee.created}}</td>
+                                            <td>
+                                                <a href="/admin/finances/fee/{{ fee.id }}/change" 
+                                                    class="btn btn-xs btn-success waves-effect">
+                                                    <span class="material-icons">edit</span>
+                                                </a>
+                                                <a href="/admin/finances/fee/{{ fee.id }}" 
+                                                    class="btn btn-xs btn-danger waves-effect">
+                                                    <span class="material-icons">delete</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+{% endblock content %}
+{% block js %}
+    <script src="{% static 'js/pages/tables/fees.js' %}" ></script>
+{% endblock js %}

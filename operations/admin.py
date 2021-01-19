@@ -2,7 +2,7 @@ from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 # Register your models here.
-from .models import Clearance, Contract, Interpol, Interview, Medical, Passport, Ticket, Vetting, Visa, OtherOperation
+from .models import Clearance, Contract, Interpol, Interview, Medical, Passport, Ticket, Vetting, Visa, OtherOperation, TravelPlan
 
 @admin.register(Clearance)
 class ClearanceAdmin(admin.ModelAdmin):
@@ -76,3 +76,10 @@ class VisaAdmin(admin.ModelAdmin):
     list_filter = ['status', 'issue_date', 'created']
     list_editable = ['status']
     search_fields = ['client', 'visa_no', 'validity']
+
+@admin.register(TravelPlan)
+class TravelPlanAdmin(admin.ModelAdmin):
+    list_display = ('client', 'item', 'status', 'created')
+    list_filter = ['status', 'created']
+    list_editable = ['status']
+    search_fields = ['client', 'item']

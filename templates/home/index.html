@@ -1,0 +1,100 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}
+    Home
+{% endblock title %}
+
+{% block content %}
+    <div class="block-header">
+        <h2>Dashboard</h2>
+    </div>
+    <!-- Widgets -->
+    <div class="row clearfix">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box bg-pink hover-expand-effect">
+                <div class="icon">
+                    <a href="{% url 'clients' %}"><i class="material-icons">done</i></a>
+                </div>
+                <div class="content">
+                    <div class="text"><h5>Clients</h5></div>
+                    <h4><strong>{{ clients }}</strong></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box bg-light-green hover-expand-effect">
+                <div class="icon">
+                    <a href="{% url 'jobs' %}"><i class="material-icons">sync</i></a>
+                </div>
+                <div class="content">
+                    <div class="text"><h5>Jobs</h5></div>
+                    <h4><strong>{{ jobs }}</strong></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box bg-cyan hover-expand-effect">
+                <div class="icon">
+                    <a href="{% url 'branches' %}"><i class="material-icons">home</i></a>
+                </div>
+                <div class="content">
+                    <div class="text"><h5>Branches</h5></div>
+                    <h4><strong>{{ branches }}</strong></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-orange hover-expand-effect">
+                <div class="icon">
+                    <a href="/admin/settings/partner"> <i class="material-icons">people</i></a>
+                </div>
+                <div class="content">
+                    <div class="text"><h5>Partners</h5></div>
+                    <h4><strong>{{ partners }}</strong></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #END# Widgets -->
+    <div class="card">
+        <div class="header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4>Stage Clients Count</h4>
+                </div>
+                <div class="col-sm-6">
+                    <i>Click on the Item to See the Clients</i>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <!-- Widgets -->
+            <div class="row clearfix">
+                {% if stages.count %}
+                    {% for stage in stages %}
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="info-box bg-light-green hover-expand-effect">
+                                <div class="icon">
+                                    <a href="/admin/home/client/?stages__id__exact={{ stage.id }}"><i class="material-icons">people</i></a>
+                                </div>
+                                <div class="content">
+                                    <div class="text"><h5>{{ stage.title }}</h5></div>
+                                    <h4><strong>{{ stage.client_set.count }}</strong></h4>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="container">
+                        <i class="text-red">No Stages In the System</i>
+                        <br>
+                        <b>Please Add Some Stages</b> <a href="/admin/settings/stage/add" 
+                            class="btn btn-xs btn-success">here <span class="material-icons>plus_one"></span></a>
+                    </div>
+                {% endif %}    
+            </div>
+            <!-- #END# Widgets -->
+        </div>
+    </div>        
+           
+{% endblock content %}

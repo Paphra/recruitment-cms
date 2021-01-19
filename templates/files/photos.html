@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Photos | Files {% endblock %}
+{% block content %}
+    
+    <section class="">
+        <div class="">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <div class="row">
+                                <h3 class="col-sm-9">Manage </h3>
+                                <div class="col-sm-3 text-right">
+                                    <a href="/admin/files/photo/add" 
+                                        class="btn btn-sm bg-cyan waves-effect">
+                                        Add Photo
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body table-responsive">
+                            <table class="table table-xs table-bordered table-striped table-hover dataTable js-exportable">
+                                <thead>
+                                    <tr>
+                                        <th>Client</th>
+                                        <th>Passport Size</th>
+                                        <th>Full Size</th>
+                                        <th>Other Photos</th>
+                                        <th>Created</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for photo in photos %}
+                                        <tr>
+                                            <td>{{ photo.client }}</td>
+                                            <td>
+                                                {% if photo.passport %}
+                                                    <a href="/media/{{ photo.passport }}" target="_blank">Photo</a>
+                                                {% else %}
+                                                    No Photo
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if photo.full %}
+                                                    <a href="/media/{{ photo.full }}" target="_blank">Photo</a>
+                                                {% else %}
+                                                    No Photo
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if photo.others %}
+                                                    <a href="/media/{{ photo.others }}" target="_blank">Photo</a>
+                                                {% else %}
+                                                    No Photo
+                                                {% endif %}
+                                            </td>
+                                            <td>{{ photo.created }}</td>
+                                            <td>
+                                                <button class="btn btn-sm bg-deep-orange waves-effect" 
+                                                    data-toggle="modal" data-target="#ViewPhotoModal-{{ photo.id }}">
+                                                    <i class="material-icons">visibility</i>
+                                                </button>
+                                                <div class="modal fade" id="ViewPhotoModal-{{ photo.id }}" role="dialog" data-backdrop="static">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                <h3 class="modal-title">Client Photos Details.</h3>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-sm-4">
+                                                                        <h6>Passport Size</h6>
+                                                                        {% if photo.passport %}
+                                                                            <img src="/media/{{ photo.passport }}" width="90%" />
+                                                                        {% else %}
+                                                                            <i class="text-danger">No Passport Size Photo</i>
+                                                                        {% endif %}
+                                                                        {% if photo.others %}
+                                                                            <h6>Other Photos</h6>
+                                                                            <img src="/media/{{ photo.others }}" width="90%" />
+                                                                        {% endif %}
+                                                                    </div>
+                                                                    <div class="col-sm-8">
+                                                                        <h6>Full Size</h6>
+                                                                        {% if photo.full %}
+                                                                            <img src="/media/{{ photo.full }}" width="90%" />
+                                                                        {% else %}
+                                                                            <i class="text-danger">No Full Size Photo</i>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                </di>
+                                                            </di>
+                                                            <div class="modal-footer">
+                                                                <a href="/admin/files/photo/{{ photo.id }}/change" 
+                                                                    class="btn btn-success btn-sm">Edit</a>
+                                                                <a href="/admin/files/photo/{{ photo.id }}/delete" 
+                                                                    class="btn btn-danger btn-sm">Delete</a>
+                                                            </div>
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+{% endblock content %}
+{% block js %}
+    <script src="{% static 'js/pages/tables/photo.js' %}" ></script>
+{% endblock js %}

@@ -20,15 +20,15 @@ class Clearance(models.Model):
         (PASSED, 'Passed'),
         (FAILED, 'Failed')
     ]
-    client = models.OneToOneField("clients.Client", on_delete=models.CASCADE)
+    client = models.OneToOneField("home.Client", on_delete=models.CASCADE)
     clearance_file = models.ForeignKey("files.ClearanceFile", on_delete=models.CASCADE)
-    submission_date = models.DateTimeField(blank=True)
+    submission_date = models.DateTimeField(null=True, blank=True)
     position_on_clearance = models.CharField(max_length=10)
     status = models.IntegerField(choices=STATUS_CHOICES, default=PENDING)
     created = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.client + '|' + self.created
+        return self.id
     
 class Contract(models.Model):
     """
@@ -48,15 +48,15 @@ class Contract(models.Model):
         (PASSED, 'Passed'),
         (FAILED, 'Failed')
     ]
-    client = models.OneToOneField("clients.Client", on_delete=models.CASCADE)
+    client = models.OneToOneField("home.Client", on_delete=models.CASCADE)
     employer = models.ForeignKey("settings.Employer", on_delete=models.CASCADE)
-    submission_date = models.DateTimeField(blank=True)
+    submission_date = models.DateTimeField(null=True, blank=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=PENDING)
     document = models.FileField(upload_to='clients/%Y/%m/%d/', blank=True)
     created = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.client + '|' + self.created
+        return self.id
 
 class Interpol(models.Model):
     """
@@ -76,15 +76,15 @@ class Interpol(models.Model):
         (PASSED, 'Passed'),
         (FAILED, 'Failed')
     ]
-    client = models.OneToOneField("clients.Client", on_delete=models.CASCADE)
-    submission_date = models.DateTimeField(blank=True)
+    client = models.OneToOneField("home.Client", on_delete=models.CASCADE)
+    submission_date = models.DateTimeField(null=True, blank=True)
     clearance_date = models.DateTimeField(default=timezone.now)
     status = models.IntegerField(choices=STATUS_CHOICES, default=PENDING)
     document = models.FileField(upload_to='clients/%Y/%m/%d/', blank=True)
     created = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.client + '|' + self.created
+        return self.id
 
 class Interview(models.Model):
     """
@@ -104,11 +104,12 @@ class Interview(models.Model):
         (PASSED, 'Passed'),
         (FAILED, 'Failed')
     ]
-    client = models.OneToOneField("clients.Client", on_delete=models.CASCADE)
+    client = models.OneToOneField("home.Client", on_delete=models.CASCADE)
     nationality = models.CharField(max_length=100, blank=True)
     religion = models.CharField(max_length=100, blank=True)
     place_ob = models.CharField("Place Of Birth", max_length=100, blank=True)
-    date_ob = models.DateField(blank=True)
+    date_ob = models.DateField(null=True, blank=True)
+    age = models.IntegerField(blank=True, null=True)
     married = models.BooleanField(default=False)
     spouse_name = models.CharField(max_length=100, blank=True)
     spouse_contact = models.CharField(max_length=100, blank=True)
@@ -116,13 +117,13 @@ class Interview(models.Model):
     home_town = models.CharField(max_length=100, blank=True)
     prev_job = models.CharField("Previous Job", max_length=100, blank=True)
     prev_employer = models.CharField("Previous Employer", max_length=200, blank=True)
-    description = models.TextField(blank=True)
+    description = models.TextField(null=True, blank=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=PENDING)
     document = models.FileField(upload_to='clients/%Y/%m/%d/', blank=True)
     created = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.client + '|' + self.created
+        return self.id
 
 class Medical(models.Model):
     """
@@ -150,14 +151,14 @@ class Medical(models.Model):
         (MEDICALS, 'Medical'),
         (OTHERS, 'Others')
     ]
-    client = models.ForeignKey("clients.Client", on_delete=models.CASCADE)
+    client = models.ForeignKey("home.Client", on_delete=models.CASCADE)
     medical_type = models.IntegerField(choices=TYPE_CHOICES, default=PREMEDICALS)
     status = models.IntegerField(choices=STATUS_CHOICES, default=PENDING)
     document = models.FileField(upload_to='clients/%Y/%m/%d/', blank=True)
     created = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.client + '|' + self.created
+        return self.id
 
 class Passport(models.Model):
     """
@@ -177,24 +178,24 @@ class Passport(models.Model):
         (PASSED, 'Passed'),
         (FAILED, 'Failed')
     ]
-    client = models.OneToOneField("clients.Client", on_delete=models.CASCADE)
-    agent = models.ForeignKey("settings.Agent", null=True, on_delete=models.SET_NULL)
+    client = models.OneToOneField("home.Client", on_delete=models.CASCADE)
+    agent = models.ForeignKey("settings.Agent", null=True, blank=True, on_delete=models.SET_NULL)
     passport_no = models.CharField("Passport Number", max_length=100, unique=True)
     nationality = models.CharField(max_length=100, blank=True)
     first_name = models.CharField(max_length=100, blank=True)
     last_name = models.CharField(max_length=100, blank=True)
     profession = models.CharField(max_length=100, blank=True)
     place_ob = models.CharField("Place Of Birth", max_length=100, blank=True)
-    date_ob = models.DateField(blank=True)
-    issue_date = models.DateField(blank=True)
-    expiry_date = models.DateField(blank=True)
+    date_ob = models.DateField(null=True, blank=True)
+    issue_date = models.DateField(null=True, blank=True)
+    expiry_date = models.DateField(null=True, blank=True)
 
     status = models.IntegerField(choices=STATUS_CHOICES, default=PENDING)
     document = models.FileField(upload_to='clients/%Y/%m/%d/', blank=True)
     created = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.client + '|' + self.passport_no
+        return self.passport_no
 
 class Ticket(models.Model):
     """
@@ -214,21 +215,21 @@ class Ticket(models.Model):
         (PASSED, 'Passed'),
         (FAILED, 'Failed')
     ]
-    client = models.OneToOneField("clients.Client", on_delete=models.CASCADE)
-    agent = models.ForeignKey("settings.Agent", null=True, on_delete=models.SET_NULL)
+    client = models.OneToOneField("home.Client", on_delete=models.CASCADE)
+    agent = models.ForeignKey("settings.Agent", null=True, blank=True, on_delete=models.SET_NULL)
     ticket_no = models.CharField("Ticket Number", max_length=100, unique=True)
     airline = models.CharField(max_length=100, blank=True)
     checkin = models.CharField(max_length=100, blank=True)
-    issue_date = models.DateTimeField(blank=True)
-    departure_date = models.DateTimeField(blank=True)
-    arrival_date = models.DateTimeField(blank=True)
+    issue_date = models.DateTimeField(null=True, blank=True)
+    departure_date = models.DateTimeField(null=True, blank=True)
+    arrival_date = models.DateTimeField(null=True, blank=True)
 
     status = models.IntegerField(choices=STATUS_CHOICES, default=PENDING)
     document = models.FileField(upload_to='clients/%Y/%m/%d/', blank=True)
     created = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.client + '|' + self.ticket_no
+        return self.ticket_no
 
 class Vetting(models.Model):
     """
@@ -248,10 +249,10 @@ class Vetting(models.Model):
         (PASSED, 'Passed'),
         (FAILED, 'Failed')
     ]
-    client = models.OneToOneField("clients.Client", on_delete=models.CASCADE)
-    job = models.ForeignKey("jobs.Job", on_delete=models.CASCADE)
-    destination = models.ForeignKey("settings.Destination", null=True, on_delete=models.SET_NULL)
-    employer = models.ForeignKey("settings.Employer", null=True, on_delete=models.SET_NULL)
+    client = models.OneToOneField("home.Client", on_delete=models.CASCADE)
+    job = models.ForeignKey("home.Job", on_delete=models.CASCADE)
+    destination = models.ForeignKey("settings.Destination", null=True, blank=True, on_delete=models.SET_NULL)
+    employer = models.ForeignKey("settings.Employer", null=True, blank=True, on_delete=models.SET_NULL)
     
     nationality = models.CharField(max_length=100, blank=True)
     district = models.CharField(max_length=100, blank=True)
@@ -273,7 +274,7 @@ class Vetting(models.Model):
     created = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.client + '|' + self.created
+        return self.id
 
 class Visa(models.Model):
     """
@@ -293,10 +294,10 @@ class Visa(models.Model):
         (PASSED, 'Passed'),
         (FAILED, 'Failed')
     ]
-    client = models.OneToOneField("clients.Client", on_delete=models.CASCADE)
-    agent = models.ForeignKey("settings.Agent", null=True, on_delete=models.SET_NULL)
+    client = models.OneToOneField("home.Client", on_delete=models.CASCADE)
+    agent = models.ForeignKey("settings.Agent", null=True, blank=True, on_delete=models.SET_NULL)
     visa_no = models.CharField("Visa Number", max_length=100, unique=True)
-    issue_date = models.DateTimeField(blank=True)
+    issue_date = models.DateTimeField(null=True, blank=True)
     validity = models.CharField(max_length=100, blank=True)
     
     status = models.IntegerField(choices=STATUS_CHOICES, default=PENDING)
@@ -304,7 +305,7 @@ class Visa(models.Model):
     created = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.client + '|' + self.visa_no
+        return self.visa_no
 
 class OtherOperation(models.Model):
     """
@@ -324,11 +325,38 @@ class OtherOperation(models.Model):
         (PASSED, 'Passed'),
         (FAILED, 'Failed')
     ]
-    client = models.ForeignKey("clients.Client", on_delete=models.CASCADE)
+    client = models.ForeignKey("home.Client", on_delete=models.CASCADE)
     item = models.CharField(max_length=100, blank=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=PENDING)
     document = models.FileField(upload_to='clients/%Y/%m/%d/', blank=True)
     created = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.client + '|' + self.item
+        return self.item
+
+class TravelPlan(models.Model):
+    """
+    Travel Plans Table
+    """
+    PENDING = 0
+    ACTIVE = 1
+    DONE = 2
+    CANCELLED = 3
+    PASSED = 4
+    FAILED = 5
+    STATUS_CHOICES = [
+        (PENDING, 'Pending'),
+        (ACTIVE, 'Active'),
+        (DONE, 'Done'),
+        (CANCELLED, 'Cancelled'),
+        (PASSED, 'Passed'),
+        (FAILED, 'Failed')
+    ]
+    client = models.ForeignKey("home.Client", on_delete=models.CASCADE)
+    item = models.CharField(max_length=100, blank=True)
+    status = models.IntegerField(choices=STATUS_CHOICES, default=PENDING)
+    document = models.FileField(upload_to='clients/%Y/%m/%d/', blank=True)
+    created = models.DateField(default=timezone.now)
+
+    def __str__(self):
+        return self.item

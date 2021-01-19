@@ -1,0 +1,250 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Clients{% endblock %}
+{% block loader %}
+{% endblock loader %}
+{% block content %}
+    
+    <section class="">
+        <div class="">          
+             <!-- Basic Examples -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <h2>Manage Clients</h2>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="text-right">
+                                        <a href="/admin/home/client/add" 
+                                            class="btn btn-sm bg-cyan waves-effect">
+                                            Add Client
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <table class="table table-xs table-bordered table-striped table-hover dataTable js-exportable">
+                                <thead>
+                                    <tr>
+                                        <th>Full Names</th>
+                                        <th>Contact</th>
+                                        <th>Passport Number</th>
+                                        <th>Job</th>
+                                        <th>Registered</th>
+                                        <th>Registration Fee</th>
+                                        <th>Created</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for client in clients %}
+                                        <tr>
+                                            <td>{{ client }}</td>
+                                            <td>{{ client.phone }}</td>
+                                            <td>{{ client.passport }}</td>
+                                            <td>{{ client.job }}</td>
+                                            <td>
+                                                {% if client.registered %}
+                                                    <span class="badge bg-green">Yes</span>
+                                                {% else %}
+                                                    <span class="badge bg-red">No</span>
+                                                    <a type="button" href="{% url 'register' client.id %}"
+                                                        class="btn btn-xs btn-success waves-effect">
+                                                        <i class="material-icons">refresh</i>
+                                                    </a>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if client.reg_fee%}
+                                                    <span class="badge bg-green">Paid</span>
+                                                {% else %}
+                                                    <span class="badge bg-red">Not Paid</span>
+                                                    <a type="button" href="{% url 'pay-reg-fee' client.id %}"
+                                                        class="btn btn-xs btn-success waves-effect">
+                                                        <i class="material-icons">refresh</i>
+                                                    </a>
+                                                {% endif %}
+                                            </td>
+                                            <td>{{ client.created }}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-xs bg-deep-orange waves-effect" 
+                                                    data-toggle="modal" data-target="#ViewClientModal-{{ client.id }}">
+                                                    <i class="material-icons">visibility</i>
+                                                </button>
+                                                <button type="button" class="btn btn-xs bg-deep-orange waves-effect" 
+                                                    data-toggle="modal" data-target="#ViewStagesModal-{{ client.id }}">
+                                                    <i class="material-icons">hourglass_full</i>
+                                                </button>
+                                                <button type="button" class="btn btn-xs bg-deep-orange waves-effect" 
+                                                    data-toggle="modal" data-target="#ViewCVModal-{{ client.id }}">
+                                                    <i class="material-icons">book</i>
+                                                </button>  
+                                                
+                                                <!-- ViewStagesModal -->
+                                                <div id="ViewStagesModal-{{ client.id }}" class="modal fade" role="dialog" data-backdrop="static">
+                                                    <div class="modal-dialog modal-lg ">
+                                                        <!-- Modal content-->
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">{{ client }} | Status Check</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <!-- Start Modal Body -->
+                                                                <div class="container">
+                                                                    <div class="row bs-wizard" style="border-bottom:0;">
+                                                                        {% for stage in client.job.category.stages.all %}
+                                                                            <div class="col-xs-2 bs-wizard-step {% for stg in client.stages.all %}
+                                                                                    {% if stg == stage %}complete{% endif %}
+                                                                                {% endfor %}">
+                                                                                <div class="text-center bs-wizard-stepnum">{{ stage.title }}</div>
+                                                                                <div class="progress"><div class="progress-bar"></div></div>
+                                                                                <a href="#" class="bs-wizard-dot"></a>
+                                                                                <div class="bs-wizard-info text-center">
+                                                                                    {{ stage.description}}<br>
+                                                                                    {% for stg in client.stages.all %}
+                                                                                        {% if stg == stage %}
+                                                                                            <span class="badge badge-pill bg-green" style="padding: 5px;">Complete</span>
+                                                                                        {% else %}
+                                                                                            <span class="badge badge-pill bg-grey" style="padding: 5px;">Pending</span>
+                                                                                        {% endif %}
+                                                                                    {% endfor %}
+                                                                                </div>
+                                                                            </div>
+                                                                        {% endfor %}
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                                <!--  End   Modal Body -->                        
+                                                            </div>
+                                                            <!-- End   ProgreesView/Step -->
+                                                        </div>
+                                                        <div class="modal-footer"></div>
+                                                    </div>
+                                                </div>
+                                                <!-- End ReceptionProgressViewModal -->
+                                                <!-- Start Details View Modal -->
+                                                <div id="ViewClientModal-{{ client.id }}" class="modal fade" role="dialog" data-backdrop="static">
+                                                    <div class="modal-dialog modal-lg">
+                                                    <!-- Modal content-->
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <!-- ##### Start Client Overview -->
+                                                                <div class="row">
+                                                                    <div class="col-md-8">
+                                                                        <div class="text-left">
+                                                                            <h4>{{ client }}</h4>
+                                                                            <p>Email: {{ client.email }}</p>
+                                                                            <p>Registered By: {{ client.user }}</p>
+                                                                            <p>Created: {{ client.created }}</p>
+                                                                            <p>Publicity: {{ client.publicity}}</p>
+                                                                            <p>Reason: {{ client.reason }}</p>
+                                                                            <p>
+                                                                                <a href="/admin/home/client/{{ client.id }}/change"
+                                                                                    class="btn btn-success btn-sm">Edit</a>
+                                                                                <a href="/admin/home/client/{{ client.id }}/delete"
+                                                                                    class="btn btn-danger btn-sm">Delete</a>
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="text-right">
+                                                                            {% if client.photo %}
+                                                                                <img src="/media/{{ client.photo.passport }}"  
+                                                                                style="width: 200px; height: 200px; border: #ccc solid 3px; margin-bottom: 50px;"/>
+                                                                            {% else %}
+                                                                                <img src="{% static 'images/user.png' %}"  
+                                                                                    style="width: 200px; height: 200px; border: #ccc solid 3px; margin-bottom: 50px;"/>
+                                                                            {% endif %}
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- Start Personal Details Table -->
+                                                                    <h4 style="margin:15px;">Personal Details:</h4>
+                                                                    <table class="table profile__table">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <th>Full Names:</th>
+                                                                                <td>{{ client }}</td>
+                                                                                <th>Phone Number:</th>
+                                                                                <td>{{ client.phone }}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th>Gender:</th>
+                                                                                <td>{% if client.gender%}Male{% else %}Female{% endif %}</td>
+                                                                                <th>Job Applied</th>
+                                                                                <td>{{ client.job }}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th>Address</th>
+                                                                                <td>{{ client.address }}</td>
+                                                                                <th>Branch:</th>
+                                                                                <td>{{ client.branch }}</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table> 
+                                                                    <h5 style="margin:15px;">Next of Kin:</h5>
+                                                                        {% if client.nextofkin %}
+                                                                            <table class="table profile__table">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <th>Full Names:</th>
+                                                                                        <td>{{ client.nextofkin }}</td>
+                                                                                        <th>Contact:</th>
+                                                                                        <td>{{ client.nextofkin.contact }}</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>Gender:</th>
+                                                                                        <td>{% if client.nextofkin.gender%}Male{% else %}Female{% endif %}</td>
+                                                                                        <th>Age:</th>
+                                                                                        <td>{{ client.nextofkin.age }}</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>Address:</th>
+                                                                                        <td>{{ client.nextofkin.address }}</td>
+                                                                                        <th>Relationship:</th>
+                                                                                        <td>{{ client.nextofkin.relationship }}</td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        {% else %}
+                                                                            <p class="text-danger text-center">
+                                                                                <i>Has No Next Of Kin</i>
+                                                                            </p>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                    <!-- ##### End Client Overview -->
+                                                                </div>
+                                                                <div class="modal-footer"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--  End Details View Modal -->
+                                                </div>
+                                                <!-- #END# Basic Examples -->
+
+                                                {% comment %} CV {% endcomment %}
+                                                {% include 'cv.html' %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+{% block js %}
+    <script src="{% static 'js/pages/tables/clients.js' %}" ></script>
+{% endblock js %}

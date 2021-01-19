@@ -1,0 +1,456 @@
+{% extends 'base.html' %}
+{% block title %}
+    Candidates
+{% endblock title %}
+{% block content %}
+    <section class="">
+        <div class="">
+           
+             <!-- Widgets -->
+            <div class="row clearfix">
+
+            </div>
+            <!-- #END# Widgets -->
+           
+             <!-- Basic Examples -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                Candidate's Information
+                            </h2>
+                         <!--    <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul> -->
+                        </div>
+                        <div class="body">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>Date/Time</th>
+                                        <th>Full Names</th>
+                                        <th>Contact</th>
+                                        <th>Passport Number</th>
+                                        <th>Job Category</th>
+                                        <th>Destination</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Position</th>
+                                        <th>Office</th>
+                                        <th>Age</th>
+                                        <th>Start date</th>
+                                        <th>Salary</th>
+                                        <th>Actions</th>
+
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                 <tr>   
+                                        <td>28/03/2019 4:03pm</td>
+                                        <td>Kibirige Ali</td>
+                                        <td>0754124551</td>
+                                        <td>B103456</td>
+                                        <td>House maid</td>
+                                        <td>Riyyad/Saudi Arabia</td>
+                                        <td>
+                                            
+                                             &nbsp;&nbsp;
+                                             <!-- Start Reception Candidate details View -->
+                                            <button type="button"class="btn btn-xs bg-deep-orange waves-effect" data-toggle="modal" data-target="#ReceptionDetailsViewModal">
+                                                 <i class="material-icons">visibility</i>
+                                            </button>&nbsp;&nbsp;
+                                            <!-- End   Reception Candidate details View -->
+
+                                            <!-- Start Reception Comment View -->
+                                            <button type="button"class="btn btn-xs bg-deep-orange waves-effect" data-toggle="modal" data-target="#ReceptionCommentModal"><i class="material-icons">message</i></button>&nbsp;&nbsp;
+                                           <!--  End   Reception Comment View -->
+
+                                           <!-- Start  Reception Progress view -->
+                                           <button type="button"class="btn btn-xs bg-deep-orange waves-effect" data-toggle="modal" data-target="#ReceptionProgressViewModal"><i class="material-icons">hourglass_full</i></button> 
+                                          <!--  End    Reception Progress View -->
+                                        </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- ReceptionCommentModal -->
+                <div id="ReceptionCommentModal" class="modal fade" role="dialog" data-backdrop="static">
+                  <div class="modal-dialog ">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Kibirige Ali</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+                            <p>Add your comment here:</p>
+                        <!-- Start Add comment text area -->
+                        <textarea style="height: 250px; width: 100%;" required></textarea>
+                       <!--  Start Assign selector -->
+                       <h4>Assign Comment</h4>
+             <select class="form-control pro" name="CommentAssigner" style="width: 100%;" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;" >
+                           <option value=""></option>
+                           <option>Self Assign</option>
+                           <option>Operations</option>
+                           <option>Receptionist</option>
+                           <option>Data Entrant</option>
+                           <option>Vetting Officer</option>
+                           <option>General Manager</option>
+                           <option>Security Project Manager</option>
+                       </select>
+                        </div>
+                        <!-- End Assign Selector -->
+                        <div class="text-right" style="margin-top: 76px;">
+                            <button class="btn btn-xs bg-light-blue waves-effect" style="padding:10px; margin: 15px;" >Add comment</button>
+                        </div>
+                        <!-- End Add comment text area -->
+                        
+                        
+                        <!-- Start Candidate comment title and commenter -->
+                            <hr style="border-color:#A9A9A9;" />
+                        <div class="text-left">
+                            <h4><strong>Candidate on hold</strong></h4>
+                            <p>by: Kibirige Ali</p>
+                            <p>27th/04/2019 4:14pm</p>
+                            <button class="btn btn-xs bg-cyan waves-effect" style="padding:5px;">Complete Comment</button>
+                        </div>
+                        <hr style="border-color:#A9A9A9;"/>
+                        <!-- End Candidate comment title and commenter -->
+
+
+                            <!-- Start Candidate comment title and commenter -->
+                            <hr style="border-color:#A9A9A9;" />
+                        <div class="text-left">
+                            <h4><strong>Candidate on hold</strong></h4>
+                            <p>by: Kibirige Ali</p>
+                            <p>27th/04/2019 4:14pm</p>
+                            <button class="btn btn-xs bg-cyan waves-effect" style="padding:5px;">Complete Comment</button>
+                        </div>
+                        <hr style="border-color:#A9A9A9;"/>
+                        <!-- End Candidate comment title and commenter -->
+                        
+                      </div>
+                      <div class="modal-footer">
+                        
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <!-- End ReceptionCommentModal -->
+
+                 <!-- ReceptionProgressViewModal -->
+                <div id="ReceptionProgressViewModal" class="modal fade" role="dialog" data-backdrop="static">
+                  <div class="modal-dialog modal-lg ">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Kibirige Ali | Status Check</h4>
+                        
+                      </div>
+                      <div class="modal-body">
+                       <!-- Start Modal Body -->
+                       <div class="container">
+                                    <div class="row bs-wizard" style="border-bottom:0;">
+                                        <!-- Start 1 Registration -->
+                                        <div class="col-xs-2 bs-wizard-step complete">
+                                          <div class="text-center bs-wizard-stepnum">Registration</div>
+                                          <div class="progress"><div class="progress-bar"></div></div>
+                                          <a href="#" class="bs-wizard-dot"></a>
+                                          <div class="bs-wizard-info text-center">Registration Fee, Passport application forms<br> status:<br><span class="badge badge-pill badge-primary" style="background-color:green; padding: 5px;">Complete</span></div>
+                                        </div>
+                                        <!-- End 1 Registration -->
+
+                                        <!-- Start 2 Interview -->
+                                        <div class="col-xs-2 bs-wizard-step complete">
+                                        <div class="text-center bs-wizard-stepnum">Interview</div>
+                                          <div class="progress"><div class="progress-bar"></div></div>
+                                          <a href="#" class="bs-wizard-dot"></a>
+                                          <div class="bs-wizard-info text-center">Determine candidate's eligibility <br>status:<br><span class="badge badge-pill badge-primary" style="background-color:green; padding: 5px;">On Hold</span></div>
+                                        </div>
+                                        <!-- End 2 Interview  -->
+
+                                        <!-- Start 3 Medical -->
+                                        <div class="col-xs-2 bs-wizard-step active">
+                                          <div class="text-center bs-wizard-stepnum">Medical</div>
+                                          <div class="progress"><div class="progress-bar"></div></div>
+                                          <a href="#" class="bs-wizard-dot"></a>
+                                          <div class="bs-wizard-info text-center">Determine candidate's medical fitness <br>Status:<br><span class="badge badge-pill badge-primary " style="background-color:green; padding: 5px;">Medically Fit</span></div>
+                                        </div>
+                                        <!-- End 3 Medical -->
+                                        
+
+                                       <!--  Start 4 Deployment Agreement -->
+                                        <div class="col-xs-2 bs-wizard-step disabled">
+                                          <div class="text-center bs-wizard-stepnum">Deployment Agreement</div>
+                                          <div class="progress"><div class="progress-bar"></div></div>
+                                          <a href="#" class="bs-wizard-dot"></a>
+                                          <div class="bs-wizard-info text-center">The next of kin Agreement<br> status:<br><span class="badge badge-pill badge-primary disabled" style="background-color:#ccc; padding: 5px;">pending</span></div>
+                                        </div>
+                                        <!-- End   4 Deployment Agreement  -->
+                                    </div>
+
+                                    <div class="row bs-wizard" style="border-bottom:0;">
+                                        <!-- Start 5 Training -->
+                                        <div class="col-xs-2 bs-wizard-step active">
+                                          <div class="text-center bs-wizard-stepnum">Training</div>
+                                          <div class="progress"><div class="progress-bar"></div></div>
+                                          <a href="#" class="bs-wizard-dot"></a>
+                                          <div class="bs-wizard-info text-center">Training depature agreement, Candidate training.<br>Status:<br><span class="badge badge-pill badge-primary disabled" style="background-color:green; padding: 5px;">Active</span></div>
+                                        </div>
+                                       <!--  End   5 Training -->
+                                        
+                                        <!-- Start 6 Passport Process -->
+                                        <div class="col-xs-2 bs-wizard-step active">
+                                          <div class="text-center bs-wizard-stepnum">Passport</div>
+                                          <div class="progress"><div class="progress-bar"></div></div>
+                                          <a href="#" class="bs-wizard-dot"></a>
+                                          <div class="bs-wizard-info text-center">International travel document/Identity<br>Status:<br><span class="badge badge-pill badge-primary disabled" style="background-color:green; padding: 5px;">Active</span></div>
+                                        </div>
+                                        <!-- End  6  Passport Process -->
+                                        
+                                       <!--  Start 7 Vetting Process -->
+                                        <div class="col-xs-2 bs-wizard-step active"><!-- complete -->
+                                          <div class="text-center bs-wizard-stepnum">Interpol</div>
+                                          <div class="progress"><div class="progress-bar"></div></div>
+                                          <a href="#" class="bs-wizard-dot"></a>
+                                          <div class="bs-wizard-info text-center">International police record processing<br>Status:<br><span class="badge badge-pill badge-primary disabled" style="background-color:green; padding: 5px;">Active</span></div>
+                                        </div>
+                                        <!-- End   7 Vetting Process -->
+
+                                        <!-- Start 8 Vetting -->
+                                        <div class="col-xs-2 bs-wizard-step disabled"><!-- active -->
+                                          <div class="text-center bs-wizard-stepnum">Vetting</div>
+                                          <div class="progress"><div class="progress-bar"></div></div>
+                                          <a href="#" class="bs-wizard-dot"></a>
+                                          <div class="bs-wizard-info text-center">Local Councill documents, UAERA submission<br>Status:<br><span class="badge badge-pill badge-primary disabled" style="background-color:#ccc; padding: 5px;">Pending</span></div>
+                                        </div> 
+                                        <!-- End   8 Vetting -->
+                                    </div>
+
+                                    <div class="row bs-wizard" style="border-bottom:0;">
+                                        
+                                        <!-- Start 9 Curriculum Vitae -->
+                                        <div class="col-xs-2 bs-wizard-step complete">
+                                          <div class="text-center bs-wizard-stepnum">CV Submission</div>
+                                          <div class="progress"><div class="progress-bar"></div></div>
+                                          <a href="#" class="bs-wizard-dot"></a>
+                                 <div class="bs-wizard-info text-center">Curriculum Vitae Submission<br>Status:<br><span class="badge badge-pill badge-primary disabled" style="background-color:green; padding: 5px;">Complete</span></div>
+                                        </div>
+                                        <!-- End   9 Curriculum Vitae -->
+
+                                        <!-- Start 10 Ministry Approval  -->
+                                        <div class="col-xs-2 bs-wizard-step disabled">
+                                          <div class="text-center bs-wizard-stepnum">Ministry Approval</div>
+                                          <div class="progress"><div class="progress-bar"></div></div>
+                                          <a href="#" class="bs-wizard-dot"></a>
+                                          <div class="bs-wizard-info text-center">Ministry approval and Clearance<br>Status:<br><span class="badge badge-pill badge-primary disabled" style="background-color:#ccc; padding: 5px;">Pending</span></div>
+                                        </div>
+                                        <!-- End   10 Ministry Approval -->
+                                        
+                                        <!-- Start 11 Visa Processing -->
+                                        <div class="col-xs-2 bs-wizard-step disabled">
+                                          <div class="text-center bs-wizard-stepnum">Visa Processing</div>
+                                          <div class="progress"><div class="progress-bar"></div></div>
+                                          <a href="#" class="bs-wizard-dot"></a>
+                                          <div class="bs-wizard-info text-center">Visa Medical, Waqalah Payment, Visa Application & Issuance<br>Status:<br><span class="badge badge-pill badge-primary disabled" style="background-color:#ccc; padding: 5px;">Pending</span></div>
+                                        </div>
+                                        <!-- End  11 Visa Processing -->
+                                        
+                                       <!--  Start 12 Departure Preparations -->
+                                        <div class="col-xs-2 bs-wizard-step complete"><!-- active -->
+                                          <div class="text-center bs-wizard-stepnum">Departure Preparation</div>
+                                          <div class="progress"><div class="progress-bar"></div></div>
+                                          <a href="#" class="bs-wizard-dot"></a>
+                                          <div class="bs-wizard-info text-center">Pre-departure medical, Destination request, Uniform payment<br>Status:<br><span class="badge badge-pill badge-primary disabled" style="background-color:green; padding: 5px;">Complete</span></div>
+                                        </div> 
+                                       <!--  End  12 Departure Preparations -->
+                                    </div>
+
+
+                                    <div class="row bs-wizard" style="border-bottom:0;">
+                                        
+                                        <!-- Start 13 Curriculum Vitae -->
+                                        <div class="col-xs-2 bs-wizard-step disabled">
+                                          <div class="text-center bs-wizard-stepnum">Ticket Processing</div>
+                                          <div class="progress"><div class="progress-bar"></div></div>
+                                          <a href="#" class="bs-wizard-dot"></a>
+                                 <div class="bs-wizard-info text-center">Ticekt booking, processing, Issuance and confirmation<br>Status:<br><span class="badge badge-pill badge-primary disabled" style="background-color:#ccc; padding: 5px;">Complete</span></div>
+                                        </div>
+                                        <!-- End   13 Curriculum Vitae -->
+
+                                        <!-- Start 14 Ministry Approval  -->
+                                        <div class="col-xs-2 bs-wizard-step disabled">
+                                          <div class="text-center bs-wizard-stepnum">Traveling/Departure</div>
+                                          <div class="progress"><div class="progress-bar"></div></div>
+                                          <a href="#" class="bs-wizard-dot"></a>
+                                          <div class="bs-wizard-info text-center">Ticket Share, Clearance, Deployment to employment<br>Status:<br><span class="badge badge-pill badge-primary disabled" style="background-color:#ccc; padding: 5px;">Pending</span></div>
+                                        </div>
+                                        <!-- End   14 Ministry Approval -->
+                                        
+                                        <!-- Start  15 Visa Processing -->
+                                        <div class="col-xs-2 bs-wizard-step complete">
+                                          <div class="text-center bs-wizard-stepnum">Mentoring and Monitoring</div>
+                                          <div class="progress"><div class="progress-bar"></div></div>
+                                          <a href="#" class="bs-wizard-dot"></a>
+                                          <div class="bs-wizard-info text-center">Continued communication, mentoring, inspiration and apprisal<br>Status:<br><span class="badge badge-pill badge-primary disabled" style="background-color:green; padding: 5px;">active</span></div>
+                                        </div>
+                                        <!-- End  15 Visa Processing -->
+                                        
+                                    </div>
+                            </div>
+                      <!--  End   Modal Body -->
+
+                        
+                        </div>
+                        <!-- End   ProgreesView/Step -->
+                      </div>
+                      <div class="modal-footer">
+                        
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <!-- End ReceptionProgressViewModal -->
+
+                <!-- Start Details View Modal -->
+                <div id="ReceptionDetailsViewModal" class="modal fade" role="dialog" data-backdrop="static">
+                  <div class="modal-dialog modal-lg ">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">File Number: E1500</h4>
+                      </div>
+                      <div class="modal-body">
+                        
+                            <!-- ##### Start Client Overview -->
+                           <div class="col-md-12">
+                            <div class="text-left"><h3 style="padding:20px;">Kibirige Ali</h3></div>
+                            <div class="text-right">
+                            
+        
+        
+        
+        
+        
+        
+        <img src="../assets/images/Ali-Identity-Enjaazi-Use.png"  style="width: 200px; height: 200px; border: #ccc solid 3px; margin-bottom: 50px;"/>
+                 </div>
+                 <!-- Start Personal Details Table -->
+        <h3 style="margin:15px;">Personal Details:</h3>
+                            <table class="table profile__table">
+                                      <tbody>
+                                        <tr>
+                                          <th>Full Names:</th>
+                                          <td>Kibirige Ali</td>
+                                          <th>Phone Number:</th>
+                                          <td>256764124551</td>
+                                        </tr>
+
+                                        <tr>
+
+                                          <th>Gender:</th>
+                                          <td>Female</td>
+                                          <th>Job Applied</th>
+                                          <td>House maid</td>
+                                        </tr>
+                                        <tr>
+                                          <th>Address</th>
+                                          <td>Kampala-Kansanga </td>
+                                          <th>Branch:</th>
+                                          <td>Kampala Head Offices</td>
+                                        </tr>
+                                      </tbody>
+                                    </table> 
+                                    <!-- End Personal Details Table -->
+                                   <!--  Start Next of Kin Table -->
+                                   <h3  style="margin:15px;">Next of Kin:</h4>
+                                    <table class="table profile__table">
+                                        <th><h5><strong>01. First Next of Kin</strong></h5></th>
+                                      <tbody>
+                                        <tr>
+                                          <th>Full Names:</th>
+                                          <td>Kibirige Ali</td>
+                                          <th>Phone Number:</th>
+                                          <td>256764124551</td>
+                                        </tr>
+
+                                        <tr>
+
+                                          <th>Gender:</th>
+                                          <td>Female</td>
+                                          <th>Age:</th>
+                                          <td>45 Years</td>
+                                        </tr>
+                                        <tr>
+                                          <th>Address:</th>
+                                          <td>Kampala-Kansanga </td>
+                                          <th>Relationship:</th>
+                                          <td>Kampala Head Offices</td>
+                                        </tr>
+                                        <th><h5><strong>02. Second Next of Kin</strong></h5></th>
+                                        <tr>
+                                          <th>Full Names:</th>
+                                          <td>Ssempijja Francis</td>
+                                          <th>Phone Number:</th>
+                                          <td>256764124551</td>
+                                        </tr>
+
+                                        <tr>
+
+                                          <th>Gender:</th>
+                                          <td>Female</td>
+                                          <th>Age:</th>
+                                          <td>25 Years</td>
+                                        </tr>
+                                        <tr>
+                                          <th>Address:</th>
+                                          <td>Kampala-Kansanga </td>
+                                          <th>Relationship:</th>
+                                          <td>Kampala Head Offices</td>
+                                        </tr>
+                                      </tbody>
+                                    </table> 
+                                    <!--  End Next of Kin Table -->
+                           
+                            </div>
+                         <!-- ##### End Client Overview -->
+                      </div>
+                      <div class="modal-footer">
+                        
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+               <!--  End   Details View Modal -->
+            </div>
+            <!-- #END# Basic Examples -->
+        </div>
+    </section>
+
+{% endblock content %}

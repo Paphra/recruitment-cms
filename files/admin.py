@@ -16,10 +16,10 @@ class ClientFileAdmin(admin.ModelAdmin):
     list_filter = ['created']
     search_fields = ['client', 'title']
 
-@admin.register(Photo)
-class PhotoAdmin(admin.ModelAdmin):
-    list_display = ('client', 'passport', 'full', 'others', 'created')
-    list_filter = ['created']
-    search_fields = ['client']
+# @admin.register(Photo)
+# class PhotoAdmin(admin.ModelAdmin):
+#     list_display = ('client', 'passport', 'full', 'others', 'created')
+#     list_filter = ['created']
+#     search_fields = ['client']
 
 

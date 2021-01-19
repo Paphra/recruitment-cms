@@ -37,16 +37,6 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'clients.apps.ClientsConfig',
-    'jobs.apps.JobsConfig',
-    'branches.apps.BranchesConfig',
-    'operations.apps.OperationsConfig',
-    'reports.apps.ReportsConfig',
-    'finances.apps.FinancesConfig',
-    'files.apps.FilesConfig',
-    'others.apps.OthersConfig',
-    'settings.apps.SettingsConfig',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,6 +44,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'import_export',
+
+    # apps
+    'home.apps.HomeConfig',
+    'operations.apps.OperationsConfig',
+    'finances.apps.FinancesConfig',
+    'files.apps.FilesConfig',
+    'others.apps.OthersConfig',
+    'settings.apps.SettingsConfig',
 ]
 
 MIDDLEWARE = [
@@ -94,7 +92,7 @@ WSGI_APPLICATION = 'recruit.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'recruit',
+        'NAME': 'recruitment',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '127.0.0.1',
@@ -130,6 +128,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'), 
+    )
+LANGUAGES = [
+    ('en', 'English'),
+    ('ar', 'Arabic')
+]
 
 TIME_ZONE = 'Africa/Kampala'
 
@@ -139,6 +144,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+DEBUG = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -148,9 +154,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/' 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static/assets')
+]
+
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 IMPORT_EXPORT_IMPORT_PERMISSION_CODE = ['add', 'change', 'delete']
 
 import dj_database_url 
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
+
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/login'

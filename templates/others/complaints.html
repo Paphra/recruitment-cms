@@ -1,0 +1,202 @@
+﻿{% extends 'base.html' %}
+{% block title %}Complaints | Supervisor{% endblock %}
+{% block content %}
+    
+    <section class="">
+        <div class="">
+           
+             <!-- Widgets -->
+            <div class="row clearfix">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-pink hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">fiber_manual_record</i>
+                        </div>
+                        <div class="content">
+                            <div class="text"><h5>active</h5></div>
+                            <!--  Counter Value -->
+                            <h4>100</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-cyan hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">hourglass_full</i>
+                        </div>
+                        <div class="content">
+                            <div class="text"><h5>Process</h5></div>
+                            <!--  Counter Value -->
+                            <h4>7</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-orange hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">restore</i>
+                        </div>
+                        <div class="content">
+                            <div class="text"><h5>Reborn</h5></div>
+                            <h4>100</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-green hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">done</i>
+                        </div>
+                        <div class="content">
+                            <div class="text"><h5>Complete</h5></div>
+                            <h4>100</h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- #END# Widgets -->
+           
+            <!-- Exportable Table -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                Manage Complaints
+                            </h2>
+                            
+                                <!-- <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li> -->
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                <thead>
+                                    <tr>
+                                      <th>Date/Time</th>
+                                      <th>Full Name &nbsp;&nbsp;</th>
+                                      <th>Passport No.</th>
+                                      <th>Contract No.</th>
+                                      <th>Work Permit No.</th>
+                                      <th>Job Category</th>
+                                      <th>Complaint Status</th>
+                                      <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>28/03/2019 4:03pm</td>
+                                        <td>Kibirige Ali</td>
+                                        <td>A00123456612</td>
+                                        <td>#34235</td>
+                                        <td>#56443</td>
+                                        <td>House Maid</td>
+                                        <td>
+                    <center><span class="badge badge-pill badge-primary" style="background-color:#E91E63; font-size:15px; padding:5px;">Active</span>
+                                        </center>
+                                        </td>
+                                        <td>
+                                            <center>
+                                                 &nbsp;&nbsp;
+                                            <button class="btn btn-xs bg-deep-orange waves-effect"><a href="reception/receptionClientView.html"><i class="material-icons">visibility</i></a>
+                                            </button>&nbsp;&nbsp;
+                                            <!-- Start set comment Button --> 
+                                            <button type="button"class="btn btn-xs bg-deep-orange waves-effect" data-toggle="modal" data-target="#ReceptionCommentModal">
+                                                <i class="material-icons">comment</i>
+                                            </button>
+                                            <!-- End set comment Button --> 
+                                            </center>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Exportable Table -->
+        </div>
+         <!-- Modal -->
+                <div id="ReceptionCommentModal" class="modal fade" role="dialog" data-backdrop="static">
+                  <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Kibirige Ali</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+                            <p>Add your comment here:</p>
+                        <!-- Start Add comment text area -->
+                        <textarea style="height: 150px; width: 100%;" required></textarea>
+                       <!--  Start Assign selector -->
+                       <h4>Assign Comment</h4>
+             <select class="form-control pro" name="CommentAssigner" style="width: 100%;" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;" >
+                           <option value=""></option>
+                           <option>Self Assign</option>
+                           <option>Operations</option>
+                           <option>Receptionist</option>
+                           <option>Data Entrant</option>
+                           <option>Vetting Officer</option>
+                           <option>General Manager</option>
+                           <option>Security Project Manager</option>
+                       </select>
+                        </div>
+                        <!-- End Assign Selector -->
+                        <div class="text-right" style="margin-top: 76px;">
+                            <button class="btn btn-xs bg-light-blue waves-effect" style="padding:10px; margin: 15px;" >Add comment</button>
+                        </div>
+                        <!-- End Add comment text area -->
+                        
+                        
+                        <!-- Start Candidate comment title and commenter -->
+                            <hr style="border-color:#A9A9A9;" />
+                        <div class="text-left">
+                            <h4><strong>Candidate on hold</strong></h4>
+                            <p>by: Kibirige Ali</p>
+                            <p>27th/04/2019 4:14pm</p>
+                            <button class="btn btn-xs bg-cyan waves-effect" style="padding:5px;">Complete Comment</button>
+                        </div>
+                        <hr style="border-color:#A9A9A9;"/>
+                        <!-- End Candidate comment title and commenter -->
+
+
+                            <!-- Start Candidate comment title and commenter -->
+                            <hr style="border-color:#A9A9A9;" />
+                        <div class="text-left">
+                            <h4><strong>Candidate on hold</strong></h4>
+                            <p>by: Kibirige Ali</p>
+                            <p>27th/04/2019 4:14pm</p>
+                            <button class="btn btn-xs bg-cyan waves-effect" style="padding:5px;">Complete Comment</button>
+                        </div>
+                        <hr style="border-color:#A9A9A9;"/>
+                        <!-- End Candidate comment title and commenter -->
+                        
+                      </div>
+                      <div class="modal-footer">
+                      
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <!-- End Model --> 
+
+
+    </section>
+{% endblock content %}

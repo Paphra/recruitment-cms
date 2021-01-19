@@ -1,0 +1,443 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <title>
+            {% block title %}
+                Dashboard 
+            {% endblock title %} | Recruitment CMS
+        </title>
+        <!-- Favicon-->
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+        <!-- Google Fonts -->
+        <link href="{% static 'iconfont/material-icons.css' %}" rel="stylesheet">
+
+        <!-- Bootstrap Core Css -->
+        <link href="{% static 'plugins/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+
+        <!-- Waves Effect Css -->
+        <link href="{% static 'plugins/node-waves/waves.css' %}" rel="stylesheet" />
+
+        <!-- Animation Css -->
+        <link href="{% static 'plugins/animate-css/animate.css' %}" rel="stylesheet" />
+
+        <!-- Morris Chart Css-->
+        <link href="{% static 'plugins/morrisjs/morris.css' %}" rel="stylesheet" />
+
+        <!-- JQuery DataTable Css -->
+        <link href="{% static 'plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css' %}" rel="stylesheet">
+
+        <!-- Custom Css -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+        <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+        <link href="{% static 'css/themes/all-themes.css' %}" rel="stylesheet" />
+        
+        {% block css %}
+            
+        {% endblock css %}
+    </head>
+    <body class="theme-red">
+        {% block loader %}
+            <!-- Page Loader -->
+            <div class="page-loader-wrapper">
+                <div class="loader">
+                    <div class="preloader">
+                        <div class="spinner-layer pl-red">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Please wait...</p>
+                </div>
+            </div>
+            <!-- #END# Page Loader -->
+            <!-- Overlay For Sidebars -->
+            <div class="overlay"></div>
+            <!-- #END# Overlay For Sidebars -->    
+        {% endblock loader %}
+        <!-- Top Bar -->
+        {% block navbar %}
+            <nav class="navbar">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                        <a href="javascript:void(0);" class="bars"></a>
+                        <a class="navbar-brand" href="/">Paanel - Recruitment CMS</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/admin">Site Admin</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <!-- Notifications -->
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                    <i class="material-icons">notifications</i>
+                                    <span class="label-count">0</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">NOTIFICATIONS</li>
+                                    <li class="body">
+                                        <ul class="menu">
+                                            <li>
+                                                <a href="javascript:void(0);">
+                                                    <div class="icon-circle bg-light-green">
+                                                        <i class="material-icons">person_add</i>
+                                                    </div>
+                                                    <div class="menu-info">
+                                                        <h4>0 New Clients Registered</h4>
+                                                        <p>
+                                                            <i class="material-icons">access_time</i> 2 days ago
+                                                        </p>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="footer">
+                                        <a href="javascript:void(0);">View All Notifications</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- #END# Notifications -->
+                            <!-- Tasks -->
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                    <i class="material-icons">flag</i>
+                                    <span class="label-count">0</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">TASKS</li>
+                                    <li class="body">
+                                        <ul class="menu">
+                                            <li>
+                                                <a href="javascript:void(0);">
+                                                    <h4>
+                                                        Sample Task Notification
+                                                        <small>34.4%</small>
+                                                    </h4>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-pink" 
+                                                            role="progressbar" aria-valuenow="34.4" 
+                                                            aria-valuemin="0" 
+                                                            aria-valuemax="100" 
+                                                            style="width: 34.4%">
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="footer">
+                                        <a href="javascript:void(0);">View All Tasks</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- #END# Tasks -->
+                            {% comment %} <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li> {% endcomment %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        {% endblock navbar %}
+        <!-- #Top Bar -->
+        <section>
+            <!-- Left Sidebar -->
+            {% block sidebar %}
+                <aside id="leftsidebar" class="sidebar">
+                <!-- User Info -->
+                <div class="user-info">
+                    <div class="image">
+                        <img src="{% static 'images/user.png' %}" width="48" height="48" alt="User" />
+                    </div>
+                    <div class="info-container">
+                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.username}}</div>
+                        <div class="email">{{ user.email }}</div>
+                        <div class="btn-group user-helper-dropdown">
+                            <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+                                <li role="seperator" class="divider"></li>
+                                <li><a href="{% url 'logout' %}"><i class="material-icons">input</i>Sign Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- #User Info -->
+                <!-- Menu -->
+                <div class="menu">
+                    {% block navigation %}
+                        <ul class="list">
+                            <li class="header">
+                                <h5 id="showDate"></h5>
+                                <div id="dyclock-digital-3" class="dyclock-container"></div>
+                            </li>                    
+                            <li class="{% if a == 'index' %}active{% endif %}">
+                                <a href="{% url 'index' %}">
+                                    <i class="material-icons">dashboard</i>
+                                    <span>Dashboard</span>
+                                </a> 
+                            </li>
+                            <li class="{% if a == 'clients' %}active{% endif %}">
+                                <a href="{% url 'clients' %}">
+                                    <i class="material-icons">people</i>
+                                    <span>Clients</span>
+                                </a> 
+                            </li>
+                            <li class="{% if a == 'jobs' %}active{% endif %}">
+                                <a href="{% url 'jobs' %}">
+                                    <i class="material-icons">folder_open</i>
+                                    <span>Jobs</span>
+                                </a> 
+                            </li>
+                            <li class="{% if a == 'branches' %}active{% endif %}">
+                                <a href="{% url 'branches' %}">
+                                    <i class="material-icons">home</i>
+                                    <span>Branches</span>
+                                </a> 
+                            </li>                            
+                            <li class="{% if a == 'clearances' or a == 'interpols' or a == 'contracts' or a == 'interviews' or a == 'medicals' or a ==  'passports' or a == 'vettings' or a == 'vetting-album' or a == 'tickets' or a == 'other-ops' or a == 'travel-plans' or a == 'visas' %}active{% endif %}">
+                                <a href="javascript:void(0);" class="menu-toggle">
+                                    <i class="material-icons">supervisor_account</i>
+                                    <span>Operations</span>
+                                </a>
+                                <ul class="ml-menu">
+                                    <li class="{% if a == 'clearances' %}active{% endif %}">
+                                        <a href="{% url 'clearances' %}">
+                                            <strong>Clearances</strong>
+                                        </a>
+                                    </li>
+                                    <li class="{% if a == 'contracts' %}active{% endif %}">
+                                        <a href="{% url 'contracts' %}">
+                                            <strong>Contracts</strong>
+                                        </a>
+                                    </li>
+                                    <li class="{% if a == 'interpols' %}active{% endif %}">
+                                        <a href="{% url 'interpols' %}">
+                                            <strong>Interpols</strong>
+                                        </a>
+                                    </li>
+                                    <li class="{% if a == 'interviews' %}active{% endif %}">
+                                        <a href="{% url 'interviews' %}">
+                                            <strong>Interviews</strong>
+                                        </a>
+                                    </li>
+                                    <li class="{% if a == 'medicals' %}active{% endif %}">
+                                        <a href="{% url 'medicals' %}">
+                                            <strong>Medicals</strong>
+                                        </a>
+                                    </li>
+                                    <li class="{% if a == 'passports' %}active{% endif %}">
+                                        <a href="{% url 'passports' %}">
+                                            <strong>Passports</strong>
+                                        </a>
+                                    </li>
+                                    <li class="{% if a == 'tickets' %}active{% endif %}">
+                                        <a href="{% url 'tickets' %}">
+                                            <strong>Tickets</strong>
+                                        </a>
+                                    </li>
+                                    <li class="{% if a == 'vettings' %}active{% endif %}">
+                                        <a href="{% url 'vettings' %}">
+                                            <strong>Vettings</strong>
+                                        </a>
+                                    </li>
+                                    <li class="{% if a == 'vetting-album' %}active{% endif %}">
+                                        <a href="{% url 'vetting-album' %}">
+                                            <strong>Vetting Album</strong>
+                                        </a>
+                                    </li>
+                                    <li class="{% if a == 'visas' %}active{% endif %}">
+                                        <a href="{% url 'visas' %}">
+                                            <strong>Visas</strong>
+                                        </a>
+                                    </li>
+                                    <li class="{% if a == 'travel-plans' %}active{% endif %}">
+                                        <a href="{% url 'travel-plans' %}">
+                                            <strong>Travel Plans</strong>
+                                        </a>
+                                    </li>
+                                    <li class="{% if a == 'other-ops' %}active{% endif %}">
+                                        <a href="{% url 'other-ops' %}">
+                                            <strong>Other Operations</strong>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="{% if a == 'payments' or a == 'expenses' or a == 'fees' %}active{% endif %}">
+                                <a href="javascript:void(0);" class="menu-toggle">
+                                    <i class="material-icons">money_off</i>
+                                    <span>Finances</span>
+                                </a>
+                                <ul class="ml-menu">
+                                    <li class="{% if a == 'payments' %}active{% endif %}">
+                                        <a href="{% url 'payments' %}">
+                                            <strong>Payments</strong>
+                                        </a>
+                                    </li>
+                                    <li class="{% if a == 'expenses' %}active{% endif %}">
+                                        <a href="{% url 'expenses' %}">
+                                            <strong>Expenses</strong>
+                                        </a>
+                                    </li>
+                                    <li class="{% if a == 'fees' %}active{% endif %}">
+                                        <a href="{% url 'fees' %}">
+                                            <strong>Fees</strong>
+                                        </a>
+                                    </li>
+                                    
+                                </ul>
+                            </li>
+                            <li class="{% if a == 'clearance-files' or a == 'photos' or a == 'client-files' %}active{% endif %}">
+                                <a href="javascript:void(0);" class="menu-toggle">
+                                    <i class="material-icons">folder_open</i>
+                                    <span>Files</span>
+                                </a>
+                                <ul class="ml-menu">
+                                    <li class="{% if a == 'clearance-files' %}active{% endif %}">
+                                        <a href="{% url 'clearance-files' %}">
+                                            <strong>Clearance Files</strong>
+                                        </a>
+                                    </li>
+                                    <li class="{% if a == 'client-files' %}active{% endif %}">
+                                        <a href="{% url 'client-files' %}">
+                                            <strong>Client Files</strong>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="{% if a == 'tasks' %}active{% endif %}">
+                                <a href="javascript:void(0);" class="menu-toggle">
+                                    <i class="material-icons">local_hospital</i>
+                                    <span>Others</span>
+                                </a>
+                                <ul class="ml-menu">
+                                    <li class="{% if a == 'recruitments' %}active{% endif %}">
+                                        <a href="{% url 'recruitments' %}">
+                                            <strong>Recruitments</strong>
+                                        </a>
+                                    </li>
+                                    <li class="{% if a == 'tasks' %}active{% endif %}">
+                                        <a href="{% url 'tasks' %}">
+                                            <strong>Tasks</strong>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="{% if a == 'settings' %}active{% endif %}">
+                                <a href="/admin/settings">
+                                    <i class="material-icons">settings</i>
+                                    <span>Settings</span>
+                                </a> 
+                            </li>
+                            <li>
+                                <a href="{% url 'logout' %}">
+                                    <i class="material-icons">power_settings_new</i>
+                                    <span>Logout</span>
+                                </a>
+                            </li>
+                        </ul>
+                    {% endblock navigation %}
+                </div>
+                <!-- #Menu -->
+                <!-- Footer -->
+                <div class="legal">
+                    <div class="copyright">
+                        &copy; 2020 <a href="javascript:void(0);">Panel - Recruitment CMS</a>.
+                    </div>
+                    <div class="version">
+                        <b>Version: </b> 1.2.1
+                    </div>
+                </div>
+                <!-- #Footer -->
+            </aside>
+            
+            {% endblock sidebar %}
+            <!-- #END# Left Sidebar -->
+        </section>
+
+        {% block login_content %}
+            
+            <section class="content">
+                <div class="container-fluid">
+                    {% block content %}{% endblock content %}
+                </div>
+            </section>
+
+        {% endblock login_content %}
+
+        <!-- Jquery Core Js -->
+        <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+
+        <!-- Bootstrap Core Js -->
+        <script src="{% static 'plugins/bootstrap/js/bootstrap.js' %}"></script>
+
+        <!-- Select Plugin Js -->
+        <script src="{% static 'plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>
+
+        <!-- Slimscroll Plugin Js -->
+        <script src="{% static 'plugins/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
+
+        <!-- Waves Effect Plugin Js -->
+        <script src="{% static 'plugins/node-waves/waves.js' %}"></script>
+
+        <!-- Jquery CountTo Plugin Js -->
+        <script src="{% static 'plugins/jquery-countto/jquery.countTo.js' %}"></script>
+
+        <!-- Morris Plugin Js -->
+        <script src="{% static 'plugins/raphael/raphael.min.js' %}"></script>
+        <script src="{% static 'plugins/morrisjs/morris.js' %}"></script>
+
+        <!-- ChartJs -->
+        <script src="{% static 'plugins/chartjs/Chart.bundle.js' %}"></script>
+
+        <!-- Flot Charts Plugin Js -->
+        <script src="{% static 'plugins/flot-charts/jquery.flot.js' %}"></script>
+        <script src="{% static 'plugins/flot-charts/jquery.flot.resize.js' %}"></script>
+        <script src="{% static 'plugins/flot-charts/jquery.flot.pie.js' %}"></script>
+        <script src="{% static 'plugins/flot-charts/jquery.flot.categories.js' %}"></script>
+        <script src="{% static 'plugins/flot-charts/jquery.flot.time.js' %}"></script>
+
+        <!-- Jquery DataTable Plugin Js -->
+        <script src="{% static 'plugins/jquery-datatable/jquery.dataTables.js' %}"></script>
+        <script src="{% static 'plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js' %}"></script>
+        <script src="{% static 'plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js' %}"></script>
+        <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.flash.min.js' %}"></script>
+        <script src="{% static 'plugins/jquery-datatable/extensions/export/jszip.min.js' %}"></script>
+        <script src="{% static 'plugins/jquery-datatable/extensions/export/pdfmake.min.js' %}"></script>
+        <script src="{% static 'plugins/jquery-datatable/extensions/export/vfs_fonts.js' %}"></script>
+        <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.html5.min.js' %}"></script>
+        <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.print.min.js' %}"></script>
+
+        <!-- Moment Js -->
+        <script src="{% static 'plugins/momentjs/moment.js' %}"></script>
+        <script type="text/javascript">
+            var now = moment().format('Do MMMM YYYY');
+            document.getElementById('showDate').innerHTML= now;
+        </script>
+        <!-- dyClock JS -->
+        <script type="text/javascript" src="{% static 'plugins/dyClockJS/js/dyclock.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'plugins/dyClockJS/js/default.js' %}"></script>
+
+        <!-- Sparkline Chart Plugin Js -->
+        <script src="{% static 'plugins/jquery-sparkline/jquery.sparkline.js' %}"></script>
+
+        <!-- Custom Js -->
+        <script src="{% static 'js/admin.js' %}"></script>
+        {% block js %}    
+            <script src="{% static 'js/pages/index.js' %}"></script>
+        {% endblock js %}
+        <!-- Demo Js -->
+        <script src="{% static 'js/demo.js' %}"></script>
+    </body>
+
+</html>

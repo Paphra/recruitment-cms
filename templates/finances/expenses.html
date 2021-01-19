@@ -1,0 +1,95 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Expenses | Finances
+{% endblock title %}
+{% block content %}
+    
+    <section class="">
+        <div class="">
+            <!-- Exportable Table -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <div class="row">
+                                <h3 class="col-sm-9">
+                                    Manage Expenses
+                                </h3>
+                                <div class="col-sm-3 text-right">
+                                    <a href="/admin/finances/expense/add" 
+                                        class="btn btn-sm waves-effect bg-cyan">
+                                        Add Expense
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Amount</th>
+                                        <th>Created</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for expense in expenses %}
+                                        <tr>
+                                            <td>{{ expense.user }}</td>
+                                            <td>{{ expense.amount }}</td>
+                                            <td>{{ expense.Created }}</td>
+                                            <td>
+                                                <button type="button"class="btn btn-xs bg-deep-orange waves-effect" 
+                                                    data-toggle="modal" data-target="#ViewExpenseModal-{{ expense.id }}">
+                                                        <i class="material-icons">visibility</i>
+                                                </button>
+                                                <div class="modal fade" id="AddExpenseModal" role="dialog" data-backdrop="static">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                <h3 class="modal-title">Expense Details</h3>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-sm-8">
+                                                                        <h5>Description</h5>
+                                                                        <p>{{ expense.description }}</p>
+                                                                    </div>
+                                                                    <div class="col-sm-4">
+                                                                        <h5>Document (Receipt)</h5>
+                                                                        {% if expense.document %}
+                                                                            <a href="/media/{{ expense.document }}"
+                                                                                target="_blank">Document</a>
+                                                                        {% else %}
+                                                                            <i>No Document</i>
+                                                                        {% endif %}
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a href="/admin/finances/expense/{{ expense.id }}/change"
+                                                                    class="btn btn-success btn-sm">Edit</a>
+                                                                <a href="/admin/finances/expense/{{ expense.id }}/delete"
+                                                                    class="btn btn-danger btn-sm">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+{% endblock content %}
+{% block js %}
+    <script src="{% static 'js/pages/tables/expenses.js' %}" ></script>
+{% endblock js %}

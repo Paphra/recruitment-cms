@@ -1,0 +1,180 @@
+﻿{% extends 'base.html' %}
+{% block title %}Jobs{% endblock %}
+{% load static %}
+{% block content %}
+    
+    <section class="">
+        <div class="">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <h3>Manage Jobs</h3>
+                                </div>
+                                <div class="col-sm-3 text-right">
+                                    <a type="button"class="btn btn-sm bg-cyan waves-effect" 
+                                        href="/admin/home/job/add">
+                                        Add Job
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Partner</th>
+                                        <th>Quantity</th>
+                                        <th>Category</th>
+                                        <th>Salary</th>
+                                        <th>Application Fee</th>
+                                        <th>Is Active</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for job in jobs %}
+                                        <tr>
+                                            <td>{{ job.title }}</td>
+                                            <td>{{ job.partner }}</td>
+                                            <td>{{ job.quantity }}</td>
+                                            <td>{{ job.category }}</td>
+                                            <td>{{ job.salary }}</td>
+                                            <td>{{ job.application_fee }}</td>
+                                            <td>{% if job.is_active %}Yes{% else %}No{% endif %}
+                                            <td>
+                                                <button type="button"class="btn btn-xs bg-deep-orange waves-effect" 
+                                                    data-toggle="modal" data-target="#ViewJobModal-{{ job.id }}">
+                                                        <span class="material-icons">visibility</span>
+                                                </button>
+                                                <div class="modal fade" id="ViewJobModal-{{ job.id }}" role="dialog" data-backdrop="static">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                <h3 class="modal-title">Job Details.</h3>
+                                                            </div>
+                                                            <div class="modal-body form">
+                                                                <div class="row">
+                                                                    <div class="col-sm-4 text-right"><b>Title</b></div>
+                                                                    <div class="col-sm-8">
+                                                                        <p>{{ job.title }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-4 text-right"><b>Category</b></div>
+                                                                    <div class="col-sm-8">
+                                                                        <p>{{ job.category }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-4 text-right"><b>Quantity</b></div>
+                                                                    <div class="col-sm-8">
+                                                                        <p>{{ job.quantity }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-4 text-right"><b>Partner</b></div>
+                                                                    <div class="col-sm-8">
+                                                                        <p>{{ job.partner }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-4 text-right"><b>Application Fee</b></div>
+                                                                    <div class="col-sm-8">
+                                                                        <p>{{ job.application_fee }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-4 text-right"><b>Salary</b></div>
+                                                                    <div class="col-sm-8">
+                                                                        <p>{{ job.salary }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-4 text-right"><b>Created</b></div>
+                                                                    <div class="col-sm-8">
+                                                                        <p>{{ job.created }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="row">
+                                                                    <h5 class="col-12">Documents</h5>
+                                                                    <div class="col-12">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-3">
+                                                                                <h6><b>Demand Letter</b></h6>
+                                                                                <p>
+                                                                                    {% if job.demand_letter %}
+                                                                                        <a href="/media/{{ job.demand_letter }}" 
+                                                                                            target="_blank">Letter</a>
+                                                                                    {% else %}
+                                                                                        No Demnd Letter
+                                                                                    {% endif %}
+                                                                                </p>
+                                                                            </div>
+                                                                            <div class="col-sm-3">
+                                                                                <h6><b>Sample Contract</b></h6>
+                                                                                <p>
+                                                                                    {% if job.sample_contract %}
+                                                                                        <a href="/media/{{ job.sample_contract }}" 
+                                                                                            target="_blank">Letter</a>
+                                                                                    {% else %}
+                                                                                        No Sample Contract
+                                                                                    {% endif %}
+                                                                                </p>
+                                                                            </div>
+                                                                            <div class="col-sm-3">
+                                                                                <h6><b>Powers Of Attoney</b></h6>
+                                                                                <p>
+                                                                                    {% if job.powers_of_attoney %}
+                                                                                        <a href="/media/{{ job.powers_of_attoney }}" 
+                                                                                            target="_blank">Letter</a>
+                                                                                    {% else %}
+                                                                                        No Powers Of Attoney
+                                                                                    {% endif %}
+                                                                                </p>
+                                                                            </div>
+                                                                            <div class="col-sm-3">
+                                                                                <h6><b>Order Approval</b></h6>
+                                                                                <p>
+                                                                                    {% if job.order_approval %}
+                                                                                        <a href="/media/{{ job.order_approval }}" 
+                                                                                            target="_blank">Letter</a>
+                                                                                    {% else %}
+                                                                                        No Order Approval
+                                                                                    {% endif %}
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a href="/admin/home/job/{{ job.id }}/change"
+                                                                    class="btn btn-success btn-sm">Edit</a>
+                                                                <a href="/admin/home/job/{{ job.id }}/delete"
+                                                                    class="btn btn-danger btn-sm">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Exportable Table -->
+        </div>
+    </section>
+{% endblock content %}
+
+{% block js %}
+    <script src="{% static 'js/pages/tables/branches.js' %}" ></script>
+{% endblock js %}

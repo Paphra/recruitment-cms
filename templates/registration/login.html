@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link href="{% static 'admin/css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'admin/css/fonts.css' %}" rel="stylesheet">
+    <link href="{% static 'admin/css/dashboard.css' %}" rel="stylesheet">
+    <link href="{% static 'admin/css/widgets.css' %}" rel="stylesheet">
+    <link href="{% static 'admin/css/login.css' %}" rel="stylesheet">
+    <link href="{% static 'admin/css/forms.css' %}" rel="stylesheet">
+{% endblock css %}
+
+{% block title %}
+    Login
+{% endblock title %}
+
+{% block loader %}{% endblock loader %}
+{% block navbar %}{% endblock navbar %}
+{% block sidebar %}{% endblock sidebar %}
+{% block login_content %}
+    <section>
+        <div class="container">
+            <div class="row" style="margin-top: 10%">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6 text-center align-center">
+                    <div class="card" style="padding-top:5%;padding-bottom:5%">
+                        <div class="card-header">
+                            <h1 class="card-title">Login to Recruitment CMS</h1>
+                        </div>
+                        <div class="card-body">
+                            <form method="post">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit">Log In</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+        </div>
+    </section>
+{% endblock login_content %}

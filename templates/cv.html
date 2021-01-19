@@ -1,0 +1,279 @@
+{% load static %}
+{% load i18n %}
+<div class="modal fade" id="ViewCVModal-{{ client.id }}" role="dialog" data-backdrop="static">
+  	<div class="modal-dialog modal-lg" width="200px">
+      	<div class="modal-content">
+          	<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<img src="{% static 'images/Logoz/IngazLogo.png' %}" width="300px" height="100px" />
+				<h4 class="modal-title">File Number: #{{ client.id}}</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row clearfix">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="row clearfix">
+							<!-- All Client Details Are added here -->
+							<div class="col-md-7">
+								<table class="table profile__table">
+									<tbody>
+										<tr>
+											<th>FULL NAMES</th>
+											<td>{{ client }}</td>
+											<th direction="rtl"><strong>رقم جواز السفر </strong></th>
+										</tr>
+										<tr>
+											<th>Passport Number</th>
+											<td>{{ client.passport }}</td>
+											<th direction="rtl"><strong>رقم جواز السفر </strong></th>
+										</tr>
+										<tr>
+											<th>Date of Issue</th>
+											<td>{{ client.passport.issue_date }}</td>
+											<th direction="rtl"><strong>تاريخ الاصدار</strong></th>
+										</tr>
+									</tbody>
+								</table>
+								<!-- #Start# These are the section headings -->
+								<div class="col-md-4">
+									<h4>Passport Details</h4> 
+								</div>
+								<div class="col-md-4 pull-right">
+									<h4>جواز س\فر  تفاصيل</h4> 
+								</div>
+								<!-- #End# These are the section headings -->
+								<!-- Passport Details start here -->
+								<table class="table profile__table">
+									<tbody>
+										<tr>
+											<th><p>Passport Number</p></th>
+											<td>{{ client.passport }}</td>
+											<th direction="rtl"><strong>تاريخ الاصدار</strong></th>
+										</tr>
+										<tr>
+											<th><p>Date of Issue</p></th>
+											<td>{{ client.passport.issue_date }}</td>
+											<th direction="rtl"><strong>رقم جواز السفر </strong></th>
+										</tr>
+										<tr>
+											<th>Expiry date</th>
+											<td>{{ client.passport.expiry_date}}</td>
+											<th direction="rtl"><strong>تاريخ الانتهاء</strong></th>
+										</tr>
+										<tr>
+											<th>Place of Issue</th>
+											<td>{{ client.passport.nationality }}</td>
+											<th direction="rtl"><strong>مكاناالصدار</strong></th>
+										</tr>										
+									</tbody>
+								</table>
+								<!-- Passport Details Ends here -->
+								<!-- #Start# These are the section headings -->
+								<div class="col-md-4">
+									<h4>Languages</h4> 
+								</div>
+								<div class="col-md-4 pull-right">
+									<h4><strong>اللغات</strong></h4> 
+								</div>
+								<!-- #End# These are the section headings -->
+								<!-- Languages Details start here -->
+								<table class="table profile__table">
+									<tbody>
+										{% if client.language_set.count %}
+											{% for language in client.language_set.all %}
+												<tr>
+													<th><p>{{ language }}</p></th>
+													<td>
+														{% if language.fluence == 0 %}
+															None
+														{% elif language.fluence == 1 %}
+															Poor
+														{% elif language.fluence == 2 %}
+															Good
+														{% else %}
+															Excellent
+														{% endif %}
+													</td>
+													<th direction="rtl"><strong>اإلنجليزية</strong></th>
+												</tr>
+											{% endfor %}	
+										{% else %}
+											<i>No Languages</i>
+										{% endif %}
+									</tbody>
+								</table>
+								<!-- Languages Details Ends here -->
+                            	<!-- Education Section #Start# These are the section headings -->
+								<div class="col-md-4">
+									<h4><strong>Education Status</strong></h4> 
+								</div>
+								<div class="col-md-4 pull-right">
+									<h4>اللغات</h4> 
+								</div>
+								<!-- #End# These are the section headings -->
+								<table class="table profile__table">
+									<thead>
+										<tr>
+											<th>Institution</th>
+											<th>Qualification</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% if client.educ_set.count %}
+											{% for educ in client.educ_set.all %}
+												<tr>
+													<th><p>{{ educ.institution }}</p></th>
+													<td>{{ educ.qualification }}</td>
+													<th direction="rtl"><strong>اإلنجليزية</strong></th>
+												</tr>
+											{% endfor %}	
+										{% else %}
+											<i>No Education Backgrounds</i>
+										{% endif %}									
+									</tbody>
+								</table>
+								<!-- Education Section #Ends# These are the section headings -->
+                                <!-- Personal Information #Start# These are the section headings -->
+								<div class="col-md-6">
+									<h4><strong>Personal Information</strong></h4> 
+								</div>
+
+								<div class="col-md-4 pull-right">
+									<h4>معلومات شخصية </h4> 
+								</div>
+
+								<!-- Start Personal Information Details -->
+								<table class="table profile__table">
+									<tbody>
+										<tr>
+											<th><p>Nationality</p></th>
+											<td>{{ client.passport.nationality }}</td>
+											<th direction="rtl"><strong>جنسية<strong></th>
+										</tr>
+										<tr>
+											<th><p>Religion</p></th>
+											<td>{{ client.interview.religion }}</td>
+											<th direction="rtl"><strong>دين</strong></th>
+										</tr>
+										<tr>
+											<th>Date of Birth</th>
+											<td>{{ client.interview.date_ob }}</td>
+											<th direction="rtl"><strong>تاريخ الولادة</strong></th>
+										</tr>
+										<tr>
+											<th>Place of Birth</th>
+											<td>{{ client.passport.place_ob }}</td>
+											<th direction="rtl"><strong>مكان الولادة</strong></th>
+										</tr>
+											<tr>
+											<th>Civil Status</th>
+											<td>{% if client.interview.married %}Married {% else %}Single{% endif %}</td>
+											<th direction="rtl"><strong>الأحوال المدنية</strong></th>
+										</tr>
+											<tr>
+											<th>Spouse Name</th>
+											<td>{{ client.interview.spouse_nme }}</td>
+											<th direction="rtl"><strong>اسم الزوج</strong></th>
+										</tr>
+										<tr>
+											<th>Number of Children</th>
+											<td>{{ client.interview.num_children }}</td>
+											<th direction="rtl"><strong>عدد الاطفال</strong></th>
+										</tr>
+										<tr>
+											<th>Age</th>
+											<td>{{ client.interview.age }}</td>
+											<th direction="rtl"><strong>عمر</strong></th>
+										</tr>
+											<tr>
+											<th>Home Town</th>
+											<td>{{ client.interview.home_town }}</td>
+											<th direction="rtl"><strong>عمر</strong></th>
+										</tr>									
+									</tbody>
+								</table>
+								<!-- End Personal Information Details -->
+								<!-- Skills #Start# These are the section headings -->
+								<div class="col-md-6">
+									<h4><strong>Skills and Experience / </strong></h4> 
+								</div>
+								<div class="col-md-4 pull-right">
+									<h4 direction="rtl">مهارات وخبرات</h4> 
+								</div>
+								<!-- Start Personal Information Details -->
+								<table class="table profile__table">
+									<thead>
+										<tr>
+											<th>Skills</th>
+											<th>Fair</th>
+											<th>Good</th>
+											<th>Excellent</th>
+											<td><strong>Arabic</strong></td>
+										</tr>
+									</thead>
+									<tbody>
+										{% if client.skill_set.count %}
+											{% for skill in client.skill_set.all %}
+												<tr>
+													<td>{{ skill }}</td>
+													<td>
+														{% if skill.fluence == 0 or skill.fluence == 1 %}
+															Yes
+														{% endif %}
+													</td>
+													<td>
+														{% if skill.fluence == 2 %}
+															Yes
+														{% endif %}
+													</td>
+													<td>
+														{% if skill.fluence == 3 %}
+															Yes
+														{% endif %}
+													</td>
+													<td>يجلس الطفل</td>
+												</tr>
+											{% endfor %}
+										{% else %}
+											<i>No Skills Listed</i>
+										{% endif %}
+									</tbody>
+								</table>
+								<!-- Skills Information Details -->
+								<!-- Skills #Ends# These are the section headings -->
+                            </div>
+                            <div class="col-md-5">
+								<center><h5>Applicant's Full Photo</h5></center>
+								{% if client.photo.full %}
+									<img src="/media/{{ client.photo.full }}" style="width:350px; height:583px;" />
+								{% else %}
+									<img src="{% static 'images/fullphoto.jpg' %}" style="width:350px; height:583px;" />
+								{% endif %}
+								<hr/>
+								<center><h5>Applicant's Passport</h5></center>
+								{% if client.passport %}
+									<img src="/media/{{ client.passport.document }}" style="width:320px; height:500px;" />
+								{% else %}
+									<img src="{% static 'images/passport_preview.jpg' %}" style="width:320px; height:500px;" />
+								{% endif %}
+								<div class="form-line">
+									<center><h6>Applicant Contact Number</h6></center>
+									<center><b>{{ client.phone }}<b></center>
+									<center><h6>Applicant Declaration</h6></center>
+									<p>
+										I hereby declare that the above particulars furnished by
+										me are true and accurate to the best of my knowledge. 
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- CV Viewing End -->
+			<div class="modal-footer">
+				<button class="btn btn-lg bg-green waves-effect">Download</button>
+				<button class="btn btn-lg bg-red waves-effect" class="close" data-dismiss="modal">Close</button>  
+			</div>
+		</div>
+	</div>
+</div>
