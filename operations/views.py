@@ -89,9 +89,10 @@ def vettings(request):
     """
     Vettings View
     """
-    args = {}
-    args['vettings'] = Vetting.objects.all()
-    args['a'] = 'vettings'
+    args = {
+        'vettings': Vetting.objects.all(),
+        'a': 'vettings'
+    }
     return render(request, 'operations/vetting/list.html', args)
     
 @login_required()
@@ -99,9 +100,10 @@ def vetting_album(request):
     """
     Vetting Album View
     """
-    args = {}
-    args['vetting_album'] = Vetting.objects.all()
-    args['a'] = 'vetting-album'
+    args = {
+        'vettings': Vetting.objects.all(),
+        'a': 'vetting-album'
+    }
     return render(request, 'operations/vetting/album.html', args)
     
 @login_required()

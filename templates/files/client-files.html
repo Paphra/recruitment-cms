@@ -1,40 +1,94 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}{% endblock %}
+{% block title %}Client Files | Files{% endblock %}
 {% block content %}
     
     <section class="">
         <div class="">
+           
+            <!-- Exportable Table -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
                             <div class="row">
-                                <h3>Manage </h3>
-                                <div class="text-right">
-                                    <button type="button"class="btn btn-sm bg-cyan waves-effect" 
-                                        data-toggle="modal" data-target="#AddBranchModal">
-                                        Add 
-                                    </button>
+                                <div class="col-sm-9">
+                                    <h2>Manage Client Files</h2>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="text-right">
+                                        <a href="/admin/files/clientfile/add" 
+                                            class="btn btn-sm bg-cyan waves-effect">
+                                            Add Client File
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="body table-responsive">
-                            <table class="table table-xs table-bordered table-striped table-hover dataTable js-exportable">
+                        <div class="body">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                 <thead>
                                     <tr>
-                                        <th>Title</th>
+                                        <th>Client</th>
+                                        <th>Submission Date</th>
+                                        <th>Empoloyer</th>
+                                        <th>Status</th>
+                                        <th>Created</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for branch in branches %}
+                                    {% for file in files %}
                                         <tr>
+                                            <td>{{ file.client }}</td>
+                                            <td>{{ file.submission_date }}</td>
+                                            <td>{{ file.employer }}</td>
                                             <td>
-                                                <button class="btn btn-sm bg-deep-orange waves-effect" 
-                                                    data-toggle="modal" data-target="#EditBranchModal"><i class="material-icons">edit</i></button>
-                                                <button class="btn btn-sm bg-deep-orange waves-effect" 
-                                                    data-toggle="modal" data-target="#DeleteBranchModal"><i class="material-icons">delete</i></button>
+                                                {% if file.client.vetting.status == 0 %}
+                                                    <span class="badge badge-pill badge-primary">Pending</span>
+                                                {% elif file.client.vetting.status == 1 %}
+                                                    <span class="badge badge-pill bg-green">Active</span>
+                                                {% elif file.client.vetting.status == 2 %}
+                                                    <span class="badge badge-pill bg-orange">Done</span>
+                                                {% elif file.client.vetting.status == 3 %}
+                                                    <span class="badge badge-pill bg-red">Cancelled</span>
+                                                {% elif file.client.vetting.status == 4 %}
+                                                    <span class="badge badge-pill bg-green">Passed</span>
+                                                {% else %}
+                                                    <span class="badge badge-pill bg-red">Failed</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-xs bg-deep-orange waves-effect"
+                                                    data-toggle="modal" data-target="#ViewClient FileModal-{{ file.id }}">
+                                                    <i class="material-icons">visibility</i>
+                                                </button>
+                                                <div class="modal fade" id="ViewClient FileModal-{{ file.id }}" role="dialog" data-backdrop="static">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">Client File Details</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <h5>Client File File</h5>
+                                                                {% if file.document %}
+                                                                    <a href="/media/{{ file.document }}" target="_blank">
+                                                                        File
+                                                                    </a>
+                                                                {% else %}
+                                                                    <i>No Client File File Attatched</i>
+                                                                {% endif %}
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a href="/admin/files/clientfile/{{ file.id }}/change"
+                                                                    class="btn btn-sm btn-success">Edit</a>
+                                                                <a href="/admin/files/clientfile/{{ file.id }}/delete"
+                                                                    class="btn btn-sm btn-danger">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                     {% endfor %}
@@ -44,86 +98,10 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="modal fade" id="AddBranchModal" role="dialog" data-backdrop="static">
-                <div class="modal-dialog modal-lg ">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h3 class="modal-title">Add Branch Details.</h3>
-                        </div>
-                        <div class="modal-body form">
-                            <form id="form_validation" class="form-horizontal"  method="post">
-                                {% csrf_token %}
-                                <div class="form-body">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Title:</label>
-                                        <div class="col-md-9">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" 
-                                                    placeholder="Branch Name" name="title" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Add Branch Address-->
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Address:</label>
-                                        <div class="col-md-9">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" 
-                                                    placeholder="Branch Address" name="address" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Add Contact -->
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Contact:</label>
-                                        <div class="col-md-9">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" 
-                                                    placeholder="Branch Contact" name="contact">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Add Date [Established] -->
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Established:</label>
-                                        <div class="col-md-9">
-                                            <div class="form-line">
-                                                <input type="date" class="form-control" 
-                                                    name="established">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Add Description -->
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Description:</label>
-                                        <div class="col-md-9">
-                                            <div class="form-line">
-                                                <textarea type="text" class="form-control" 
-                                                    placeholder="Branch Description" rows="5"
-                                                    name="description"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-
-                                    <div class="text-right">
-                                        <button type="submit" class="btn btn-sm waves-effect btn-success">
-                                            <h6>Add Branch</h6>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div>
+            <!-- #END# Exportable Table -->
         </div>
     </section>
-
 {% endblock content %}
 {% block js %}
-    <script src="{% static 'js/pages/tables/branches.js' %}" ></script>
+    <script src="{% static 'js/pages/tables/client-files.js' %}" ></script>
 {% endblock js %}

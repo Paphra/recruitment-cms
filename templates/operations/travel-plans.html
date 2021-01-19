@@ -1,161 +1,97 @@
 {% extends 'base.html' %}
-{% block title %}Travel Plan Wall | Travel Plans{% endblock %}    
+{% load static %}
+{% block title %}Travel Plans | Operations{% endblock %}
 {% block content %}
+    
     <section class="">
         <div class="">
-           
-              <!-- Widgets -->
-            <div class="row clearfix">
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-light-green hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">done</i>
-                        </div>
-                        <div class="content">
-                            <div class="text"><h5>Candidates Traveled</h5></div>
-                            <h4><strong>400</strong></h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-cyan hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">flight_takeoff</i>
-                        </div>
-                        <div class="content">
-                            <div class="text"><h5>Flight Pending</h5></div>
-                            <h4><strong>40</strong></h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-cyan hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">hourglass_full</i>
-                        </div>
-                        <div class="content">
-                            <div class="text"><h5>Booking Pending</h5></div>
-                            <h4><strong>40</strong></h4>
-                        </div>
-                    </div>
-                </div>
-                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-light-green hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">hourglass_full</i>
-                        </div>
-                        <div class="content">
-                            <div class="text"><h5>Travel Plans Received</h5></div>
-                            <h4><strong>40</strong></h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-orange hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">sync</i>
-                        </div>
-                        <div class="content">
-                            <div class="text"><h5>Booking Submited</h5></div>
-                            <h4><strong>400</strong></h4>
-                        </div>
-                    </div>
-                </div>
-                
-                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-red hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">flight_land</i>
-                        </div>
-                        <div class="content">
-                            <div class="text"><h5>Flight Cancelled</h5></div>
-                            <h4><strong>40</strong></h4>
-                        </div>
-                    </div>
-                </div>
-                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-red hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">help</i>
-                        </div>
-                        <div class="content">
-                            <div class="text"><h5>Flight Missed</h5></div>
-                            <h4><strong>40</strong></h4>
-                        </div>
-                    </div>
-                </div>
-                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-red hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">compare_arrows</i>
-                        </div>
-                        <div class="content">
-                            <div class="text"><h5>Candidates Returned</h5></div>
-                            <h4><strong>40</strong></h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- #END# Widgets -->
            
             <!-- Exportable Table -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2 direction="rtl">
-                                Add Travel Plan
-                            </h2>
-                           <!--  The Generate List & Ablum Button -->
-                            <div class="text-right">
-                        <button class="btn btn-lg bg-cyan waves-effect" data-toggle="modal" data-target="#addTravel PlanModal">Add Travel Plan</button>
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <h2>Manage Travel Plans</h2>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="text-right">
+                                        <a href="/admin/operations/plan/add" 
+                                            class="btn btn-sm bg-cyan waves-effect">
+                                            Add Travel Plan
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <ul class="header-dropdown m-r--5">
-                               <!--  <a href="employmentApplicationForm.html"><button class="btn btn-sm waves-effect bg-cyan"><h6>Add application form</h6></button></a> -->
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                   <ul class="dropdown-menu pull-right">
-                                        <li><button class="btn btn-lg bg-teal waves-effect" data-toggle="modal" data-target="#generateTrainingListModal">Dynamic Report Generator</button></li>
-                                        <li><button class="btn btn-lg bg-teal waves-effect" data-toggle="modal" data-target="#generateTrainingListModal"></button></li>
-                                        
-                                    </ul>
-                                </li>
-                            </ul>
                         </div>
                         <div class="body">
                             <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                 <thead>
                                     <tr>
-                                        <th>Full Names</th>
-                                        <th>Job Applied</th>
-                                        <th>Visa Medical Status</th>
-                                        <th>Destination Status</th>
-                                        <th>Travel Plan Status</th>
-                                        <th>Travel Plan Number </th>
-                                        <th>Expected Travel Date</th>
+                                        <th>Client</th>
+                                        <th>Submission Date</th>
+                                        <th>Empoloyer</th>
+                                        <th>Status</th>
+                                        <th>Created</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Mivule Yasin
-                                        </td>
-                                        <td>Armed Guard</td>
-                            <td><span class="badge badge-pill badge-primary" style="background-color:green;">Medically Fit</span></td>
-                            <td><span class="badge badge-pill badge-primary" style="background-color:green;">Riyadh</span></td>
-                            <td><span class="badge badge-pill badge-primary" style="background-color:#24A0ED;">Booking pending</span></td>
-                            <td><span class="badge badge-pill badge-primary" style="background-color:#24A0ED;">Not Available</span></td>
-                            <td><span class="badge badge-pill badge-primary" style="background-color:#FF9800;">Not Available</span></td>
-
-                                        <td>
-            <button class="btn btn-xs bg-deep-orange waves-effect" data-toggle="modal" data-target="#attachTravel PlanModal"><i class="material-icons">add</i>
-                                            </button>&nbsp;
-            <button class="btn btn-xs bg-deep-orange waves-effect"><i class="material-icons" data-toggle="modal" data-target="#dataentrantCommentModal">comment</i></button>
-                                           
-                                        </td>
-                                    </tr>
+                                    {% for plan in travel_plans %}
+                                        <tr>
+                                            <td>{{ plan.client }}</td>
+                                            <td>{{ plan.submission_date }}</td>
+                                            <td>{{ plan.employer }}</td>
+                                            <td>
+                                                {% if plan.client.vetting.status == 0 %}
+                                                    <span class="badge badge-pill badge-primary">Pending</span>
+                                                {% elif plan.client.vetting.status == 1 %}
+                                                    <span class="badge badge-pill bg-green">Active</span>
+                                                {% elif plan.client.vetting.status == 2 %}
+                                                    <span class="badge badge-pill bg-orange">Done</span>
+                                                {% elif plan.client.vetting.status == 3 %}
+                                                    <span class="badge badge-pill bg-red">Cancelled</span>
+                                                {% elif plan.client.vetting.status == 4 %}
+                                                    <span class="badge badge-pill bg-green">Passed</span>
+                                                {% else %}
+                                                    <span class="badge badge-pill bg-red">Failed</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-xs bg-deep-orange waves-effect"
+                                                    data-toggle="modal" data-target="#ViewTravel PlanModal-{{ plan.id }}">
+                                                    <i class="material-icons">visibility</i>
+                                                </button>
+                                                <div class="modal fade" id="ViewTravel PlanModal-{{ plan.id }}" role="dialog" data-backdrop="static">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">Travel Plan Details</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <h5>Travel Plan File</h5>
+                                                                {% if plan.document %}
+                                                                    <a href="/media/{{ plan.document }}" target="_blank">
+                                                                        File
+                                                                    </a>
+                                                                {% else %}
+                                                                    <i>No Travel Plan File Attatched</i>
+                                                                {% endif %}
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a href="/admin/operations/plan/{{ plan.id }}/change"
+                                                                    class="btn btn-sm btn-success">Edit</a>
+                                                                <a href="/admin/operations/plan/{{ plan.id }}/delete"
+                                                                    class="btn btn-sm btn-danger">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
@@ -163,479 +99,9 @@
                 </div>
             </div>
             <!-- #END# Exportable Table -->
-            
-
-            <!-- Start Vetting Officer Add Clearance Modal -->
-            <div class="modal fade" id="addTravel PlanModal" role="dialog" data-backdrop="static">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Add Travel Plan Details</h4>
-                      </div>
-                      <div class="modal-body">
-
-                        <!-- Start Info Container  --> 
-                        <div class="row clearfix">
-                             <!-- Additional ONE -->
-                            <div class="row clearfix">
-                                <div class="col-md12">
-                                    <form id="form" class="form-horizontal"  method ="post">
-                                 <!-- Issuing Airline-->
-                              <div class="form-group">
-                                <label class="control-label col-md-3">Issuing Airline:</label>
-                                <div class="col-md-9">
-                                 <div class="form-line">
-                                 <input type="text" class="form-control" placeholder="Issuing Airline"   name="IssuingAirline" required>
-                                 </div>
-                                </div>
-                              </div>           
-                            <!-- Travel Plan Identifier Code Field -->
-                              <div class="form-group">
-                                <label class="control-label col-md-3">Reservation Code:</label>
-                                <div class="col-md-9">
-                                 <div class="form-line">
-                                 <input type="text" class="form-control" placeholder="Reservation / Travel Plan Identifier Code"   name="Travel PlanIdentifierCode" required>
-                                 </div>
-                                </div>
-                              </div>
-
-                              <div class="form-group">
-                                <label class="control-label col-md-3">Travel Plan Number</label>
-                                <div class="col-md-9">
-                                 <div class="form-line">
-                                 <input type="text" class="form-control" placeholder="Travel Plan Number"   name="Travel PlanIdentifierCode" required>
-                                 </div>
-                                </div>
-                              </div>
-
-                            <!--  Add Travel Date -->
-                            <div class="form-group">
-                        <label class="control-label col-md-3">Travel Date:</label>
-                            <div class="col-md-9">
-                            <div class="form-line">
-                                <input type="date" class="form-control" id="traveldate" name="traveldate" required> 
-                            </div>
-                            </div>
-                            </div>
-
-                              <!--  Checkin Start -->
-                            <div class="form-group">
-                        <label class="control-label col-md-3">Check in Start:</label>
-                            <div class="col-md-9">
-                            <div class="form-line">
-                                <input type="time" class="form-control" id="checkinstart" name="checkinstart" required> 
-                            </div>
-                            </div>
-                            </div>
-
-                              <!--  Checkin Start -->
-                            <div class="form-group">
-                        <label class="control-label col-md-3">Check in End:</label>
-                            <div class="col-md-9">
-                            <div class="form-line">
-                                <input type="time" class="form-control" id="checkinsend" name="checkinsend" required> 
-                            </div>
-                            </div>
-                            </div>
-
-                            <!-- Attach clearance Document -->
-                            <div class="form-body">
-                                <div class="form-group">
-                            <label class="control-label col-md-3">Upload Travel Plan:</label>
-                            <div class="col-md-9">
-                             <div class="form-line">
-                            <input type="hidden" id="filename" name="filename" value="">
-                             <input type="file" id="uploadedFile" name="uploadedFile" class="form-control form-control-sm" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel .jpg, .pdf " required="">
-                                 </div>
-                                </div>
-                            </div>
-                            </div>
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-sm waves-effect bg-cyan" style="margin: 15px;"><h6>Save</h6></button>
-                            </div>
-                        </form>
-                                </div>
-                                
-
-                            </div>
-                          
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-                            <h4>Add Candidate</h4>
-                           <!-- ###### Clearance Information-->
-                           <form id="form" class="form-horizontal"  method ="post">
-                            <div class="form-body">
-                                <div class="col-lg-12 col-md-12 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                <input type="text" id="CandidatesName" name="CandidatesName"  class="form-control" placeholder="Search" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                            </div>
-                           </form>
-                        </div>
-                       <!--  End Info Container   -->
-                      </div>
-                      <div class="modal-footer">
-                          
-                      </div>
-                    </div>
-                </div>
-            </div>
         </div>
-            <!-- Start Vetting Officer Add Clearance Modal -->
-
-
-            <!-- Start Vetting Officer Comment Modal -->
-            
-
-
-            <!-- End Vetting Officert Comment Modal -->
-
-            <!-- Start Attach Travel Plan Modal -->
-            <div class="modal fade" id="attachTravel PlanModal" role="dialog" data-backdrop="static">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">File Number: E1500</h4>
-                        <div class="text-left"><h3 style="padding:20px;">Kibirige Ali</h3></div>
-                      <div class="text-right">              
-                      <img src="../../assets/images/Ali-Identity-Enjaazi-Use.png"  style="width: 200px; height: 200px; border: #ccc solid 3px; margin-bottom: 50px;"/>
-                     </div>
-
-                     <!-- Start Attach Travel Plan Details -->
-                     <form id="form" class="form-horizontal"  method ="post">
-            <div class="form-body">
-                <!-- Travel Plan Number -->
-               <div class="form-group">
-                <label class="control-label col-md-3">Travel Plan Number</label>
-                <div class="col-md-9">
-                <div class="form-line">
-                    <select>
-                        <option value=""></option>
-                        <option>UC344dffe</option>
-                        <option>Urtffe</option>
-                        <option>34ddf2w</option>
-                    </select>
-                </div>
-                </div>
-              </div>
-              <!--  Travel Date -->
-                 <div class="form-group">
-                 <label class="control-label col-md-3">Travel Date:</label>
-                    <div class="col-md-9">
-                    <div class="form-line">
-                        <input type="date" class="form-control" id="TravelDate" name="TravelDate" required> 
-                    </div>
-                    </div>
-                    </div>
-                
-                 <!--  Checkin Start -->
-                            <div class="form-group">
-                        <label class="control-label col-md-3">Check in Start:</label>
-                            <div class="col-md-9">
-                            <div class="form-line">
-                                <input type="time" class="form-control" id="checkinstart" name="checkinstart" required> 
-                            </div>
-                            </div>
-                            </div>
-
-                              <!--  Checkin Start -->
-                            <div class="form-group">
-                        <label class="control-label col-md-3">Check in End:</label>
-                            <div class="col-md-9">
-                            <div class="form-line">
-                                <input type="time" class="form-control" id="checkinsend" name="checkinsend" required> 
-                            </div>
-                            </div>
-                            </div>
-              <!-- Add Recruiter -->
-              <!-- <h5>Add Company</h5> -->
-               <div class="form-group">
-                <label class="control-label col-md-3">Travel Plan Satus</label>
-                <div class="col-md-9">
-                <div class="form-line">
-                    <select>
-                        <option>Travel Complete</option>
-                        <option>Flight Pending</option>
-                        <option>Booking Pending</option>
-                        <option>Booking Submited</option>
-                        <option>Travel Plan Recieved</option>
-                        <option>Flight Cancelled</option>
-                        <option>Flight Missed</option>
-                        <option>Returnees</option>
-                    </select>
-                </div>
-                </div>
-              </div>
-              <!-- Save Button -->
-              <div class="text-right">
-                  <button type="submit" class="btn btn-sm waves-effect bg-cyan" style="margin: 15px;"><h6>Save</h6></button>
-              </div>
-          </div>
-
-              </form>
-                     <!-- End   Attach Clearance Details -->
-                    
-                      </div>
-                      <div class="modal-body">
-                        <div class="form-group">
-                            
-                        </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-            <!-- End   Vetting Attach Clearance Modal -->
-<!-- Exportable Table -->
-            <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header">
-                            <h2 direction="rtl">
-                                Generate Travel Plan
-                            </h2>
-                           <!--  The Generate List & Ablum Button -->
-                            <div class="text-right">
-                                <button class="btn btn-lg bg-cyan waves-effect" data-toggle="modal" data-target="#travelPlanModel">Generate Travel Plan</button>
-                            </div>
-                            <ul class="header-dropdown m-r--5">
-                               <!--  <a href="employmentApplicationForm.html"><button class="btn btn-sm waves-effect bg-cyan"><h6>Add application form</h6></button></a> -->
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                   <ul class="dropdown-menu pull-right">
-                                        <li> <button class="btn btn-lg bg-cyan waves-effect" data-toggle="modal" data-target="#travelPlanModel">Export Excel</button>
-                                        </li><br>
-                                        <li>
-                                             <button class="btn btn-lg bg-cyan waves-effect" data-toggle="modal" data-target="#travelPlanModel">Make Print</button>
-                                        </li>
-                                        
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="body">
-                            <center><h5>Travel Plan Code:JA321-TP01</h5></center>
-                            <table class="table profile__table">
-                                      <tbody>
-                                        <!-- Section Full Names -->
-                                        <!-- Upper Fields Start -->
-                                        <tr>
-                                          <th>Name</th>
-                                          <td>Kibirige Ali</td>
-                                          <th>Date</th>
-                                          <td>1st July 2020</td>
-                                          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                           <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                        </tr>
-                                        <tr>
-                                          <th>Recruiter Code & Name</th>
-                                          <td>SA017 INGAZ RECRUITMENT OFFICE</td>
-                                          <th>Job Order Name</th>
-                                           <td>JA321</td>
-                                          
-                                        </tr>
-                                        <tr>
-                                          <th>Airline</th>
-                                          <td>ETHIOPIAN AIRLINES</td>
-                                          <th>Job Quantity</th>
-                                          <td>500</td>
-                                        </tr>
-                                         <tr>
-                                          <th>Flight No.</th>
-                                          <td>ET 333</td>
-                                          <th>Supplied</th>
-                                          <td>100</td>
-                                        </tr>
-                                        <tr>
-                                          <th>Country</th>
-                                          <td>SAUDI ARABIA</td>
-                                          <th>Travelling</th>
-                                          <td>11</td>
-                                        </tr>
-                                        <tr>
-                                          <th>Departure</th>
-                                          <td>4/10/2018</td>
-                                          <th>Balance</th>
-                                          <td>489</td>
-                                        </tr>
-                                        <tr>
-                                          <th>Arrival</th>
-                                          <td>4/10/2018</td>
-                                        </tr>
-                                        <!-- Upper Fields End -->
-                                        <tr>
-                                          <td>SN</td>
-                                          <td>MW Code</td>
-                                          <td>First Name</td>
-                                          <td>Last Name</td>
-                                          <td>Passport Number</td>
-                                          <td>Number</td>
-                                          <td>Job Title</td>
-                                          <td>Training Centre</td>
-                                          <td>Training Certificate NO/CODE</td>
-                                          <td>Phone Number</td>
-                                          <td>NOK Name</td>
-                                          <td>NOK Contact</td>
-                                          <td>Destination</td>
-                                          <td>Bank Name</td>
-                                        </tr>
-
-                                        
-                                      </tbody>
-                                    </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- #END# Exportable Table -->
-            
-            <!-- Start Vetting Officer Add Clearance Modal -->
-            <div class="modal fade" id="travelPlanModel" role="dialog" data-backdrop="static">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Select Travel Date</h4>
-                      </div>
-                      <div class="modal-body">
-
-                        <!-- Start Info Container  --> 
-                        <div class="row clearfix">
-                             <!-- ###### Start Job Category Fields -->
-                               <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="JobCategory">Date</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                        <select class="form-control show-tick" data-live-search="true" id="Work" name="Work" required>
-                                        <option value=""></option>
-                                        <option>1st/July/2020</option>
-                                        <option>5th/June/2017</option>
-                                        <option>11th/November/2020</option>
-                                        <option>6th/February/2020</option>
-                                        </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                          
-                      </div>
-                      <div class="modal-footer">
-                              <div class="text-right">
-                    <button class="btn btn-lg bg-cyan waves-effect" data-toggle="modal" data-target="#travelPlanModel">Generate Travel Plan</button>
-                            </div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Start Vetting Officer Add Clearance Modal -->
-            
-            <!-- Start Attach Ticket Modal -->
-            <div class="modal fade" id="attachTicketModal" role="dialog" data-backdrop="static">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">File Number: E1500</h4>
-                        <div class="text-left"><h3 style="padding:20px;">Kibirige Ali</h3></div>
-                      <div class="text-right">              
-                      <img src="../../assets/images/Ali-Identity-Enjaazi-Use.png"  style="width: 200px; height: 200px; border: #ccc solid 3px; margin-bottom: 50px;"/>
-                     </div>
-
-                     <!-- Start Attach Ticket Details -->
-                     <form id="form" class="form-horizontal"  method ="post">
-                        <div class="form-body">
-                            <!-- Ticket Number -->
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Ticket Number</label>
-                            <div class="col-md-9">
-                            <div class="form-line">
-                                <select>
-                                    <option value=""></option>
-                                    <option>UC344dffe</option>
-                                    <option>Urtffe</option>
-                                    <option>34ddf2w</option>
-                                </select>
-                            </div>
-                            </div>
-                        </div>
-                        <!--  Travel Date -->
-                            <div class="form-group">
-                            <label class="control-label col-md-3">Travel Date:</label>
-                                <div class="col-md-9">
-                                <div class="form-line">
-                                    <input type="date" class="form-control" id="TravelDate" name="TravelDate" required> 
-                                </div>
-                                </div>
-                                </div>
-                            
-                            <!--  Checkin Start -->
-                                        <div class="form-group">
-                                    <label class="control-label col-md-3">Check in Start:</label>
-                                        <div class="col-md-9">
-                                        <div class="form-line">
-                                            <input type="time" class="form-control" id="checkinstart" name="checkinstart" required> 
-                                        </div>
-                                        </div>
-                                        </div>
-
-                                        <!--  Checkin Start -->
-                                        <div class="form-group">
-                                    <label class="control-label col-md-3">Check in End:</label>
-                                        <div class="col-md-9">
-                                        <div class="form-line">
-                                            <input type="time" class="form-control" id="checkinsend" name="checkinsend" required> 
-                                        </div>
-                                        </div>
-                                        </div>
-                        <!-- Add Recruiter -->
-                        <!-- <h5>Add Company</h5> -->
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Ticket Satus</label>
-                            <div class="col-md-9">
-                            <div class="form-line">
-                                <select>
-                                    <option>Travel Complete</option>
-                                    <option>Flight Pending</option>
-                                    <option>Booking Pending</option>
-                                    <option>Booking Submited</option>
-                                    <option>Ticket Recieved</option>
-                                    <option>Flight Cancelled</option>
-                                    <option>Flight Missed</option>
-                                    <option>Returnees</option>
-                                </select>
-                            </div>
-                            </div>
-                        </div>
-                        <!-- Save Button -->
-                        <div class="text-right">
-                            <button type="submit" class="btn btn-sm waves-effect bg-cyan" style="margin: 15px;"><h6>Save</h6></button>
-                        </div>
-                    </div>
-
-                        </form>
-                     <!-- End   Attach Clearance Details -->
-                    
-                      </div>
-                      <div class="modal-body">
-                        <div class="form-group">
-                            
-                        </div>
-                      </div>
-                  </div>
-              </div>
-            </div>
-            <!-- End   Vetting Attach Clearance Modal -->
-
     </section>
-
 {% endblock content %}
+{% block js %}
+    <script src="{% static 'js/pages/tables/plans.js' %}" ></script>
+{% endblock js %}

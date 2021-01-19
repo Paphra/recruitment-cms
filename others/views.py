@@ -21,5 +21,5 @@ def recruitments(request):
     args = {}
     args['reruitments'] = Recruitment.objects.all()
     args['a'] = 'recruitments'
-    return render(request, 'reports/recruitments.html', args)
+    return render(request, 'others/recruitments.html', args)
     
