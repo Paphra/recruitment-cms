@@ -30,8 +30,9 @@
                                 <thead>
                                     <tr>
                                         <th>Client</th>
-                                        <th>Submission Date</th>
-                                        <th>Empoloyer</th>
+                                        <th>Passport Number</th>
+                                        <th>Issue Date</th>
+                                        <th>Expiry Date</th>
                                         <th>Status</th>
                                         <th>Created</th>
                                         <th>Actions</th>
@@ -41,23 +42,25 @@
                                     {% for passport in passports %}
                                         <tr>
                                             <td>{{ passport.client }}</td>
-                                            <td>{{ passport.submission_date }}</td>
-                                            <td>{{ passport.employer }}</td>
+                                            <td>{{ passport }}</td>
+                                            <td>{{ passport.issue_date }}</td>
+                                            <td>{{ passport.expiry_date }}</td>
                                             <td>
-                                                {% if passport.client.vetting.status == 0 %}
+                                                {% if passport.status == 0 %}
                                                     <span class="badge badge-pill badge-primary">Pending</span>
-                                                {% elif passport.client.vetting.status == 1 %}
+                                                {% elif passport.status == 1 %}
                                                     <span class="badge badge-pill bg-green">Active</span>
-                                                {% elif passport.client.vetting.status == 2 %}
+                                                {% elif passport.status == 2 %}
                                                     <span class="badge badge-pill bg-orange">Done</span>
-                                                {% elif passport.client.vetting.status == 3 %}
+                                                {% elif passport.status == 3 %}
                                                     <span class="badge badge-pill bg-red">Cancelled</span>
-                                                {% elif passport.client.vetting.status == 4 %}
+                                                {% elif passport.status == 4 %}
                                                     <span class="badge badge-pill bg-green">Passed</span>
                                                 {% else %}
                                                     <span class="badge badge-pill bg-red">Failed</span>
                                                 {% endif %}
                                             </td>
+                                            <td>{{ passport.created }}</td>
                                             <td>
                                                 <button class="btn btn-xs bg-deep-orange waves-effect"
                                                     data-toggle="modal" data-target="#ViewPassportModal-{{ passport.id }}">
@@ -71,14 +74,34 @@
                                                                 <h4 class="modal-title">Passport Details</h4>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <h5>Passport File</h5>
-                                                                {% if passport.document %}
-                                                                    <a href="/media/{{ passport.document }}" target="_blank">
-                                                                        File
-                                                                    </a>
-                                                                {% else %}
-                                                                    <i>No Passport File Attatched</i>
-                                                                {% endif %}
+                                                                <div class="row">
+                                                                    <div class="col-xs-4">
+                                                                        <h6>Agent</h6>
+                                                                        <p>{{ passport.agent }}</p>
+                                                                    </div>
+                                                                    <div class="col-xs-4">
+                                                                        <h6>Nationality</h6>
+                                                                        <p>{{ passport.nationality }}</p>
+                                                                    </div>
+                                                                    <div class="col-xs-4">
+                                                                        <h6>Place of Birth</h6>
+                                                                        <p>{{ passport.place_ob }}</p>
+                                                                    </div>
+                                                                    <div class="col-xs-4">
+                                                                        <h6>Date Of Birth</h6>
+                                                                        <p>{{ passport.date_ob }}</p>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <h5>Passport File</h5>
+                                                                        {% if passport.document %}
+                                                                            <a href="/media/{{ passport.document }}" target="_blank">
+                                                                                File
+                                                                            </a>
+                                                                        {% else %}
+                                                                            <i>No Passport File Attatched</i>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <a href="/admin/operations/passport/{{ passport.id }}/change"

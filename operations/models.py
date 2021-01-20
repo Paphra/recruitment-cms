@@ -182,9 +182,6 @@ class Passport(models.Model):
     agent = models.ForeignKey("settings.Agent", null=True, blank=True, on_delete=models.SET_NULL)
     passport_no = models.CharField("Passport Number", max_length=100, unique=True)
     nationality = models.CharField(max_length=100, blank=True)
-    first_name = models.CharField(max_length=100, blank=True)
-    last_name = models.CharField(max_length=100, blank=True)
-    profession = models.CharField(max_length=100, blank=True)
     place_ob = models.CharField("Place Of Birth", max_length=100, blank=True)
     date_ob = models.DateField(null=True, blank=True)
     issue_date = models.DateField(null=True, blank=True)
@@ -250,17 +247,14 @@ class Vetting(models.Model):
         (FAILED, 'Failed')
     ]
     client = models.OneToOneField("home.Client", on_delete=models.CASCADE)
-    job = models.ForeignKey("home.Job", on_delete=models.CASCADE)
     destination = models.ForeignKey("settings.Destination", null=True, blank=True, on_delete=models.SET_NULL)
     employer = models.ForeignKey("settings.Employer", null=True, blank=True, on_delete=models.SET_NULL)
     
-    nationality = models.CharField(max_length=100, blank=True)
     district = models.CharField(max_length=100, blank=True)
     county = models.CharField(max_length=100, blank=True)
     subcounty = models.CharField(max_length=100, blank=True)
     parish = models.CharField(max_length=100, blank=True)
     village = models.CharField(max_length=100, blank=True)
-    date_ob = models.DateField('Date Of Birth', blank=True)
     
     diso = models.BooleanField("DISO Approval", default=False)
     giso = models.BooleanField("GISO Approval", default=False)
