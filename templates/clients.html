@@ -110,7 +110,9 @@
                                                                                         {% if stg == stage %}
                                                                                             <span class="badge badge-pill bg-green" style="padding: 5px;">Complete</span>
                                                                                         {% else %}
-                                                                                            <span class="badge badge-pill bg-grey" style="padding: 5px;">Pending</span>
+                                                                                            {% if forloop.counter == client.stages.all.count %}
+                                                                                                <span class="badge badge-pill bg-grey" style="padding: 5px;">Pending</span>
+                                                                                            {% endif %}
                                                                                         {% endif %}
                                                                                     {% endfor %}
                                                                                 </div>
