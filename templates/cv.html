@@ -246,14 +246,14 @@
 								{% if client.photo.full %}
 									<img src="/media/{{ client.photo.full }}" style="width:350px; height:583px;" />
 								{% else %}
-									<img src="{% static 'images/fullphoto.jpg' %}" style="width:350px; height:583px;" />
+									<img src="{% static 'images/placeholder.jpg' %}" style="width:350px; height:583px;" />
 								{% endif %}
 								<hr/>
 								<center><h5>Applicant's Passport</h5></center>
 								{% if client.passport %}
 									<img src="/media/{{ client.passport.document }}" style="width:320px; height:500px;" />
 								{% else %}
-									<img src="{% static 'images/passport.jpg' %}" style="width:320px; height:500px;" />
+									<img src="{% static 'images/placeholder.jpg' %}" style="width:320px; height:500px;" />
 								{% endif %}
 								<div class="form-line">
 									<center><h6>Applicant Contact Number</h6></center>
