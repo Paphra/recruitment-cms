@@ -106,20 +106,16 @@
                                                                                 <a href="#" class="bs-wizard-dot"></a>
                                                                                 <div class="bs-wizard-info text-center">
                                                                                     {{ stage.description}}<br>
+                                                                                    {% set complete="" %}
                                                                                     {% for stg in client.stages.all %}
-                                                                                        {% if forloop.counter == client.stages.all.count %}
-                                                                                            {% if stg == stage %}
-                                                                                                <span class="badge badge-pill bg-green" style="padding: 5px;">Complete</span>
-                                                                                            {% else %}
-                                                                                                <span class="badge badge-pill bg-grey" style="padding: 5px;">Pending</span>
-                                                                                            {% endif %}
-                                                                                        {% else %}
-                                                                                            {% if stg == stage %}
-                                                                                                <span class="badge badge-pill bg-green" style="padding: 5px;">Complete</span>
-                                                                                            {% endif %}
+                                                                                        {% if stg == stage %}
+                                                                                            {% set complete="true" %}
+                                                                                            <span class="badge badge-pill bg-green" style="padding: 5px;">Complete</span>
                                                                                         {% endif %}
-                                                                                        
                                                                                     {% endfor %}
+                                                                                    {% if complete == "" %}
+                                                                                        <span class="badge badge-pill bg-grey" style="padding: 5px;">Pending</span>
+                                                                                    {% endif %}
                                                                                 </div>
                                                                             </div>
                                                                             {% if forloop.counter|divisibleby:"4" %}
