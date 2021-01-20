@@ -106,16 +106,14 @@
                                                                                 <a href="#" class="bs-wizard-dot"></a>
                                                                                 <div class="bs-wizard-info text-center">
                                                                                     {{ stage.description}}<br>
-                                                                                    {% set complete="" %}
                                                                                     {% for stg in client.stages.all %}
                                                                                         {% if stg == stage %}
-                                                                                            {% set complete="true" %}
                                                                                             <span class="badge badge-pill bg-green" style="padding: 5px;">Complete</span>
+                                                                                        {% elif forloop.counter == client.stages.all.count %}
+                                                                                            <span class="badge badge-pill bg-grey" style="padding: 5px;">Pending</span>
                                                                                         {% endif %}
                                                                                     {% endfor %}
-                                                                                    {% if complete == "" %}
-                                                                                        <span class="badge badge-pill bg-grey" style="padding: 5px;">Pending</span>
-                                                                                    {% endif %}
+                                                                                    
                                                                                 </div>
                                                                             </div>
                                                                             {% if forloop.counter|divisibleby:"4" %}
