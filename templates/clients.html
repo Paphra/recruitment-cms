@@ -107,13 +107,18 @@
                                                                                 <div class="bs-wizard-info text-center">
                                                                                     {{ stage.description}}<br>
                                                                                     {% for stg in client.stages.all %}
-                                                                                        {% if stg == stage %}
-                                                                                            <span class="badge badge-pill bg-green" style="padding: 5px;">Complete</span>
-                                                                                        {% else %}
-                                                                                            {% if forloop.counter == client.stages.all.count %}
+                                                                                        {% if forloop.counter == client.stages.all.count %}
+                                                                                            {% if stg == stage %}
+                                                                                                <span class="badge badge-pill bg-green" style="padding: 5px;">Complete</span>
+                                                                                            {% else %}
                                                                                                 <span class="badge badge-pill bg-grey" style="padding: 5px;">Pending</span>
                                                                                             {% endif %}
+                                                                                        {% else %}
+                                                                                            {% if stg == stage %}
+                                                                                                <span class="badge badge-pill bg-green" style="padding: 5px;">Complete</span>
+                                                                                            {% endif %}
                                                                                         {% endif %}
+                                                                                        
                                                                                     {% endfor %}
                                                                                 </div>
                                                                             </div>
