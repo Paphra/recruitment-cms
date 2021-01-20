@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load define_complete %}
 {% block title %}Clients{% endblock %}
 {% block loader %}
 {% endblock loader %}
@@ -106,14 +107,17 @@
                                                                                 <a href="#" class="bs-wizard-dot"></a>
                                                                                 <div class="bs-wizard-info text-center">
                                                                                     {{ stage.description}}<br>
+                                                                                    {% define False as complete %}
                                                                                     {% for stg in client.stages.all %}
                                                                                         {% if stg == stage %}
+                                                                                            {% define True as complete %}
                                                                                             <span class="badge badge-pill bg-green" style="padding: 5px;">Complete</span>
-                                                                                        {% elif forloop.counter == client.stages.all.count %}
-                                                                                            <span class="badge badge-pill bg-grey" style="padding: 5px;">Pending</span>
                                                                                         {% endif %}
                                                                                     {% endfor %}
-                                                                                    
+                                                                                    {% if complete %}
+                                                                                    {% else %}
+                                                                                        <span class="badge badge-pill bg-grey" style="padding: 5px;">Pending</span>
+                                                                                    {% endif %}
                                                                                 </div>
                                                                             </div>
                                                                             {% if forloop.counter|divisibleby:"4" %}
