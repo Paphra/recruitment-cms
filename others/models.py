@@ -99,7 +99,7 @@ class Bio(models.Model):
     created = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.id
+        return self.bio_key
 
 class NextOfKin(models.Model):
     """
@@ -154,4 +154,4 @@ class Recruitment(models.Model):
     created = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.id
+        return self.client.first_name

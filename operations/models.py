@@ -28,7 +28,7 @@ class Clearance(models.Model):
     created = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.id
+        return self.client.first_name
     
 class Contract(models.Model):
     """
@@ -56,7 +56,7 @@ class Contract(models.Model):
     created = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.id
+        return self.client.first_name
 
 class Interpol(models.Model):
     """
@@ -84,7 +84,7 @@ class Interpol(models.Model):
     created = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.id
+        return self.client.first_name
 
 class Interview(models.Model):
     """
@@ -123,7 +123,7 @@ class Interview(models.Model):
     created = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.id
+        return self.nationality
 
 class Medical(models.Model):
     """
@@ -158,7 +158,7 @@ class Medical(models.Model):
     created = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.id
+        return self.client.first_name
 
 class Passport(models.Model):
     """
@@ -274,7 +274,7 @@ class Vetting(models.Model):
     created = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.id
+        return self.client.first_name
 
 class Visa(models.Model):
     """
