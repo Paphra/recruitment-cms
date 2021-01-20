@@ -107,10 +107,10 @@
                                                                                 <a href="#" class="bs-wizard-dot"></a>
                                                                                 <div class="bs-wizard-info text-center">
                                                                                     {{ stage.description}}<br>
-                                                                                    {% define False as complete %}
+                                                                                    {% define "" as complete %}
                                                                                     {% for stg in client.stages.all %}
                                                                                         {% if stg == stage %}
-                                                                                            {% define True as complete %}
+                                                                                            {% define "True" as complete %}
                                                                                             <span class="badge badge-pill bg-green" style="padding: 5px;">Complete</span>
                                                                                         {% endif %}
                                                                                     {% endfor %}
