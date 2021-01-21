@@ -61,6 +61,9 @@ class Client(models.Model):
     stages = models.ManyToManyField("settings.Stage", blank=True)
     trainings = models.ManyToManyField("settings.Training", blank=True)
     
+    class Meta:
+        ordering = ['-created'] 
+
     def __str__(self):
         return self.first_name + ' ' + self.last_name
 

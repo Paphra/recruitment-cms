@@ -17,10 +17,12 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="text-right">
-                                        <a href="/admin/operations/plan/add" 
-                                            class="btn btn-sm bg-cyan waves-effect">
-                                            Add Travel Plan
-                                        </a>
+                                        {% if perms.operations.add_travelplan %}
+                                            <a href="/admin/operations/travelplan/add" 
+                                                class="btn btn-sm bg-cyan waves-effect">
+                                                Add Travel Plan
+                                            </a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

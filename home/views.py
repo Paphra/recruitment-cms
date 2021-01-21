@@ -10,9 +10,9 @@ def index(request):
     Home screen, Dashboard
     """
     args = {
-        'user': request.user,
+        # 'user': request.user,
         'a': 'index',
-        'clients': Client.objects.count(),
+        'clients': Client.objects.filter(recruitment=None).count(),
         'branches': Branch.objects.count(),
         'jobs': Job.objects.count(),
         'partners': Partner.objects.count(),

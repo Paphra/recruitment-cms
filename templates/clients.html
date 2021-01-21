@@ -19,10 +19,12 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="text-right">
-                                        <a href="/admin/home/client/add" 
-                                            class="btn btn-sm bg-cyan waves-effect">
-                                            Add Client
-                                        </a>
+                                        {% if perms.home.add_client %}
+                                            <a href="/admin/home/client/add" 
+                                                class="btn btn-sm bg-cyan waves-effect">
+                                                Add Client
+                                            </a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -53,10 +55,12 @@
                                                     <span class="badge bg-green">Yes</span>
                                                 {% else %}
                                                     <span class="badge bg-red">No</span>
-                                                    <a type="button" href="{% url 'register' client.id %}"
-                                                        class="btn btn-xs btn-success waves-effect">
-                                                        <i class="material-icons">refresh</i>
-                                                    </a>
+                                                    {% if perms.home.change_client %}
+                                                        <a type="button" href="{% url 'register' client.id %}"
+                                                            class="btn btn-xs btn-success waves-effect">
+                                                            <i class="material-icons">refresh</i>
+                                                        </a>
+                                                    {% endif %}
                                                 {% endif %}
                                             </td>
                                             <td>
@@ -64,10 +68,12 @@
                                                     <span class="badge bg-green">Paid</span>
                                                 {% else %}
                                                     <span class="badge bg-red">Not Paid</span>
-                                                    <a type="button" href="{% url 'pay-reg-fee' client.id %}"
-                                                        class="btn btn-xs btn-success waves-effect">
-                                                        <i class="material-icons">refresh</i>
-                                                    </a>
+                                                    {% if perms.home.change_client %}
+                                                        <a type="button" href="{% url 'pay-reg-fee' client.id %}"
+                                                            class="btn btn-xs btn-success waves-effect">
+                                                            <i class="material-icons">refresh</i>
+                                                        </a>
+                                                    {% endif %}
                                                 {% endif %}
                                             </td>
                                             <td>{{ client.created }}</td>
@@ -159,10 +165,14 @@
                                                                             <p>Publicity: {{ client.publicity}}</p>
                                                                             <p>Reason: {{ client.reason }}</p>
                                                                             <p>
-                                                                                <a href="/admin/home/client/{{ client.id }}/change"
-                                                                                    class="btn btn-success btn-sm">Edit</a>
-                                                                                <a href="/admin/home/client/{{ client.id }}/delete"
-                                                                                    class="btn btn-danger btn-sm">Delete</a>
+                                                                                {% if perms.home.change_client %}
+                                                                                    <a href="/admin/home/client/{{ client.id }}/change"
+                                                                                        class="btn btn-success btn-sm">Edit</a>
+                                                                                {% endif %}
+                                                                                {% if perms.home.delete_client %}
+                                                                                    <a href="/admin/home/client/{{ client.id }}/delete"
+                                                                                        class="btn btn-danger btn-sm">Delete</a>
+                                                                                {% endif %}
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -203,32 +213,34 @@
                                                                         </tbody>
                                                                     </table> 
                                                                     <h5 style="margin:15px;">Next of Kin:</h5>
-                                                                        {% if client.nextofkin %}
-                                                                            <table class="table profile__table">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <th>Full Names:</th>
-                                                                                        <td>{{ client.nextofkin }}</td>
-                                                                                        <th>Contact:</th>
-                                                                                        <td>{{ client.nextofkin.contact }}</td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <th>Gender:</th>
-                                                                                        <td>{% if client.nextofkin.gender%}Male{% else %}Female{% endif %}</td>
-                                                                                        <th>Age:</th>
-                                                                                        <td>{{ client.nextofkin.age }}</td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <th>Address:</th>
-                                                                                        <td>{{ client.nextofkin.address }}</td>
-                                                                                        <th>Relationship:</th>
-                                                                                        <td>{{ client.nextofkin.relationship }}</td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
+                                                                        {% if client.nextofkin_set.count %}
+                                                                            {% for kin in client.nextofkin_set.all %}
+                                                                                <table class="table profile__table">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <th>Full Names:</th>
+                                                                                            <td>{{ kin }}</td>
+                                                                                            <th>Contact:</th>
+                                                                                            <td>{{ kin.contact }}</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Gender:</th>
+                                                                                            <td>{% if kin.gender%}Male{% else %}Female{% endif %}</td>
+                                                                                            <th>Age:</th>
+                                                                                            <td>{{ kin.age }}</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Address:</th>
+                                                                                            <td>{{ kin.address }}</td>
+                                                                                            <th>Relationship:</th>
+                                                                                            <td>{{ kin.relationship }}</td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            {% endfor %}
                                                                         {% else %}
                                                                             <p class="text-danger text-center">
-                                                                                <i>Has No Next Of Kin</i>
+                                                                                <i>Has No Next Of Kins</i>
                                                                             </p>
                                                                         {% endif %}
                                                                     </div>

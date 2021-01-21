@@ -12,10 +12,12 @@
                             <div class="row">
                                 <h3 class="col-sm-9">Manage Fees</h3>
                                 <div class="col-sm-3 text-right">
-                                    <a href="/admin/finances/fee/add" 
-                                        class="btn btn-sm bg-cyan waves-effect">
-                                        Add Fee
-                                    </a>
+                                    {% if perms.finances.add_fee %}
+                                        <a href="/admin/finances/fee/add" 
+                                            class="btn btn-sm bg-cyan waves-effect">
+                                            Add Fee
+                                        </a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

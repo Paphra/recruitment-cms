@@ -17,10 +17,12 @@
                                     Manage Expenses
                                 </h3>
                                 <div class="col-sm-3 text-right">
-                                    <a href="/admin/finances/expense/add" 
-                                        class="btn btn-sm waves-effect bg-cyan">
-                                        Add Expense
-                                    </a>
+                                    {% if perms.finances.add_expense %}
+                                        <a href="/admin/finances/expense/add" 
+                                            class="btn btn-sm waves-effect bg-cyan">
+                                            Add Expense
+                                        </a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

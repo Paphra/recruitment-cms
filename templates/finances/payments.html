@@ -14,10 +14,12 @@
                                     <h3>Manage Payments</h3>
                                 </div>
                                 <div class="col-sm-3 text-right">
-                                    <a href="/admin/finances/payment/add" 
-                                        class="btn btn-sm bg-cyan waves-effect">
-                                        Add Payment
-                                    </a>
+                                    {% if perms.finances.add_payment %}
+                                        <a href="/admin/finances/payment/add" 
+                                            class="btn btn-sm bg-cyan waves-effect">
+                                            Add Payment
+                                        </a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

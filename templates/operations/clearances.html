@@ -17,10 +17,12 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="text-right">
-                                        <a href="/admin/operations/clearance/add" 
-                                            class="btn btn-sm bg-cyan waves-effect">
-                                            Add Clearance
-                                        </a>
+                                        {% if perms.operations.add_clearance %}
+                                            <a href="/admin/operations/clearance/add" 
+                                                class="btn btn-sm bg-cyan waves-effect">
+                                                Add Clearance
+                                            </a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

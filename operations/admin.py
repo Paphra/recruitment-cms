@@ -27,10 +27,10 @@ class InterpolAdmin(admin.ModelAdmin):
 
 @admin.register(Interview)
 class InterviewAdmin(admin.ModelAdmin):
-    list_display = ('client', 'nationality', 'married', 'home_town', 'status', 'created')
+    list_display = ('client', 'married', 'home_town', 'status', 'created')
     list_filter = ['status', 'married', 'created']
     list_editable = ['status']
-    search_fields = ['client', 'nationality', 'home_town']
+    search_fields = ['client', 'home_town']
 
 @admin.register(Medical)
 class MedicalAdmin(admin.ModelAdmin):
@@ -41,7 +41,9 @@ class MedicalAdmin(admin.ModelAdmin):
 
 @admin.register(OtherOperation)
 class OtherOperationAdmin(admin.ModelAdmin):
-    list_display = ()
+    list_display = ("item", "status", "created")
+    list_filter = ['status', 'created']
+    list_editable = ['status']
 
 @admin.register(Passport)
 class PassportAdmin(admin.ModelAdmin):
@@ -65,10 +67,10 @@ class TicketAdmin(ImportExportModelAdmin):
 
 @admin.register(Vetting)
 class VettingAdmin(admin.ModelAdmin):
-    list_display = ('client', 'job', 'destination', 'employer', 'diso', 'giso', 'training', 'ministry', 'musaned', 'waqala', 'status', 'created')
+    list_display = ('client', 'destination', 'employer', 'diso', 'giso', 'training', 'ministry', 'musaned', 'waqala', 'status', 'created')
     list_filter = ['status', 'diso', 'giso', 'training', 'ministry', 'musaned', 'waqala', 'created']
     list_editable = ['status', 'diso', 'giso', 'training', 'ministry', 'musaned', 'waqala']
-    search_fields = ['client', 'job', 'destination', 'employer']
+    search_fields = ['client', 'destination', 'employer']
 
 @admin.register(Visa)
 class VisaAdmin(admin.ModelAdmin):

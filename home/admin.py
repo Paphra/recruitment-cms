@@ -38,24 +38,24 @@ class PhotoInline(admin.TabularInline):
 class BioInline(admin.TabularInline):
     model = Bio
     exclude = ['created']
-    extra = 1
     classes = ('collapse',)
     
 class LanguageInline(admin.TabularInline):
     model = Language
     exclude = ['created']
-    extra = 1
+    extra = 2
     classes = ('collapse',)
 
 class NextOfKinInline(admin.StackedInline):
     model = NextOfKin
     exclude = ['created']
+    extra = 2
+    max_num = 2
     classes = ('collapse',)
     
 class SkillInline(admin.TabularInline):
     model = Skill
     exclude = ['created']
-    extra = 1
     classes = ('collapse',)
     
 class EducInline(admin.TabularInline):

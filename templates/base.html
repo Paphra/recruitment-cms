@@ -75,15 +75,21 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="/admin">Site Admin</a></li>
+                            <li>
+                                <a href="{% if user.is_staff %}/admin{% else %}/{% endif %}">
+                                    <img src="{% static 'images/user.jpg' %}" 
+                                        style="border-radius: 10px" width="30" height="30" alt="User" />
+                                    Site Admin | {{ user.username }}
+                                </a>
+                            </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <!-- Notifications -->
                             <li class="dropdown">
-                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                {% comment %} <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
                                     <i class="material-icons">notifications</i>
                                     <span class="label-count">0</span>
-                                </a>
+                                </a> {% endcomment %}
                                 <ul class="dropdown-menu">
                                     <li class="header">NOTIFICATIONS</li>
                                     <li class="body">
@@ -111,10 +117,10 @@
                             <!-- #END# Notifications -->
                             <!-- Tasks -->
                             <li class="dropdown">
-                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                {% comment %} <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
                                     <i class="material-icons">flag</i>
                                     <span class="label-count">0</span>
-                                </a>
+                                </a> {% endcomment %}
                                 <ul class="dropdown-menu">
                                     <li class="header">TASKS</li>
                                     <li class="body">
@@ -154,212 +160,252 @@
             <!-- Left Sidebar -->
             {% block sidebar %}
                 <aside id="leftsidebar" class="sidebar">
-                <!-- User Info -->
-                <div class="user-info">
-                    <div class="image">
-                        <img src="{% static 'images/user.jpg' %}" width="48" height="48" alt="User" />
-                    </div>
-                    <div class="info-container">
-                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.username}}</div>
-                        <div class="email">{{ user.email }}</div>
-                        <div class="btn-group user-helper-dropdown">
-                            <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-                            <ul class="dropdown-menu pull-right">
-                                <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
-                                <li role="seperator" class="divider"></li>
-                                <li><a href="{% url 'logout' %}"><i class="material-icons">input</i>Sign Out</a></li>
+                    <!-- Menu -->
+                    <div class="menu">
+                        {% block navigation %}
+                            <ul class="list">
+                                <li class="header">
+                                    <h5 id="showDate"></h5>
+                                    <div id="dyclock-digital-3" class="dyclock-container"></div>
+                                </li>
+                                <li class="{% if a == 'index' %}active{% endif %}">
+                                    <a href="{% url 'index' %}">
+                                        <i class="material-icons">dashboard</i>
+                                        <span>Dashboard</span>
+                                    </a> 
+                                </li>
+                                {% if perms.home.view_client %}
+                                    <li class="{% if a == 'clients' %}active{% endif %}">
+                                        <a href="{% url 'clients' %}">
+                                            <i class="material-icons">people</i>
+                                            <span>
+                                                {% if 'supervi' in user.groups.first.name.lower %}
+                                                    Candidates
+                                                {% else %}
+                                                    Clients
+                                                {% endif %}
+                                            </span>
+                                        </a> 
+                                    </li>
+                                {% endif %}
+                                {% if perms.home.view_job %}
+                                    <li class="{% if a == 'jobs' %}active{% endif %}">
+                                        <a href="{% url 'jobs' %}">
+                                            <i class="material-icons">folder_open</i>
+                                            <span>Jobs</span>
+                                        </a> 
+                                    </li>
+                                {% endif %}
+                                {% if perms.home.view_branch %}
+                                    <li class="{% if a == 'branches' %}active{% endif %}">
+                                        <a href="{% url 'branches' %}">
+                                            <i class="material-icons">home</i>
+                                            <span>Branches</span>
+                                        </a> 
+                                    </li>
+                                {% endif %}                            
+                                {% if perms.operations %}
+                                    <li class="{% if a == 'clearances' or a == 'interpols' or a == 'contracts' or a == 'interviews' or a == 'medicals' or a ==  'passports' or a == 'vettings' or a == 'vetting-album' or a == 'tickets' or a == 'other-ops' or a == 'travel-plans' or a == 'visas' %}active{% endif %}">
+                                        <a href="javascript:void(0);" class="menu-toggle">
+                                            <i class="material-icons">supervisor_account</i>
+                                            <span>Operations</span>
+                                        </a>
+                                        <ul class="ml-menu">
+                                            {% if perms.operations.view_clearance %}
+                                                <li class="{% if a == 'clearances' %}active{% endif %}">
+                                                    <a href="{% url 'clearances' %}">
+                                                        <strong>Clearances</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                            {% if perms.operations.view_contract %}
+                                                <li class="{% if a == 'contracts' %}active{% endif %}">
+                                                    <a href="{% url 'contracts' %}">
+                                                        <strong>Contracts</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                            {% if perms.operations.view_interpols %}
+                                                <li class="{% if a == 'interpols' %}active{% endif %}">
+                                                    <a href="{% url 'interpols' %}">
+                                                        <strong>Interpols</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                            {% if perms.operations.view_interview %}
+                                                <li class="{% if a == 'interviews' %}active{% endif %}">
+                                                    <a href="{% url 'interviews' %}">
+                                                        <strong>Interviews</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                            {% if perms.operations.view_medical %}
+                                                <li class="{% if a == 'medicals' %}active{% endif %}">
+                                                    <a href="{% url 'medicals' %}">
+                                                        <strong>Medicals</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                            {% if perms.operations.view_passport %}
+                                                <li class="{% if a == 'passports' %}active{% endif %}">
+                                                    <a href="{% url 'passports' %}">
+                                                        <strong>Passports</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                            {% if perms.operations.view_ticket %}
+                                                <li class="{% if a == 'tickets' %}active{% endif %}">
+                                                    <a href="{% url 'tickets' %}">
+                                                        <strong>Tickets</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                            {% if perms.operations.view_vetting %}
+                                                <li class="{% if a == 'vettings' %}active{% endif %}">
+                                                    <a href="{% url 'vettings' %}">
+                                                        <strong>Vettings</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                            {% if perms.operations.view_vetting %}
+                                                <li class="{% if a == 'vetting-album' %}active{% endif %}">
+                                                    <a href="{% url 'vetting-album' %}">
+                                                        <strong>Vetting Album</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                            {% if perms.operations.view_visa %}
+                                                <li class="{% if a == 'visas' %}active{% endif %}">
+                                                    <a href="{% url 'visas' %}">
+                                                        <strong>Visas</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                            {% if perms.operations.view_travelplan %}
+                                                <li class="{% if a == 'travel-plans' %}active{% endif %}">
+                                                    <a href="{% url 'travel-plans' %}">
+                                                        <strong>Travel Plans</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                            {% if perms.operations.view_otheropeartion %}
+                                                <li class="{% if a == 'other-ops' %}active{% endif %}">
+                                                    <a href="{% url 'other-ops' %}">
+                                                        <strong>Other Operations</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                        </ul>
+                                    </li>    
+                                {% endif %}
+                                {% if perms.finances %}
+                                    <li class="{% if a == 'payments' or a == 'expenses' or a == 'fees' %}active{% endif %}">
+                                        <a href="javascript:void(0);" class="menu-toggle">
+                                            <i class="material-icons">money_off</i>
+                                            <span>Finances</span>
+                                        </a>
+                                        <ul class="ml-menu">
+                                            {% if perms.finances.view_payment %}
+                                                <li class="{% if a == 'payments' %}active{% endif %}">
+                                                    <a href="{% url 'payments' %}">
+                                                        <strong>Payments</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                            {% if perms.finances.view_expense %}
+                                                <li class="{% if a == 'expenses' %}active{% endif %}">
+                                                    <a href="{% url 'expenses' %}">
+                                                        <strong>Expenses</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                            {% if perms.finances.view_fee %}
+                                                <li class="{% if a == 'fees' %}active{% endif %}">
+                                                    <a href="{% url 'fees' %}">
+                                                        <strong>Fees</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}                                            
+                                        </ul>
+                                    </li>
+                                {% endif %}
+                                {% if perms.files %}
+                                    <li class="{% if a == 'clearance-files' or a == 'client-files' %}active{% endif %}">
+                                        <a href="javascript:void(0);" class="menu-toggle">
+                                            <i class="material-icons">folder_open</i>
+                                            <span>Files</span>
+                                        </a>
+                                        <ul class="ml-menu">
+                                            {% if perms.files.clearancefile %}
+                                                <li class="{% if a == 'clearance-files' %}active{% endif %}">
+                                                    <a href="{% url 'clearance-files' %}">
+                                                        <strong>Clearance Files</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                            {% if perms.files.view_clientfile %}
+                                                <li class="{% if a == 'client-files' %}active{% endif %}">
+                                                    <a href="{% url 'client-files' %}">
+                                                        <strong>Client Files</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                        </ul>
+                                    </li>
+                                {% endif %}
+                                {% if perms.others %}
+                                    <li class="{% if a == 'recruitments' or a == 'tasks' or a == 'complaints' %}active{% endif %}">
+                                        <a href="javascript:void(0);" class="menu-toggle">
+                                            <i class="material-icons">local_hospital</i>
+                                            <span>Others</span>
+                                        </a>
+                                        <ul class="ml-menu">
+                                            {% if perms.others.view_recruitment %}
+                                                <li class="{% if a == 'recruitments' %}active{% endif %}">
+                                                    <a href="{% url 'recruitments' %}">
+                                                        <strong>Recruitments</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                            {% if perms.others.view_task %}
+                                                <li class="{% if a == 'tasks' %}active{% endif %}">
+                                                    <a href="{% url 'tasks' %}">
+                                                        <strong>Tasks</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                        </ul>
+                                    </li>
+                                {% endif %}
+                                {% if perms.settings %}
+                                    <li class="{% if a == 'settings' %}active{% endif %}">
+                                        <a href="/admin/settings">
+                                            <i class="material-icons">settings</i>
+                                            <span>Settings</span>
+                                        </a> 
+                                    </li>
+                                {% endif %}
+                                <li>
+                                    <a href="{% url 'logout' %}">
+                                        <i class="material-icons">power_settings_new</i>
+                                        <span>Logout</span>
+                                    </a>
+                                </li>
                             </ul>
+                        {% endblock navigation %}
+                    </div>
+                    <!-- #Menu -->
+                    <!-- Footer -->
+                    <div class="legal">
+                        <div class="copyright">
+                            &copy; 2020 <a href="javascript:void(0);">Panel - Recruitment CMS</a>.
+                        </div>
+                        <div class="version">
+                            <b>Version: </b> 1.2.1
                         </div>
                     </div>
-                </div>
-                <!-- #User Info -->
-                <!-- Menu -->
-                <div class="menu">
-                    {% block navigation %}
-                        <ul class="list">
-                            <li class="header">
-                                <h5 id="showDate"></h5>
-                                <div id="dyclock-digital-3" class="dyclock-container"></div>
-                            </li>                    
-                            <li class="{% if a == 'index' %}active{% endif %}">
-                                <a href="{% url 'index' %}">
-                                    <i class="material-icons">dashboard</i>
-                                    <span>Dashboard</span>
-                                </a> 
-                            </li>
-                            <li class="{% if a == 'clients' %}active{% endif %}">
-                                <a href="{% url 'clients' %}">
-                                    <i class="material-icons">people</i>
-                                    <span>Clients</span>
-                                </a> 
-                            </li>
-                            <li class="{% if a == 'jobs' %}active{% endif %}">
-                                <a href="{% url 'jobs' %}">
-                                    <i class="material-icons">folder_open</i>
-                                    <span>Jobs</span>
-                                </a> 
-                            </li>
-                            <li class="{% if a == 'branches' %}active{% endif %}">
-                                <a href="{% url 'branches' %}">
-                                    <i class="material-icons">home</i>
-                                    <span>Branches</span>
-                                </a> 
-                            </li>                            
-                            <li class="{% if a == 'clearances' or a == 'interpols' or a == 'contracts' or a == 'interviews' or a == 'medicals' or a ==  'passports' or a == 'vettings' or a == 'vetting-album' or a == 'tickets' or a == 'other-ops' or a == 'travel-plans' or a == 'visas' %}active{% endif %}">
-                                <a href="javascript:void(0);" class="menu-toggle">
-                                    <i class="material-icons">supervisor_account</i>
-                                    <span>Operations</span>
-                                </a>
-                                <ul class="ml-menu">
-                                    <li class="{% if a == 'clearances' %}active{% endif %}">
-                                        <a href="{% url 'clearances' %}">
-                                            <strong>Clearances</strong>
-                                        </a>
-                                    </li>
-                                    <li class="{% if a == 'contracts' %}active{% endif %}">
-                                        <a href="{% url 'contracts' %}">
-                                            <strong>Contracts</strong>
-                                        </a>
-                                    </li>
-                                    <li class="{% if a == 'interpols' %}active{% endif %}">
-                                        <a href="{% url 'interpols' %}">
-                                            <strong>Interpols</strong>
-                                        </a>
-                                    </li>
-                                    <li class="{% if a == 'interviews' %}active{% endif %}">
-                                        <a href="{% url 'interviews' %}">
-                                            <strong>Interviews</strong>
-                                        </a>
-                                    </li>
-                                    <li class="{% if a == 'medicals' %}active{% endif %}">
-                                        <a href="{% url 'medicals' %}">
-                                            <strong>Medicals</strong>
-                                        </a>
-                                    </li>
-                                    <li class="{% if a == 'passports' %}active{% endif %}">
-                                        <a href="{% url 'passports' %}">
-                                            <strong>Passports</strong>
-                                        </a>
-                                    </li>
-                                    <li class="{% if a == 'tickets' %}active{% endif %}">
-                                        <a href="{% url 'tickets' %}">
-                                            <strong>Tickets</strong>
-                                        </a>
-                                    </li>
-                                    <li class="{% if a == 'vettings' %}active{% endif %}">
-                                        <a href="{% url 'vettings' %}">
-                                            <strong>Vettings</strong>
-                                        </a>
-                                    </li>
-                                    <li class="{% if a == 'vetting-album' %}active{% endif %}">
-                                        <a href="{% url 'vetting-album' %}">
-                                            <strong>Vetting Album</strong>
-                                        </a>
-                                    </li>
-                                    <li class="{% if a == 'visas' %}active{% endif %}">
-                                        <a href="{% url 'visas' %}">
-                                            <strong>Visas</strong>
-                                        </a>
-                                    </li>
-                                    <li class="{% if a == 'travel-plans' %}active{% endif %}">
-                                        <a href="{% url 'travel-plans' %}">
-                                            <strong>Travel Plans</strong>
-                                        </a>
-                                    </li>
-                                    <li class="{% if a == 'other-ops' %}active{% endif %}">
-                                        <a href="{% url 'other-ops' %}">
-                                            <strong>Other Operations</strong>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="{% if a == 'payments' or a == 'expenses' or a == 'fees' %}active{% endif %}">
-                                <a href="javascript:void(0);" class="menu-toggle">
-                                    <i class="material-icons">money_off</i>
-                                    <span>Finances</span>
-                                </a>
-                                <ul class="ml-menu">
-                                    <li class="{% if a == 'payments' %}active{% endif %}">
-                                        <a href="{% url 'payments' %}">
-                                            <strong>Payments</strong>
-                                        </a>
-                                    </li>
-                                    <li class="{% if a == 'expenses' %}active{% endif %}">
-                                        <a href="{% url 'expenses' %}">
-                                            <strong>Expenses</strong>
-                                        </a>
-                                    </li>
-                                    <li class="{% if a == 'fees' %}active{% endif %}">
-                                        <a href="{% url 'fees' %}">
-                                            <strong>Fees</strong>
-                                        </a>
-                                    </li>
-                                    
-                                </ul>
-                            </li>
-                            <li class="{% if a == 'clearance-files' or a == 'photos' or a == 'client-files' %}active{% endif %}">
-                                <a href="javascript:void(0);" class="menu-toggle">
-                                    <i class="material-icons">folder_open</i>
-                                    <span>Files</span>
-                                </a>
-                                <ul class="ml-menu">
-                                    <li class="{% if a == 'clearance-files' %}active{% endif %}">
-                                        <a href="{% url 'clearance-files' %}">
-                                            <strong>Clearance Files</strong>
-                                        </a>
-                                    </li>
-                                    <li class="{% if a == 'client-files' %}active{% endif %}">
-                                        <a href="{% url 'client-files' %}">
-                                            <strong>Client Files</strong>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="{% if a == 'recruitments' or a == 'tasks' or a == 'complaints' %}active{% endif %}">
-                                <a href="javascript:void(0);" class="menu-toggle">
-                                    <i class="material-icons">local_hospital</i>
-                                    <span>Others</span>
-                                </a>
-                                <ul class="ml-menu">
-                                    <li class="{% if a == 'recruitments' %}active{% endif %}">
-                                        <a href="{% url 'recruitments' %}">
-                                            <strong>Recruitments</strong>
-                                        </a>
-                                    </li>
-                                    <li class="{% if a == 'tasks' %}active{% endif %}">
-                                        <a href="{% url 'tasks' %}">
-                                            <strong>Tasks</strong>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="{% if a == 'settings' %}active{% endif %}">
-                                <a href="/admin/settings">
-                                    <i class="material-icons">settings</i>
-                                    <span>Settings</span>
-                                </a> 
-                            </li>
-                            <li>
-                                <a href="{% url 'logout' %}">
-                                    <i class="material-icons">power_settings_new</i>
-                                    <span>Logout</span>
-                                </a>
-                            </li>
-                        </ul>
-                    {% endblock navigation %}
-                </div>
-                <!-- #Menu -->
-                <!-- Footer -->
-                <div class="legal">
-                    <div class="copyright">
-                        &copy; 2020 <a href="javascript:void(0);">Panel - Recruitment CMS</a>.
-                    </div>
-                    <div class="version">
-                        <b>Version: </b> 1.2.1
-                    </div>
-                </div>
-                <!-- #Footer -->
-            </aside>
+                    <!-- #Footer -->
+                </aside>
             
             {% endblock sidebar %}
             <!-- #END# Left Sidebar -->

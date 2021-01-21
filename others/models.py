@@ -39,8 +39,19 @@ class Skill(models.Model):
         (GOOD, 'Good'),
         (EXCELLENT, 'Excellent')
     ]
+    SKILLS_CHOICES = [
+        ("Baby Sitting | يجلس الطفل", "Baby Sitting"),
+        ("Children Care | رعاية الأطفال", "Children Care"),
+        ("Disable Care | تعطيل الرعاية", "Disable Care"),
+        ("Cleaning | تنظيف", "Cleaning"),
+        ("Washing | غسل", "Washing"),
+        ("Ironing | كى الملابس", "Ironing"),
+        ("Arabic Cooking | الطبخ العربي", "Arabic Cooking"),
+        ("Cooking Capacity | قدرة الطبخ", "Cooking Capacity"),
+        ("Dusting | تنفيض الأتربة", "Dusting")
+    ]
     client = models.ForeignKey("home.Client", on_delete=models.CASCADE)
-    skill = models.CharField(max_length=100)
+    skill = models.CharField(max_length=200, choices=SKILLS_CHOICES)
     fluence = models.IntegerField(choices=FLUENCE_CHOICES, default=GOOD)
     document = models.FileField(upload_to='clients/%Y/%m/%d/', blank=True)
     created = models.DateField(default=timezone.now)
@@ -111,7 +122,7 @@ class NextOfKin(models.Model):
         (MALE, 'Male'),
         (FEMALE, 'Female')
     ]
-    client = models.OneToOneField("home.Client", on_delete=models.CASCADE)
+    client = models.ForeignKey("home.Client", on_delete=models.CASCADE)
     relationship = models.CharField(max_length=100)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)

@@ -67,18 +67,18 @@
 									</tbody>
 								</table>
 								<!-- Passport Details Ends here -->
-								<!-- #Start# These are the section headings -->
-								<div class="col-md-4">
-									<h4>Languages</h4> 
-								</div>
-								<div class="col-md-4 pull-right">
-									<h4><strong>اللغات</strong></h4> 
-								</div>
-								<!-- #End# These are the section headings -->
-								<!-- Languages Details start here -->
-								<table class="table profile__table">
-									<tbody>
-										{% if client.language_set.count %}
+								{% if client.language_set.count %}
+									<!-- #Start# These are the section headings -->
+									<div class="col-md-4">
+										<h4>Languages</h4> 
+									</div>
+									<div class="col-md-4 pull-right">
+										<h4><strong>اللغات</strong></h4> 
+									</div>
+									<!-- #End# These are the section headings -->
+									<!-- Languages Details start here -->
+									<table class="table profile__table">
+										<tbody>
 											{% for language in client.language_set.all %}
 												<tr>
 													<th><p>{{ language }}</p></th>
@@ -96,29 +96,27 @@
 													<th direction="rtl"><strong>اإلنجليزية</strong></th>
 												</tr>
 											{% endfor %}	
-										{% else %}
-											<i>No Languages</i>
-										{% endif %}
-									</tbody>
-								</table>
-								<!-- Languages Details Ends here -->
-                            	<!-- Education Section #Start# These are the section headings -->
-								<div class="col-md-4">
-									<h4><strong>Education Status</strong></h4> 
-								</div>
-								<div class="col-md-4 pull-right">
-									<h4>اللغات</h4> 
-								</div>
-								<!-- #End# These are the section headings -->
-								<table class="table profile__table">
-									<thead>
-										<tr>
-											<th>Institution</th>
-											<th>Qualification</th>
-										</tr>
-									</thead>
-									<tbody>
-										{% if client.educ_set.count %}
+										</tbody>
+									</table>
+									<!-- Languages Details Ends here -->
+								{% endif %}
+								{% if client.educ_set.count %}
+									<!-- Education Section #Start# These are the section headings -->
+									<div class="col-md-4">
+										<h4><strong>Education Status</strong></h4> 
+									</div>
+									<div class="col-md-4 pull-right">
+										<h4>اللغات</h4> 
+									</div>
+									<!-- #End# These are the section headings -->
+									<table class="table profile__table">
+										<thead>
+											<tr>
+												<th>Institution</th>
+												<th>Qualification</th>
+											</tr>
+										</thead>
+										<tbody>
 											{% for educ in client.educ_set.all %}
 												<tr>
 													<th><p>{{ educ.institution }}</p></th>
@@ -126,12 +124,10 @@
 													<th direction="rtl"><strong>اإلنجليزية</strong></th>
 												</tr>
 											{% endfor %}	
-										{% else %}
-											<i>No Education Backgrounds</i>
-										{% endif %}									
-									</tbody>
-								</table>
-								<!-- Education Section #Ends# These are the section headings -->
+										</tbody>
+									</table>
+									<!-- Education Section #Ends# These are the section headings -->
+								{% endif %}									
                                 <!-- Personal Information #Start# These are the section headings -->
 								<div class="col-md-6">
 									<h4><strong>Personal Information</strong></h4> 
@@ -192,26 +188,25 @@
 									</tbody>
 								</table>
 								<!-- End Personal Information Details -->
-								<!-- Skills #Start# These are the section headings -->
-								<div class="col-md-6">
-									<h4><strong>Skills and Experience</strong></h4> 
-								</div>
-								<div class="col-md-4 pull-right">
-									<h4 direction="rtl">مهارات وخبرات</h4> 
-								</div>
-								<!-- Start Personal Information Details -->
-								<table class="table profile__table">
-									<thead>
-										<tr>
-											<th>Skills</th>
-											<th>Fair</th>
-											<th>Good</th>
-											<th>Excellent</th>
-											<td><strong>Arabic</strong></td>
-										</tr>
-									</thead>
-									<tbody>
-										{% if client.skill_set.count %}
+								{% if client.skill_set.count %}
+									<!-- Skills #Start# These are the section headings -->
+									<div class="col-md-6">
+										<h4><strong>Skills and Experience</strong></h4> 
+									</div>
+									<div class="col-md-4 pull-right">
+										<h4 direction="rtl">مهارات وخبرات</h4> 
+									</div>
+									<!-- Start Personal Information Details -->
+									<table class="table profile__table">
+										<thead>
+											<tr>
+												<th>Skill | <strong>Arabic</strong></th>
+												<th>Fair</th>
+												<th>Good</th>
+												<th>Excellent</th>
+											</tr>
+										</thead>
+										<tbody>
 											{% for skill in client.skill_set.all %}
 												<tr>
 													<td>{{ skill }}</td>
@@ -230,16 +225,12 @@
 															Yes
 														{% endif %}
 													</td>
-													<td>يجلس الطفل</td>
 												</tr>
 											{% endfor %}
-										{% else %}
-											<i>No Skills Listed</i>
-										{% endif %}
-									</tbody>
-								</table>
-								<!-- Skills Information Details -->
-								<!-- Skills #Ends# These are the section headings -->
+										</tbody>
+									</table>
+									<!-- Skills #Ends# These are the section headings -->
+								{% endif %}
                             </div>
                             <div class="col-md-5">
 								<center><h5>Applicant's Full Photo</h5></center>
