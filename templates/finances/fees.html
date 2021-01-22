@@ -50,14 +50,18 @@
                                             <td>
                                             <td>{{ fee.created}}</td>
                                             <td>
-                                                <a href="/admin/finances/fee/{{ fee.id }}/change" 
-                                                    class="btn btn-xs btn-success waves-effect">
-                                                    <span class="material-icons">edit</span>
-                                                </a>
-                                                <a href="/admin/finances/fee/{{ fee.id }}" 
-                                                    class="btn btn-xs btn-danger waves-effect">
-                                                    <span class="material-icons">delete</span>
-                                                </a>
+                                                {% if perms.finances.change_fee %}
+                                                    <a href="/admin/finances/fee/{{ fee.id }}/change" 
+                                                        class="btn btn-xs btn-success waves-effect">
+                                                        <span class="material-icons">edit</span>
+                                                    </a>
+                                                {% endif %}
+                                                {% if perms.finances.delete_fee %}
+                                                    <a href="/admin/finances/fee/{{ fee.id }}" 
+                                                        class="btn btn-xs btn-danger waves-effect">
+                                                        <span class="material-icons">delete</span>
+                                                    </a>
+                                                {% endif %}
                                             </td>
                                         </tr>
                                     {% endfor %}

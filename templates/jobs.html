@@ -14,10 +14,12 @@
                                     <h3>Manage Jobs</h3>
                                 </div>
                                 <div class="col-sm-3 text-right">
-                                    <a type="button"class="btn btn-sm bg-cyan waves-effect" 
-                                        href="/admin/home/job/add">
-                                        Add Job
-                                    </a>
+                                    {% if perms.home.add_job %}
+                                        <a type="button"class="btn btn-sm bg-cyan waves-effect" 
+                                            href="/admin/home/job/add">
+                                            Add Job
+                                        </a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -154,10 +156,15 @@
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <a href="/admin/home/job/{{ job.id }}/change"
-                                                                    class="btn btn-success btn-sm">Edit</a>
-                                                                <a href="/admin/home/job/{{ job.id }}/delete"
-                                                                    class="btn btn-danger btn-sm">Delete</a>
+                                                                {% if perms.home.change_job %}
+                                                                    <a href="/admin/home/job/{{ job.id }}/change"
+                                                                        class="btn btn-success btn-sm">Edit</a>
+                                                                {% endif %}
+                                                                {% if perms.home.delete_job %}
+                                                                    <a href="/admin/home/job/{{ job.id }}/delete"
+                                                                        class="btn btn-danger btn-sm">Delete</a>
+                                                                {% endif %}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

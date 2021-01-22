@@ -14,10 +14,12 @@
                                     <h3>Manage Branches</h3>
                                 </div>
                                 <div class="col-sm-3 text-right">
-                                    <a href="/admin/home/branch/add" 
-                                        class="btn btn-sm bg-cyan waves-effect">
-                                        Add Branch
-                                    </a>
+                                    {% if perms.home.add_branch %}
+                                        <a href="/admin/home/branch/add" 
+                                            class="btn btn-sm bg-cyan waves-effect">
+                                            Add Branch
+                                        </a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -82,10 +84,14 @@
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <a href="/admin/home/branch/{{ branch.id }}/change"
-                                                                    class="btn btn-sm btn-success">Edit</a>
-                                                                <a href="/admin/home/branch/{{ branch.id }}/delete"
-                                                                    class="btn btn-sm btn-danger">Delete</a>
+                                                                {% if perms.home.change_branch %}
+                                                                    <a href="/admin/home/branch/{{ branch.id }}/change"
+                                                                        class="btn btn-sm btn-success">Edit</a>
+                                                                {% endif %}
+                                                                {% if perms.home.delete_branch %}
+                                                                    <a href="/admin/home/branch/{{ branch.id }}/delete"
+                                                                        class="btn btn-sm btn-danger">Delete</a>
+                                                                {% endif %}
                                                             </div>
                                                         </div><!-- /.modal-content -->
                                                     </div><!-- /.modal-dialog -->

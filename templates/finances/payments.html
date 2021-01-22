@@ -71,10 +71,14 @@
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <a href="/admin/finances/payment/{{ payment.id }}/change"
-                                                                    class="btn btn-success btn-sm">Edit</a>
-                                                                <a href="/admin/finances/payment/{{ payment.id }}/delete"
-                                                                    class="btn btn-danger btn-sm">Delete</a>
+                                                                {% if perms.finances.change_payment %}
+                                                                    <a href="/admin/finances/payment/{{ payment.id }}/change"
+                                                                        class="btn btn-success btn-sm">Edit</a>
+                                                                {% endif %}
+                                                                {% if perms.finances.delete_payment %}
+                                                                    <a href="/admin/finances/payment/{{ payment.id }}/delete"
+                                                                        class="btn btn-danger btn-sm">Delete</a>
+                                                                {% endif %}
                                                             </div>
                                                         </div><!-- /.modal-content -->
                                                     </div><!-- /.modal-dialog -->

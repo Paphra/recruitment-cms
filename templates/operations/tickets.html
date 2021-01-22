@@ -104,10 +104,13 @@
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <a href="/admin/operations/ticket/{{ ticket.id }}/change"
-                                                                    class="btn btn-sm btn-success">Edit</a>
-                                                                <a href="/admin/operations/ticket/{{ ticket.id }}/delete"
-                                                                    class="btn btn-sm btn-danger">Delete</a>
+                                                                {% if perms.operations.change_ticket %}
+                                                                    <a href="/admin/operations/ticket/{{ ticket.id }}/change"
+                                                                        class="btn btn-sm btn-success">Edit</a>
+                                                                {% if perms.operations.delete_ticket %}
+                                                                    <a href="/admin/operations/ticket/{{ ticket.id }}/delete"
+                                                                        class="btn btn-sm btn-danger">Delete</a>
+                                                                {% endif %}
                                                             </div>
                                                         </div>
                                                     </div>

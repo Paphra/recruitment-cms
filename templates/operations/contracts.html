@@ -17,7 +17,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="text-right">
-                                        {% if perms.operations.add_contracts %}
+                                        {% if perms.operations.add_contract %}
                                             <a href="/admin/operations/contract/add" 
                                                 class="btn btn-sm bg-cyan waves-effect">
                                                 Add Contract
@@ -84,10 +84,14 @@
                                                                 {% endif %}
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <a href="/admin/operations/contract/{{ contract.id }}/change"
-                                                                    class="btn btn-sm btn-success">Edit</a>
-                                                                <a href="/admin/operations/contract/{{ contract.id }}/delete"
-                                                                    class="btn btn-sm btn-danger">Delete</a>
+                                                                {% if perms.operations.change_contract %}
+                                                                    <a href="/admin/operations/contract/{{ contract.id }}/change"
+                                                                        class="btn btn-sm btn-success">Edit</a>
+                                                                {% endif %}
+                                                                {% if perms.operations.delete_contract %}
+                                                                    <a href="/admin/operations/contract/{{ contract.id }}/delete"
+                                                                        class="btn btn-sm btn-danger">Delete</a>
+                                                                {% endif %}
                                                             </div>
                                                         </div>
                                                     </div>

@@ -17,10 +17,12 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="text-right">
-                                        <a href="/admin/others/task/add" 
-                                            class="btn btn-sm bg-cyan waves-effect">
-                                            Add Task
-                                        </a>
+                                        {% if perms.others.add_task %}
+                                            <a href="/admin/others/task/add" 
+                                                class="btn btn-sm bg-cyan waves-effect">
+                                                Add Task
+                                            </a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -72,10 +74,14 @@
                                                             <div class="modal-body">
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <a href="/admin/others/task/{{ task.id }}/change"
-                                                                    class="btn btn-sm btn-success">Edit</a>
-                                                                <a href="/admin/others/task/{{ task.id }}/delete"
-                                                                    class="btn btn-sm btn-danger">Delete</a>
+                                                                {% if perms.others.change_task %}
+                                                                    <a href="/admin/others/task/{{ task.id }}/change"
+                                                                        class="btn btn-sm btn-success">Edit</a>
+                                                                {% endif %}
+                                                                {% if perms.others.delete_task %}
+                                                                    <a href="/admin/others/task/{{ task.id }}/delete"
+                                                                        class="btn btn-sm btn-danger">Delete</a>
+                                                                {% endif %}
                                                             </div>
                                                         </div>
                                                     </div>

@@ -106,10 +106,14 @@
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <a href="/admin/operations/passport/{{ passport.id }}/change"
-                                                                    class="btn btn-sm btn-success">Edit</a>
-                                                                <a href="/admin/operations/passport/{{ passport.id }}/delete"
-                                                                    class="btn btn-sm btn-danger">Delete</a>
+                                                                {% if perms.operations.change_passport %}
+                                                                    <a href="/admin/operations/passport/{{ passport.id }}/change"
+                                                                        class="btn btn-sm btn-success">Edit</a>
+                                                                {% endif %}
+                                                                {% if perms.operations.delete_passport %}
+                                                                    <a href="/admin/operations/passport/{{ passport.id }}/delete"
+                                                                        class="btn btn-sm btn-danger">Delete</a>
+                                                                {% endif %}
                                                             </div>
                                                         </div>
                                                     </div>

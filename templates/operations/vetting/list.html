@@ -162,10 +162,14 @@
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <a href="/admin/operations/vetting/{{ vetting.id }}/change"
-                                                                    class="btn btn-sm btn-success">Edit</a>
-                                                                <a href="/admin/operations/vetting/{{ vetting.id }}/delete"
-                                                                    class="btn btn-sm btn-danger">Delete</a>
+                                                                {% if perms.operations.change_vetting %}
+                                                                    <a href="/admin/operations/vetting/{{ vetting.id }}/change"
+                                                                        class="btn btn-sm btn-success">Edit</a>
+                                                                {% endif %}
+                                                                {% if perms.operations.delete_vetting %}
+                                                                    <a href="/admin/operations/vetting/{{ vetting.id }}/delete"
+                                                                        class="btn btn-sm btn-danger">Delete</a>
+                                                                {% endif %}
                                                             </div>
                                                         </div>
                                                     </div>

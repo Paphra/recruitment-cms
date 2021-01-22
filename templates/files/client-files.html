@@ -17,10 +17,12 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="text-right">
-                                        <a href="/admin/files/clientfile/add" 
-                                            class="btn btn-sm bg-cyan waves-effect">
-                                            Add Client File
-                                        </a>
+                                        {% if perms.files.add_clientfile %}
+                                            <a href="/admin/files/clientfile/add" 
+                                                class="btn btn-sm bg-cyan waves-effect">
+                                                Add Client File
+                                            </a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -67,10 +69,14 @@
                                                                 {% endif %}
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <a href="/admin/files/clientfile/{{ file.id }}/change"
-                                                                    class="btn btn-sm btn-success">Edit</a>
-                                                                <a href="/admin/files/clientfile/{{ file.id }}/delete"
-                                                                    class="btn btn-sm btn-danger">Delete</a>
+                                                                {% if perms.files.change_clientfile %}
+                                                                    <a href="/admin/files/clientfile/{{ file.id }}/change"
+                                                                        class="btn btn-sm btn-success">Edit</a>
+                                                                {% endif %}
+                                                                {% if perms.files.delete_clientfile %}
+                                                                    <a href="/admin/files/clientfile/{{ file.id }}/delete"
+                                                                        class="btn btn-sm btn-danger">Delete</a>
+                                                                {% endif %}
                                                             </div>
                                                         </div>
                                                     </div>

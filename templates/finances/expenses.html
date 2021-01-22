@@ -71,10 +71,14 @@
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <a href="/admin/finances/expense/{{ expense.id }}/change"
-                                                                    class="btn btn-success btn-sm">Edit</a>
-                                                                <a href="/admin/finances/expense/{{ expense.id }}/delete"
-                                                                    class="btn btn-danger btn-sm">Delete</a>
+                                                                {% if perms.finances.change_expense %}
+                                                                    <a href="/admin/finances/expense/{{ expense.id }}/change"
+                                                                        class="btn btn-success btn-sm">Edit</a>
+                                                                {% endif %}
+                                                                {% if perms.finances.delete_expense %}
+                                                                    <a href="/admin/finances/expense/{{ expense.id }}/delete"
+                                                                        class="btn btn-danger btn-sm">Delete</a>
+                                                                {% endif %}
                                                             </div>
                                                         </div>
                                                     </div>

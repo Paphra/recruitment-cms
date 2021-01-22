@@ -82,10 +82,14 @@
                                                                 {% endif %}
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <a href="/admin/operations/otheroperation{{ other_op.id }}/change"
-                                                                    class="btn btn-sm btn-success">Edit</a>
-                                                                <a href="/admin/operations/otheroperation{{ other_op.id }}/delete"
-                                                                    class="btn btn-sm btn-danger">Delete</a>
+                                                                {% if perms.operations.change_otheroperation %}
+                                                                    <a href="/admin/operations/otheroperation{{ other_op.id }}/change"
+                                                                        class="btn btn-sm btn-success">Edit</a>
+                                                                {% endif %}
+                                                                {% if perms.operations.delete_otheroperation %}
+                                                                    <a href="/admin/operations/otheroperation{{ other_op.id }}/delete"
+                                                                        class="btn btn-sm btn-danger">Delete</a>
+                                                                {% endif %}
                                                             </div>
                                                         </div>
                                                     </div>
