@@ -28,7 +28,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'n717gh^k@w-e!m#^#rz5ae79t)h!tn
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = [
-    'reruitment.enjaazilimited.co.ug',
+    'managementsystemsug.com',
+    'enjaazi.managementsystemsug.com',
     'recruitment-cms.herokuapp.com',
     '127.0.0.1'
 ]
