@@ -92,9 +92,9 @@ WSGI_APPLICATION = 'recruit.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'recruitment',
-        'USER': 'root',
-        'PASSWORD': '',
+        'NAME': 'manavirl_recruitment',
+        'USER': 'manavirl_recruitment',
+        'PASSWORD': 'august@recruit123',
         'HOST': '127.0.0.1',
         'PORT': '3306'
     },

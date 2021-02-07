@@ -58,8 +58,8 @@ class Client(models.Model):
     reg_fee = models.IntegerField('Registration Fee', choices=FEE_CHOICES, default=NOT_PAID)
     created = models.DateTimeField(default=timezone.now)
 
-    stages = models.ManyToManyField("settings.Stage", blank=True)
-    trainings = models.ManyToManyField("settings.Training", blank=True)
+    stages = models.ManyToManyField("settings.Stage", blank=True, null=True)
+    trainings = models.ManyToManyField("settings.Training", blank=True, null=True)
     
     class Meta:
         ordering = ['-created'] 
