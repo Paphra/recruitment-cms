@@ -30,10 +30,10 @@ class Clearance(models.Model):
     def __str__(self):
         return self.client.first_name
 
-@receiver(post_save, sender=Clearance)
-def clearance_post_save_receiver(sender, **kwargs):
-    if sender.status == 3 or sender.status == 4:
-        sender.client.stages.add()
+# @receiver(post_save, sender=Clearance)
+# def clearance_post_save_receiver(sender, **kwargs):
+#     if sender.status == 3 or sender.status == 4:
+#         sender.client.stages.add()
 
 class Contract(models.Model):
     """

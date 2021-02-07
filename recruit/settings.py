@@ -95,7 +95,7 @@ DATABASES = {
         'NAME': 'manavirl_recruitment',
         'USER': 'manavirl_recruitment',
         'PASSWORD': 'august@recruit123',
-        'HOST': '127.0.0.1',
+        'HOST': 'localhost',
         'PORT': '3306'
     },
     'sqlite': {
