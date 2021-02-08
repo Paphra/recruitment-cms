@@ -100,6 +100,14 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '3306'
     },
+    'test': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'manavirl_recruit',
+        'USER': 'manavirl_recruit',
+        'PASSWORD': 'august@recruit123',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
     'enjaazi': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'manavirl_recruitment',
