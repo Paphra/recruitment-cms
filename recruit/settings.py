@@ -186,5 +186,5 @@ LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login'
 
-COMPANY = "Recruitment CMS"
-COMPANY_LONG = "Recruitment Monitoring System"
+COMPANY = os.environ.get('DJANGO_COMPANY', "Recruitment CMS")
+COMPANY_LONG = os.environ.get('DJANGO_COMPANY_LONG', "Recruitment Monitoring System")
