@@ -18,10 +18,10 @@ from django.urls import include, path
 from . import settings
 from django.conf.urls.static import static
 
-admin.site.site_header = 'Recruitment Monitoring System'
-admin.site.site_title = "Recruitment CMS"
+admin.site.site_header = settings.COMPANY_LONG
+admin.site.site_title = settings.COMPANY
 # admin.site.site_url = None
-admin.site.index_title = "Site Admin | Reruitment CMS"
+admin.site.index_title = "Site Admin | " + settings.COMPANY
 
 urlpatterns = [
     path('admin/', admin.site.urls),

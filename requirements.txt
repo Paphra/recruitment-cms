@@ -18,7 +18,6 @@ mysqlclient==2.0.3
 odfpy==1.4.1
 openpyxl==3.0.5
 Pillow==8.1.0
-psycopg2==2.8.6
 pylint==2.6.0
 pytz==2020.5
 PyYAML==5.3.1

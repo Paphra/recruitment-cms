@@ -30,6 +30,7 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 ALLOWED_HOSTS = [
     'managementsystemsug.com',
     'enjaazi.managementsystemsug.com',
+    'harchar.managementsystemsug.com',
     'recruitment-cms.herokuapp.com',
     '127.0.0.1'
 ]
@@ -92,6 +93,14 @@ WSGI_APPLICATION = 'recruit.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'recruitment',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'enjaazi': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'manavirl_recruitment',
         'USER': 'manavirl_recruitment',
@@ -168,3 +177,6 @@ DATABASES['default'].update(prod_db)
 LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login'
+
+COMPANY = "Recruitment CMS"
+COMPANY_LONG = "Recruitment Monitoring System"
