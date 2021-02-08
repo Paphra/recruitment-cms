@@ -21,11 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'n717gh^k@w-e!m#^#rz5ae79t)h!tnm^+6%$&b1bg##ly!jr_j'
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'n717gh^k@w-e!m#^#rz5ae79t)h!tnm^+6%$&b1bg##ly!jr_j')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'n717gh^k@w-e!m#^#rz5ae79t)h!tnm^+6%$&b1bg##ly!jr_j')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True
-DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+DEBUG = os.environ.get('DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = [
     'managementsystemsug.com',
@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'import_export',
-
+    'admin_interface', 
+    'colorfield', 
+    
     # apps
     'home.apps.HomeConfig',
     'operations.apps.OperationsConfig',
@@ -55,6 +57,8 @@ INSTALLED_APPS = [
     'others.apps.OthersConfig',
     'settings.apps.SettingsConfig',
 ]
+
+X_FRAME_OPTIONS='SAMEORIGIN'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -94,25 +98,9 @@ WSGI_APPLICATION = 'recruit.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'recruitment',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306'
-    },
-    'test': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'manavirl_recruit',
-        'USER': 'manavirl_recruit',
-        'PASSWORD': 'august@recruit123',
-        'HOST': 'localhost',
-        'PORT': '3306'
-    },
-    'enjaazi': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'manavirl_recruitment',
-        'USER': 'manavirl_recruitment',
-        'PASSWORD': 'august@recruit123',
+        'NAME': os.environ.get('DB', 'recruitment'),
+        'USER': os.environ.get('DB_USER', 'root'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
         'HOST': 'localhost',
         'PORT': '3306'
     },
@@ -186,5 +174,5 @@ LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login'
 
-COMPANY = os.environ.get('DJANGO_COMPANY', "Recruitment CMS")
-COMPANY_LONG = os.environ.get('DJANGO_COMPANY_LONG', "Recruitment Monitoring System")
+COMPANY = os.environ.get('COMPANY', "Recruitment CMS")
+COMPANY_LONG = os.environ.get('COMPANY_LONG', "Recruitment Monitoring System")
