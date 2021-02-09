@@ -25,13 +25,15 @@
                 <div class="col-sm-6 text-center align-center">
                     <div class="card" style="padding-top:5%;padding-bottom:5%">
                         <div class="card-header">
-                            <img src="{% static 'logo.png' %}" width="50%" alt="Main logo" />
+                            <img src="{% static 'images/logo.jpg' %}" width="50%" alt="Main logo" />
+                            <br><hr><br>
                         </div>
                         <div class="card-body">
                             <form method="post">
                                 {% csrf_token %}
                                 {{ form.as_p }}
-                                <button type="submit">Log In</button>
+                                <br><hr><br>
+                                <button type="submit" class="btn btn-success wavew">Log In</button>
                             </form>
                         </div>
                     </div>

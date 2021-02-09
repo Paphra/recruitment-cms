@@ -84,6 +84,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+                'django_settings_export.settings_export',
             ],
         },
     },
@@ -133,13 +134,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'locale'), 
-    )
-LANGUAGES = [
-    ('en', 'English'),
-    ('ar', 'Arabic')
-]
 
 TIME_ZONE = 'Africa/Kampala'
 
@@ -159,10 +153,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/' 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static/assets')
-]
-
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 IMPORT_EXPORT_IMPORT_PERMISSION_CODE = ['add', 'change', 'delete']
 
@@ -176,3 +166,8 @@ LOGOUT_REDIRECT_URL = '/login'
 
 COMPANY = os.environ.get('COMPANY', "Recruitment CMS")
 COMPANY_LONG = os.environ.get('COMPANY_LONG', "Recruitment Monitoring System")
+
+SETTINGS_EXPORT = [
+    'COMPANY',
+    'COMPANY_LONG'
+]
