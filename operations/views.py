@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from operations.models import Clearance, Contract, Interpol, Interview, Medical, Passport, Ticket, Vetting, Visa, OtherOperation, TravelPlan
+from operations.models import Clearance, Contract, Interpol, Interview, Medical, Passport, Ticket, Vetting, Visa, OtherOperation, Travel
 
 @login_required()
 def clearances(request):
@@ -122,7 +122,7 @@ def travel_plans(request):
     Travel Plans View
     """
     args = {}
-    args['travel_plans'] = TravelPlan.objects.all()
+    args['travel_plans'] = Travel.objects.all()
     args['a'] = 'travel-plans'
     return render(request, 'operations/travel-plans.html', args)
     

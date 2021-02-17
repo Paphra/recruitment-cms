@@ -2,7 +2,7 @@ from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 # Register your models here.
-from .models import Clearance, Contract, Interpol, Interview, Medical, Passport, Ticket, Vetting, Visa, OtherOperation, TravelPlan
+from .models import Clearance, Contract, Interpol, Interview, Medical, Passport, Ticket, Training, Vetting, Visa, OtherOperation, Travel
 
 @admin.register(Clearance)
 class ClearanceAdmin(admin.ModelAdmin):
@@ -23,6 +23,13 @@ class InterpolAdmin(admin.ModelAdmin):
     list_display = ('client', 'submission_date', 'clearance_date', 'status', 'created')
     list_filter = ['status', 'submission_date', 'clearance_date', 'created']
     search_fields = ['client', 'submission_date', 'clearance_date']
+    list_editable = ['status']
+
+@admin.register(Training)
+class TraininfAdmin(admin.ModelAdmin):
+    list_display = ('client', 'center', 'status', 'created')
+    list_filter = ['status', 'center', 'created']
+    search_fields = ['client', 'center']
     list_editable = ['status']
 
 @admin.register(Interview)
@@ -79,8 +86,8 @@ class VisaAdmin(admin.ModelAdmin):
     list_editable = ['status']
     search_fields = ['client', 'visa_no', 'validity']
 
-@admin.register(TravelPlan)
-class TravelPlanAdmin(admin.ModelAdmin):
+@admin.register(Travel)
+class TravelAdmin(admin.ModelAdmin):
     list_display = ('client', 'item', 'status', 'created')
     list_filter = ['status', 'created']
     list_editable = ['status']

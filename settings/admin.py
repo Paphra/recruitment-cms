@@ -5,7 +5,7 @@ from import_export.admin import ImportExportModelAdmin
 from django.forms import CheckboxSelectMultiple
 
 # Register your models here.
-from .models import Agent, Partner, Category, Publicity, Destination, Stage, Employer, Training, TrainingCenter
+from .models import Agent, Partner, Category, Publicity, Destination, Stage, Employer, TrainingCenter
 
 class AgentAdmin(admin.ModelAdmin):
     list_display = ('title', 'address', 'phone', 'email', 'is_active', 'created')
@@ -63,12 +63,6 @@ class StageAdmin(admin.ModelAdmin):
     search_fields = ['title', 'description']
     list_editable = ['is_active']
 admin.site.register(Stage, StageAdmin)
-
-class TrainingAdmin(admin.ModelAdmin):
-    list_display = ('title', 'job','description', 'is_active', 'created')
-    list_filter = ('is_active', 'created', 'job')
-    list_editable = ['is_active']
-admin.site.register(Training, TrainingAdmin)
 
 class TrainingCenterAdmin(admin.ModelAdmin):
     list_display = ('title', 'address','description', 'is_active', 'created')

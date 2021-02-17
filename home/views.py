@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
-from .models import Client, Job, Branch
+from home.models import Client, Job, Branch
 from settings.models import Partner, Stage
+from operations.models import Clearance, Contract, Interpol, Interview, Training, Medical, Passport, Ticket, Vetting, Visa, OtherOperation, Travel
 
 @login_required()
 def index(request):
@@ -49,6 +50,32 @@ def register(request, client_id):
     client = get_object_or_404(Client, pk=client_id)
     client.registered = True
     client.save()
+
+    c = Clearance(client=client)
+    c.save()
+    c = Contract(client=client)
+    c.save()
+    c = Interpol(client=client)
+    c.save()
+    c = Interview(client=client)
+    c.save()
+    c = Training(client=client)
+    c.save()
+    c = Medical(client=client)
+    c.save()
+    c = Passport(client=client)
+    c.save()
+    c = Ticket(client=client)
+    c.save()
+    c = Vetting(client=client)
+    c.save()
+    c = Visa(client=client)
+    c.save()
+    c = Travel(client=client)
+    c.save()
+    c = OtherOperation(client=client)
+    c.save()
+    
     return redirect(clients)
 
 @login_required()

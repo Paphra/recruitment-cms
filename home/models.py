@@ -1,7 +1,10 @@
 from django.db import models
 from django.utils import timezone
 
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
 from django.contrib.auth.models import User
+from operations.models import Clearance, Contract, Interpol, Interview, Training, Medical, Passport, Ticket, Vetting, Visa, OtherOperation, Travel
 
 class Job(models.Model):
     """
@@ -59,7 +62,6 @@ class Client(models.Model):
     created = models.DateTimeField(default=timezone.now)
 
     stages = models.ManyToManyField("settings.Stage", blank=True)
-    trainings = models.ManyToManyField("settings.Training", blank=True)
     
     class Meta:
         ordering = ['-created'] 
@@ -67,6 +69,34 @@ class Client(models.Model):
     def __str__(self):
         return self.first_name + ' ' + self.last_name
 
+@receiver(post_save, sender=Client, dispatch_uid="update_client_stages")
+def update_client_stages(sender, instance, **kwargs):
+    if instance.registered:
+        c = Clearance(client=instance)
+        c.save()
+        c = Contract(client=instance)
+        c.save()
+        c = Interpol(client=instance)
+        c.save()
+        c = Interview(client=instance)
+        c.save()
+        c = Training(client=instance)
+        c.save()
+        c = Medical(client=instance)
+        c.save()
+        c = Passport(client=instance)
+        c.save()
+        c = Ticket(client=instance)
+        c.save()
+        c = Vetting(client=instance)
+        c.save()
+        c = Visa(client=instance)
+        c.save()
+        c = Travel(client=client)
+        c.save()
+        c = OtherOperation(client=instance)
+        c.save()
+    
 class Branch(models.Model):
     title = models.CharField(max_length=30)
     address = models.CharField(max_length=100)

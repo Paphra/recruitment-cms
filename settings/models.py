@@ -114,19 +114,6 @@ class Employer(models.Model):
     def __str__(self):
         return self.title
 
-class Training(models.Model):
-    """
-    Trainings Table
-    """
-    title = models.CharField(max_length=30, unique=True)
-    job = models.ForeignKey("home.Job", null=True, blank=True, on_delete=models.SET_NULL)
-    description = models.TextField(null=True, blank=True)
-    is_active = models.BooleanField(default=True)
-    created = models.DateField(default=timezone.now)
-
-    def __str__(self):
-        return self.title
-
 class TrainingCenter(models.Model):
     """
     Training Centers Table
