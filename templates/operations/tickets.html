@@ -5,7 +5,88 @@
     
     <section class="">
         <div class="">
-           
+           <!-- Widgets -->
+            <div class="row clearfix">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                    <div class="info-box bg-blue hover-expand-effect">
+                        <div class="icon">
+                            <a href="/admin/operations/ticket?status__exact=0">
+                                <i class="material-icons">person</i>
+                            </a>
+                        </div>
+                        <div class="content">
+                            <div class="text"><h5>Pending</h5></div>
+                            <h4><strong>{{ pending }}</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                    <div class="info-box bg-brown hover-expand-effect">
+                        <div class="icon">
+                            <a href="/admin/operations/ticket?status__exact=1">
+                                <i class="material-icons">refresh</i>
+                            </a>
+                        </div>
+                        <div class="content">
+                            <div class="text"><h5>Active</h5></div>
+                            <h4><strong>{{ active }}</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                    <div class="info-box bg-green hover-expand-effect">
+                        <div class="icon">
+                            <a href="/admin/operations/ticket?status__exact=2">
+                                <i class="material-icons">done</i>
+                            </a>
+                        </div>
+                        <div class="content">
+                            <div class="text"><h5>Done</h5></div>
+                            <h4><strong>{{ done }}</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                    <div class="info-box bg-pink hover-expand-effect">
+                        <div class="icon">
+                            <a href="/admin/operations/ticket?status__exact=3">
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </div>
+                        <div class="content">
+                            <div class="text"><h5>Cancelled</h5></div>
+                            <h4><strong>{{ cancelled }}</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                    <div class="info-box bg-green hover-expand-effect">
+                        <div class="icon">
+                            <a href="/admin/operations/ticket?status__exact=4">
+                                <i class="material-icons">done</i>
+                            </a>
+                        </div>
+                        <div class="content">
+                            <div class="text"><h5>Passed</h5></div>
+                            <h4><strong>{{ passed }}</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                    <div class="info-box bg-red hover-expand-effect">
+                        <div class="icon">
+                            <a href="/admin/operations/ticket?status__exact=5">
+                                <i class="material-icons">close</i>
+                            </a>
+                        </div>
+                        <div class="content">
+                            <div class="text"><h5>Failed</h5></div>
+                            <h4><strong>{{ failed }}</strong></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <!-- Exportable Table -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

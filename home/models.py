@@ -72,30 +72,66 @@ class Client(models.Model):
 @receiver(post_save, sender=Client, dispatch_uid="update_client_stages")
 def update_client_stages(sender, instance, **kwargs):
     if instance.registered:
-        c = Clearance(client=instance)
-        c.save()
-        c = Contract(client=instance)
-        c.save()
-        c = Interpol(client=instance)
-        c.save()
-        c = Interview(client=instance)
-        c.save()
-        c = Training(client=instance)
-        c.save()
-        c = Medical(client=instance)
-        c.save()
-        c = Passport(client=instance)
-        c.save()
-        c = Ticket(client=instance)
-        c.save()
-        c = Vetting(client=instance)
-        c.save()
-        c = Visa(client=instance)
-        c.save()
-        c = Travel(client=client)
-        c.save()
-        c = OtherOperation(client=instance)
-        c.save()
+        c = Clearance.objects.filter(client=instance).first()
+        if not c:
+            c = Clearance(client=instance)
+            c.save()
+
+        c = Contract.objects.filter(client=instance).first()
+        if not c:
+            c = Contract(client=instance)
+            c.save()
+
+        c = Interpol.objects.filter(client=instance).first()
+        if not c:
+            c = Interpol(client=instance)
+            c.save()
+        
+        c = Medical.objects.filter(client=instance).first()
+        if not c:
+            c = Medical(client=instance)
+            c.save()
+
+        c = Passport.objects.filter(client=instance).first()
+        if not c:
+            c = Passport(client=instance)
+            c.save()
+            
+        c = Ticket.objects.filter(client=instance).first()
+        if not c:
+            c = Ticket(client=instance)
+            c.save()
+
+        c = Vetting.objects.filter(client=instance).first()
+        if not c:
+            c = Vetting(client=instance)
+            c.save()
+
+        c = Training.objects.filter(client=instance).first()
+        if not c:
+            c = Training(client=instance)
+            c.save()
+
+        c = Visa.objects.filter(client=instance).first()
+        if not c:
+            c = Visa(client=instance)
+            c.save()
+
+        c = Travel.objects.filter(client=instance).first()
+        if not c:
+            c = Travel(client=instance)
+            c.save()
+
+        c = Interview.objects.filter(client=instance).first()
+        if not c:
+            c = Interview(client=instance)
+            c.save()
+
+        c = OtherOperation.objects.filter(client=instance).first()
+        if not c:
+            c = OtherOperation(client=instance)
+            c.save()
+            
     
 class Branch(models.Model):
     title = models.CharField(max_length=30)

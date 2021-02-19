@@ -51,31 +51,66 @@ def register(request, client_id):
     client.registered = True
     client.save()
 
-    c = Clearance(client=client)
-    c.save()
-    c = Contract(client=client)
-    c.save()
-    c = Interpol(client=client)
-    c.save()
-    c = Interview(client=client)
-    c.save()
-    c = Training(client=client)
-    c.save()
-    c = Medical(client=client)
-    c.save()
-    c = Passport(client=client)
-    c.save()
-    c = Ticket(client=client)
-    c.save()
-    c = Vetting(client=client)
-    c.save()
-    c = Visa(client=client)
-    c.save()
-    c = Travel(client=client)
-    c.save()
-    c = OtherOperation(client=client)
-    c.save()
+    c = Clearance.objects.filter(client=client).first()
+    if not c:
+        c = Clearance(client=client)
+        c.save()
+
+    c = Contract.objects.filter(client=client).first()
+    if not c:
+        c = Contract(client=client)
+        c.save()
+
+    c = Interpol.objects.filter(client=client).first()
+    if not c:
+        c = Interpol(client=client)
+        c.save()
     
+    c = Medical.objects.filter(client=client).first()
+    if not c:
+        c = Medical(client=client)
+        c.save()
+
+    c = Passport.objects.filter(client=client).first()
+    if not c:
+        c = Passport(client=client)
+        c.save()
+        
+    c = Ticket.objects.filter(client=client).first()
+    if not c:
+        c = Ticket(client=client)
+        c.save()
+
+    c = Vetting.objects.filter(client=client).first()
+    if not c:
+        c = Vetting(client=client)
+        c.save()
+
+    c = Training.objects.filter(client=client).first()
+    if not c:
+        c = Training(client=client)
+        c.save()
+
+    c = Visa.objects.filter(client=client).first()
+    if not c:
+        c = Visa(client=client)
+        c.save()
+
+    c = Travel.objects.filter(client=client).first()
+    if not c:
+        c = Travel(client=client)
+        c.save()
+
+    c = Interview.objects.filter(client=client).first()
+    if not c:
+        c = Interview(client=client)
+        c.save()
+
+    c = OtherOperation.objects.filter(client=client).first()
+    if not c:
+        c = OtherOperation(client=client)
+        c.save()
+        
     return redirect(clients)
 
 @login_required()
