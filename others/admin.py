@@ -1,5 +1,8 @@
 from django.contrib import admin
 
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+
 from .models import Task, Skill, Educ, Language, Bio, NextOfKin, Recruitment
 
 @admin.register(Task)
@@ -9,13 +12,29 @@ class TaskAdmin(admin.ModelAdmin):
     list_editable = ['status']
     search_fields = ['receiver', 'task']
 
+class RecruitmentResource(resources.ModelResource):
+    class Meta:
+        model = Recruitment
+        fields = ('client', 'job', 'employer', 'destination', 'partner', 'travel', 'status', 'created')
 
 @admin.register(Recruitment)
-class RecruitmentAdmin(admin.ModelAdmin):
-    list_display = ('client', 'job', 'employer', 'destination', 'partner', 'status', 'created')
+class RecruitmentAdmin(ImportExportModelAdmin):
+    resource_class = RecruitmentResource
+    list_display = ('client', 'job', 'employer', 'destination', 'partner', 'travel', 'status', 'created')
     list_filter = ['status', 'created']
     list_editable = ['status']
     search_fields = ['client', 'job', 'employer', 'destination', 'partner']
+    
+    def travel(self, obj):
+        status = {
+            0: 'Pending',
+            1: 'Active',
+            2: 'Done',
+            3: 'Cancelled',
+            4: 'Passed',
+            5: 'Failed'
+        }
+        return status.get(obj.client.travel.status, 'Pending')
   
 # @admin.register(Bio)
 # class BioAdmin(admin.ModelAdmin):

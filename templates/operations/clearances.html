@@ -115,8 +115,8 @@
                                         <th>Client</th>
                                         <th>Submission Date</th>
                                         <th>Position</th>
-                                        <th>Clearance Status</th>
-                                        <th>Vetting Status</th>
+                                        <th>Vetting</th>
+                                        <th>Status</th>
                                         <th>Created</th>
                                         <th>Actions</th>
                                     </tr>
@@ -128,23 +128,8 @@
                                             <td>{{ clearance.submission_date }}</td>
                                             <td>{{ clearance.position_on_clearance }}</td>
                                             <td>
-                                                {% if clearance.status == 0 %}
-                                                    <span class="badge badge-pill badge-primary">Pending</span>
-                                                {% elif clearance.status == 1 %}
-                                                    <span class="badge badge-pill bg-green">Active</span>
-                                                {% elif clearance.status == 2 %}
-                                                    <span class="badge badge-pill bg-orange">Done</span>
-                                                {% elif clearance.status == 3 %}
-                                                    <span class="badge badge-pill bg-red">Cancelled</span>
-                                                {% elif clearance.status == 4 %}
-                                                    <span class="badge badge-pill bg-green">Passed</span>
-                                                {% else %}
-                                                    <span class="badge badge-pill bg-red">Failed</span>
-                                                {% endif %}
-                                            </td>
-                                            <td>
                                                 {% if clearance.client.vetting.status == 0 %}
-                                                    <span class="badge badge-pill badge-primary">Pending</span>
+                                                    <span class="badge badge-pill bg-blue">Pending</span>
                                                 {% elif clearance.client.vetting.status == 1 %}
                                                     <span class="badge badge-pill bg-green">Active</span>
                                                 {% elif clearance.client.vetting.status == 2 %}
@@ -152,6 +137,21 @@
                                                 {% elif clearance.client.vetting.status == 3 %}
                                                     <span class="badge badge-pill bg-red">Cancelled</span>
                                                 {% elif clearance.client.vetting.status == 4 %}
+                                                    <span class="badge badge-pill bg-green">Passed</span>
+                                                {% else %}
+                                                    <span class="badge badge-pill bg-red">Failed</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if clearance.status == 0 %}
+                                                    <span class="badge badge-pill bg-blue">Pending</span>
+                                                {% elif clearance.status == 1 %}
+                                                    <span class="badge badge-pill bg-green">Active</span>
+                                                {% elif clearance.status == 2 %}
+                                                    <span class="badge badge-pill bg-orange">Done</span>
+                                                {% elif clearance.status == 3 %}
+                                                    <span class="badge badge-pill bg-red">Cancelled</span>
+                                                {% elif clearance.status == 4 %}
                                                     <span class="badge badge-pill bg-green">Passed</span>
                                                 {% else %}
                                                     <span class="badge badge-pill bg-red">Failed</span>

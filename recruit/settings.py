@@ -46,8 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'import_export',
-    'admin_interface', 
-    'colorfield', 
     
     # apps
     'home.apps.HomeConfig',

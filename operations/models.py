@@ -331,7 +331,13 @@ def update_client_training_stage(sender, instance, **kwargs):
             instance.client.stages.add(stage)
         elif 'training' in stage.title.lower() and instance.status < 1:
             instance.client.stages.remove(stage)
-
+    
+    if instance.status > 0:
+        instance.client.vetting.training = True
+    else:
+        instance.client.vetting.training = False
+    instance.client.vetting.save()
+        
 class Vetting(models.Model):
     """
     Vettings Table
@@ -477,8 +483,8 @@ class Travel(models.Model):
         (PASSED, 'Passed'),
         (FAILED, 'Failed')
     ]
-    client = models.ForeignKey("home.Client", on_delete=models.CASCADE)
-    item = models.CharField(max_length=100, blank=True)
+    client = models.OneToOneField("home.Client", on_delete=models.CASCADE)
+    description = models.TextField(blank=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=PENDING)
     document = models.FileField(upload_to='clients/%Y/%m/%d/', blank=True)
     created = models.DateField(default=timezone.now)

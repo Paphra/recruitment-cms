@@ -20,6 +20,7 @@ urlpatterns = [
     path('contracts', operations.contracts, name='contracts'),
     path('interpols', operations.interpols, name='interpols'),
     path('interviews', operations.interviews, name='interviews'),
+    path('trainings', operations.trainings, name='trainings'),
     path('medicals', operations.medicals, name='medicals'),
     path('passports', operations.passports, name='passports'),
     path('tickets', operations.tickets, name='tickets'),

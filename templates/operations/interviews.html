@@ -116,6 +116,7 @@
                                         <th>Nationality</th>
                                         <th>Date Of Birth</th>
                                         <th>Age</th>
+                                        <th>Registration</th>
                                         <th>Status</th>
                                         <th>Created</th>
                                         <th>Actions</th>
@@ -129,8 +130,15 @@
                                             <td>{{ interview.date_ob }}</td>
                                             <td>{{ interview.age }}</td>
                                             <td>
+                                                {% if interview.client.registered %}
+                                                    <span class="badge badge-pill bg-green">Done</span>
+                                                {% else %}
+                                                    <span class="badge badge-pill bg-blue">Pending</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
                                                 {% if interview.status == 0 %}
-                                                    <span class="badge badge-pill badge-primary">Pending</span>
+                                                    <span class="badge badge-pill bg-blue">Pending</span>
                                                 {% elif interview.status == 1 %}
                                                     <span class="badge badge-pill bg-green">Active</span>
                                                 {% elif interview.status == 2 %}

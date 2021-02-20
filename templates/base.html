@@ -203,27 +203,6 @@
                                             <span>Operations</span>
                                         </a>
                                         <ul class="ml-menu">
-                                            {% if perms.operations.view_clearance %}
-                                                <li class="{% if a == 'clearances' %}active{% endif %}">
-                                                    <a href="{% url 'clearances' %}">
-                                                        <strong>Clearances</strong>
-                                                    </a>
-                                                </li>
-                                            {% endif %}
-                                            {% if perms.operations.view_contract %}
-                                                <li class="{% if a == 'contracts' %}active{% endif %}">
-                                                    <a href="{% url 'contracts' %}">
-                                                        <strong>Contracts</strong>
-                                                    </a>
-                                                </li>
-                                            {% endif %}
-                                            {% if perms.operations.view_interpols %}
-                                                <li class="{% if a == 'interpols' %}active{% endif %}">
-                                                    <a href="{% url 'interpols' %}">
-                                                        <strong>Interpols</strong>
-                                                    </a>
-                                                </li>
-                                            {% endif %}
                                             {% if perms.operations.view_interview %}
                                                 <li class="{% if a == 'interviews' %}active{% endif %}">
                                                     <a href="{% url 'interviews' %}">
@@ -245,10 +224,17 @@
                                                     </a>
                                                 </li>
                                             {% endif %}
-                                            {% if perms.operations.view_ticket %}
-                                                <li class="{% if a == 'tickets' %}active{% endif %}">
-                                                    <a href="{% url 'tickets' %}">
-                                                        <strong>Tickets</strong>
+                                            {% if perms.operations.view_interpols %}
+                                                <li class="{% if a == 'interpols' %}active{% endif %}">
+                                                    <a href="{% url 'interpols' %}">
+                                                        <strong>Interpols</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                            {% if perms.operations.view_trainings %}
+                                                <li class="{% if a == 'trainings' %}active{% endif %}">
+                                                    <a href="{% url 'trainings' %}">
+                                                        <strong>Trainings</strong>
                                                     </a>
                                                 </li>
                                             {% endif %}
@@ -266,6 +252,20 @@
                                                     </a>
                                                 </li>
                                             {% endif %}
+                                            {% if perms.operations.view_clearance %}
+                                                <li class="{% if a == 'clearances' %}active{% endif %}">
+                                                    <a href="{% url 'clearances' %}">
+                                                        <strong>Clearances</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                            {% if perms.operations.view_contract %}
+                                                <li class="{% if a == 'contracts' %}active{% endif %}">
+                                                    <a href="{% url 'contracts' %}">
+                                                        <strong>Contracts</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
                                             {% if perms.operations.view_visa %}
                                                 <li class="{% if a == 'visas' %}active{% endif %}">
                                                     <a href="{% url 'visas' %}">
@@ -273,10 +273,17 @@
                                                     </a>
                                                 </li>
                                             {% endif %}
+                                            {% if perms.operations.view_ticket %}
+                                                <li class="{% if a == 'tickets' %}active{% endif %}">
+                                                    <a href="{% url 'tickets' %}">
+                                                        <strong>Tickets</strong>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
                                             {% if perms.operations.view_travelplan %}
                                                 <li class="{% if a == 'travel-plans' %}active{% endif %}">
                                                     <a href="{% url 'travel-plans' %}">
-                                                        <strong>Travel Plans</strong>
+                                                        <strong>Travels</strong>
                                                     </a>
                                                 </li>
                                             {% endif %}

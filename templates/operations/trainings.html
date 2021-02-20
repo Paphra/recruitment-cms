@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Recruitments | Others{% endblock %}
+{% block title %}Trainings | Operations{% endblock %}
 {% block content %}
     
     <section class="">
@@ -94,14 +94,14 @@
                         <div class="header">
                             <div class="row">
                                 <div class="col-sm-9">
-                                    <h2>Manage Recruitments</h2>
+                                    <h2>Manage Trainings</h2>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="text-right">
-                                        {% if perms.others.add_recruitment %}
-                                            <a href="/admin/others/recruitment/add" 
+                                        {% if perms.operations.add_training %}
+                                            <a href="/admin/operations/training/add" 
                                                 class="btn btn-sm bg-cyan waves-effect">
-                                                Add Recruitment
+                                                Add Training
                                             </a>
                                         {% endif %}
                                     </div>
@@ -113,84 +113,128 @@
                                 <thead>
                                     <tr>
                                         <th>Client</th>
-                                        <th>Job</th>
-                                        <th>Empoloyer</th>
-                                        <th>Destination</th>
-                                        <th>Partner</th>
-                                        <th>Travel</th>
+                                        <th>Training Center</th>
+                                        <th>Interpol</th>
                                         <th>Status</th>
                                         <th>Created</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for recruitment in recruitments %}
+                                    {% for training in trainings %}
                                         <tr>
-                                            <td>{{ recruitment.client }}</td>
-                                            <td>{{ recruitment.job }}</td>
-                                            <td>{{ recruitment.employer }}</td>
-                                            <td>{{ recruitment.destination }}</td>
-                                            <td>{{ recruitment.partner }}</td>
+                                            <td>{{ training.client }}</td>
+                                            <td>{{ training.center }}</td>
                                             <td>
-                                                {% if recruitment.client.travel.status == 0 %}
+                                                {% if training.client.interpol.status == 0 %}
                                                     <span class="badge badge-pill bg-blue">Pending</span>
-                                                {% elif recruitment.client.travel.status == 1 %}
+                                                {% elif training.client.interpol.status == 1 %}
                                                     <span class="badge badge-pill bg-green">Active</span>
-                                                {% elif recruitment.client.travel.status == 2 %}
+                                                {% elif training.client.interpol.status == 2 %}
                                                     <span class="badge badge-pill bg-orange">Done</span>
-                                                {% elif recruitment.client.travel.status == 3 %}
+                                                {% elif training.client.interpol.status == 3 %}
                                                     <span class="badge badge-pill bg-red">Cancelled</span>
-                                                {% elif recruitment.client.travel.status == 4 %}
+                                                {% elif training.client.interpol.status == 4 %}
                                                     <span class="badge badge-pill bg-green">Passed</span>
                                                 {% else %}
                                                     <span class="badge badge-pill bg-red">Failed</span>
                                                 {% endif %}
                                             </td>
                                             <td>
-                                                {% if recruitment.status == 0 %}
+                                                {% if training.status == 0 %}
                                                     <span class="badge badge-pill bg-blue">Pending</span>
-                                                {% elif recruitment.status == 1 %}
+                                                {% elif training.status == 1 %}
                                                     <span class="badge badge-pill bg-green">Active</span>
-                                                {% elif recruitment.status == 2 %}
+                                                {% elif training.status == 2 %}
                                                     <span class="badge badge-pill bg-orange">Done</span>
-                                                {% elif recruitment.status == 3 %}
+                                                {% elif training.status == 3 %}
                                                     <span class="badge badge-pill bg-red">Cancelled</span>
-                                                {% elif recruitment.status == 4 %}
+                                                {% elif training.status == 4 %}
                                                     <span class="badge badge-pill bg-green">Passed</span>
                                                 {% else %}
                                                     <span class="badge badge-pill bg-red">Failed</span>
                                                 {% endif %}
                                             </td>
-                                            <td>{{ recruitment.created }}</td>
+                                            <td>{{ training.created }}</td>
                                             <td>
                                                 <button class="btn btn-xs bg-deep-orange waves-effect"
-                                                    data-toggle="modal" data-target="#ViewRecruitmentModal-{{ recruitment.id }}">
+                                                    data-toggle="modal" data-target="#ViewTrainingModal-{{ training.id }}">
                                                     <i class="material-icons">visibility</i>
                                                 </button>
-                                                <div class="modal fade" id="ViewRecruitmentModal-{{ recruitment.id }}" role="dialog" data-backdrop="static">
+                                                <div class="modal fade" id="ViewTrainingModal-{{ training.id }}" role="dialog" data-backdrop="static">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                <h4 class="modal-title">Recruitment Details</h4>
+                                                                <h4 class="modal-title">Training Details</h4>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <h5>Recruitment File</h5>
-                                                                {% if recruitment.document %}
-                                                                    <a href="/media/{{ recruitment.document }}" target="_blank">
-                                                                        File
-                                                                    </a>
-                                                                {% else %}
-                                                                    <i>No Recruitment File Attatched</i>
-                                                                {% endif %}
+                                                                <div class="row">
+                                                                    <div class="col-xs-3">
+                                                                        <h6>Religion</h6>
+                                                                        <p>{{ training.religion }}</p>
+                                                                    </div>
+                                                                    <div class="col-xs-3">
+                                                                        <h6>Place Of Birth</h6>
+                                                                        <p>{{ training.place_ob }}</p>
+                                                                    </div>
+                                                                    <div class="col-xs-3">
+                                                                        <h6>Married</h6>
+                                                                        <p>
+                                                                            {% if training.married %}
+                                                                                Yes
+                                                                            {% else %}
+                                                                                No
+                                                                            {% endif %}
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-xs-3">
+                                                                        <h6>Spouse Name</h6>
+                                                                        <p>{{ training.spouse_name }}</p>
+                                                                    </div>
+                                                                    <div class="col-xs-3">
+                                                                        <h6>Spouse Contact</h6>
+                                                                        <p>{{ training.spouse_contact }}</p>
+                                                                    </div>
+                                                                    <div class="col-xs-3">
+                                                                        <h6>Number Of Children</h6>
+                                                                        <p>{{ training.num_children }}</p>
+                                                                    </div>
+                                                                    <div class="col-xs-3">
+                                                                        <h6>Home Town</h6>
+                                                                        <p>{{ training.home_town }}</p>
+                                                                    </div>
+                                                                    <div class="col-xs-3">
+                                                                        <h6>Previous Job</h6>
+                                                                        <p>{{ training.prev_job }}</p>
+                                                                    </div>
+                                                                    <div class="col-xs-3">
+                                                                        <h6>Previous Empoloyer</h6>
+                                                                        <p>{{ training.prev_employer }}</p>
+                                                                    </div>
+                                                                    <div class="col-xs-3">
+                                                                        <h6>Description</h6>
+                                                                        <p>{{ training.description }}</p>
+                                                                    </div>
+                                                                    <div class="col-sm-4">
+                                                                        <h5>Training File</h5>
+                                                                        {% if training.document %}
+                                                                            <a href="/media/{{ training.document }}" target="_blank">
+                                                                                File
+                                                                            </a>
+                                                                        {% else %}
+                                                                            <i>No Training File Attatched</i>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                {% if perms.others.change_recruitment %}
-                                                                    <a href="/admin/others/recruitment/{{ recruitment.id }}/change"
+                                                                {% if perms.operations.change_training %}
+                                                                    <a href="/admin/operations/training/{{ training.id }}/change"
                                                                         class="btn btn-sm btn-success">Edit</a>
                                                                 {% endif %}
-                                                                {% if perms.others.delete_recruitment %}
-                                                                    <a href="/admin/others/recruitment/{{ recruitment.id }}/delete"
+                                                                {% if perms.operations.delete_training %}
+                                                                    <a href="/admin/operations/training/{{ training.id }}/delete"
                                                                         class="btn btn-sm btn-danger">Delete</a>
                                                                 {% endif %}
                                                             </div>
@@ -211,5 +255,5 @@
     </section>
 {% endblock content %}
 {% block js %}
-    <script src="{% static 'js/pages/tables/recruitments.js' %}" ></script>
+    <script src="{% static 'js/pages/tables/trainings.js' %}" ></script>
 {% endblock js %}

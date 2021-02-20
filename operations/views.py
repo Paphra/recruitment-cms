@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from operations.models import Clearance, Contract, Interpol, Interview, Medical, Passport, Ticket, Vetting, Visa, OtherOperation, Travel
+from operations.models import Clearance, Contract, Interpol, Interview, Medical, Passport, Ticket, Vetting, Visa, OtherOperation, Training, Travel
 
 @login_required()
 def clearances(request):
@@ -71,6 +71,23 @@ def interviews(request):
     args['interviews'] = Interview.objects.all()
     args['a'] = 'interviews'
     return render(request, 'operations/interviews.html', args)
+    
+@login_required()
+def trainings(request):
+    """
+    Trainings View
+    """
+    args = {
+        'pending': Training.objects.filter(status=0).count(),
+        'active': Training.objects.filter(status=1).count(),
+        'done': Training.objects.filter(status=2).count(),
+        'cancelled': Training.objects.filter(status=3).count(),
+        'passed': Training.objects.filter(status=4).count(),
+        'failed': Training.objects.filter(status=5).count(),
+    }
+    args['trainings'] = Training.objects.all()
+    args['a'] = 'trainings'
+    return render(request, 'operations/trainings.html', args)
     
 @login_required()
 def medicals(request):

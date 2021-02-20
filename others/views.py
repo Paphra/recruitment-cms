@@ -18,7 +18,14 @@ def recruitments(request):
     """
     Recruitments View
     """
-    args = {}
+    args = {
+        'pending': Recruitment.objects.filter(status=0).count(),
+        'active': Recruitment.objects.filter(status=1).count(),
+        'done': Recruitment.objects.filter(status=2).count(),
+        'cancelled': Recruitment.objects.filter(status=3).count(),
+        'passed': Recruitment.objects.filter(status=4).count(),
+        'failed': Recruitment.objects.filter(status=5).count(),
+    }
     args['reruitments'] = Recruitment.objects.all()
     args['a'] = 'recruitments'
     return render(request, 'others/recruitments.html', args)

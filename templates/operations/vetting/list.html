@@ -5,7 +5,7 @@
     
     <section class="">
         <div class="">
-           <!-- Widgets -->
+            <!-- Widgets -->
             <div class="row clearfix">
                 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
                     <div class="info-box bg-blue hover-expand-effect">
@@ -119,6 +119,7 @@
                                         <th>Ministry</th>
                                         <th>Musaned</th>
                                         <th>Waqala</th>
+                                        <th>Contract</th>
                                         <th>Status</th>
                                         <th>Created</th>
                                         <th>Actions</th>
@@ -133,47 +134,62 @@
                                                 {% if vetting.diso %}
                                                     <span class="badge badge-pill bg-green">Approved</span>
                                                 {% else %}
-                                                    <span class="badge badge-pill badge-primary">Pending</span>
+                                                    <span class="badge badge-pill bg-blue">Pending</span>
                                                 {% endif %}
                                             </td>
                                             <td>
                                                 {% if vetting.giso %}
                                                     <span class="badge badge-pill bg-green">Approved</span>
                                                 {% else %}
-                                                    <span class="badge badge-pill badge-primary">Pending</span>
+                                                    <span class="badge badge-pill bg-blue">Pending</span>
                                                 {% endif %}
                                             </td>
                                             <td>
                                                 {% if vetting.training %}
                                                     <span class="badge badge-pill bg-green">Approved</span>
                                                 {% else %}
-                                                    <span class="badge badge-pill badge-primary">Pending</span>
+                                                    <span class="badge badge-pill bg-blue">Pending</span>
                                                 {% endif %}
                                             </td>
                                             <td>
                                                 {% if vetting.ministry %}
                                                     <span class="badge badge-pill bg-green">Approved</span>
                                                 {% else %}
-                                                    <span class="badge badge-pill badge-primary">Pending</span>
+                                                    <span class="badge badge-pill bg-blue">Pending</span>
                                                 {% endif %}
                                             </td>
                                             <td>
                                                 {% if vetting.musaned %}
                                                     <span class="badge badge-pill bg-green">Approved</span>
                                                 {% else %}
-                                                    <span class="badge badge-pill badge-primary">Pending</span>
+                                                    <span class="badge badge-pill bg-blue">Pending</span>
                                                 {% endif %}
                                             </td>
                                             <td>
                                                 {% if vetting.waqala %}
                                                     <span class="badge badge-pill bg-green">Approved</span>
                                                 {% else %}
-                                                    <span class="badge badge-pill badge-primary">Pending</span>
+                                                    <span class="badge badge-pill bg-blue">Pending</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if vetting.client.contract.status == 0 %}
+                                                    <span class="badge badge-pill bg-blue">Pending</span>
+                                                {% elif vetting.client.contract.status == 1 %}
+                                                    <span class="badge badge-pill bg-green">Active</span>
+                                                {% elif vetting.client.contract.status == 2 %}
+                                                    <span class="badge badge-pill bg-orange">Done</span>
+                                                {% elif vetting.client.contract.status == 3 %}
+                                                    <span class="badge badge-pill bg-red">Cancelled</span>
+                                                {% elif vetting.client.contract.status == 4 %}
+                                                    <span class="badge badge-pill bg-green">Passed</span>
+                                                {% else %}
+                                                    <span class="badge badge-pill bg-red">Failed</span>
                                                 {% endif %}
                                             </td>
                                             <td>
                                                 {% if vetting.status == 0 %}
-                                                    <span class="badge badge-pill badge-primary">Pending</span>
+                                                    <span class="badge badge-pill bg-blue">Pending</span>
                                                 {% elif vetting.status == 1 %}
                                                     <span class="badge badge-pill bg-green">Active</span>
                                                 {% elif vetting.status == 2 %}
