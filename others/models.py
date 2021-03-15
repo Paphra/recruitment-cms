@@ -40,15 +40,15 @@ class Skill(models.Model):
         (EXCELLENT, 'Excellent')
     ]
     SKILLS_CHOICES = [
-        ("Baby Sitting | يجلس الطفل", "Baby Sitting"),
-        ("Children Care | رعاية الأطفال", "Children Care"),
-        ("Disable Care | تعطيل الرعاية", "Disable Care"),
-        ("Cleaning | تنظيف", "Cleaning"),
-        ("Washing | غسل", "Washing"),
-        ("Ironing | كى الملابس", "Ironing"),
-        ("Arabic Cooking | الطبخ العربي", "Arabic Cooking"),
-        ("Cooking Capacity | قدرة الطبخ", "Cooking Capacity"),
-        ("Dusting | تنفيض الأتربة", "Dusting")
+        ("Baby Sitting", "Baby Sitting"),
+        ("Children Care", "Children Care"),
+        ("Disable Care", "Disable Care"),
+        ("Cleaning", "Cleaning"),
+        ("Washing", "Washing"),
+        ("Ironing", "Ironing"),
+        ("Arabic Cooking", "Arabic Cooking"),
+        ("Cooking Capacity", "Cooking Capacity"),
+        ("Dusting", "Dusting")
     ]
     client = models.ForeignKey("home.Client", on_delete=models.CASCADE)
     skill = models.CharField(max_length=200, choices=SKILLS_CHOICES)
