@@ -418,7 +418,7 @@ class Visa(models.Model):
     created = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.client.frist_name
+        return self.client.first_name
 
 @receiver(post_save, sender=Visa, dispatch_uid="update_visa_stage")
 def update_client_visa_stage(sender, instance, **kwargs):
