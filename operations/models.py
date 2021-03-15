@@ -229,8 +229,6 @@ class Passport(models.Model):
     agent = models.ForeignKey("settings.Agent", null=True, blank=True, on_delete=models.SET_NULL)
     passport_no = models.CharField("Passport Number", max_length=100, unique=True, blank=True, null=True)
     nationality = models.CharField(max_length=100, blank=True)
-    place_ob = models.CharField("Place Of Birth", max_length=100, blank=True)
-    date_ob = models.DateField(null=True, blank=True)
     issue_date = models.DateField(null=True, blank=True)
     expiry_date = models.DateField(null=True, blank=True)
 
