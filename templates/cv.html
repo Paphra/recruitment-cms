@@ -241,7 +241,7 @@
 								{% endif %}
 								<hr/>
 								<center><h5>Applicant's Passport</h5></center>
-								{% if client.passport %}
+								{% if client.passport.document %}
 									<img src="/media/{{ client.passport.document }}" style="width:320px; height:500px;" />
 								{% else %}
 									<img src="{% static 'images/placeholder.jpg' %}" style="width:320px; height:500px;" />
